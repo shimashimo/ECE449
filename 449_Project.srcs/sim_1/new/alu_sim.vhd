@@ -37,20 +37,22 @@ end alu_sim;
 
 architecture Behavioral of alu_sim is
 
-    signal A: STD_LOGIC_VECTOR(2 downto 0) := "001";
-    signal B: STD_LOGIC_VECTOR(2 downto 0) := "011";
-    signal OP: STD_LOGIC_VECTOR(6 downto 0);
-    signal Y: STD_LOGIC_VECTOR(2 downto 0);
-
+    signal A: STD_LOGIC_VECTOR(15 downto 0) := std_logic_vector(to_unsigned(8,16));
+    signal B: STD_LOGIC_VECTOR(15 downto 0) := std_logic_vector(to_unsigned(3,16));
+    signal OP: STD_LOGIC_VECTOR(2 downto 0);
+    signal Y: STD_LOGIC_VECTOR(15 downto 0);
+    signal Z: STD_LOGIC;
+    signal N: STD_LOGIC;
+    
 begin
 UUT: entity work.ALU
-    port map(A => A, B => B, OP => OP, Y => Y);
+    port map(A => A, B => B, OP => OP, Y => Y, Z => Z, N => N);
 
 testbench: process
     begin
     
-    for i in 0 to 4 loop
-        OP <= std_logic_vector(to_unsigned(i,7));
+    for i in 0 to 7 loop
+        OP <= std_logic_vector(to_unsigned(i,3));
         wait for 20 ns;
     end loop;
 end process testbench;
