@@ -16,7 +16,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -28,7 +27,7 @@ set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
 set_property ip_output_repo c:/Users/echatham/Desktop/449_Project/449_Project.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_vhdl -library xil_defaultlib C:/Users/echatham/Desktop/449_Project/449_Project.srcs/sources_1/new/ALU.vhd
+read_vhdl -library xil_defaultlib C:/Users/echatham/Desktop/449_Project/449_Project.srcs/sources_1/new/Register.vhd
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
 # design are intentionally left as such for best results. Dcp files will be
@@ -38,10 +37,10 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
 
-synth_design -top ALU -part xc7a35tcpg236-1
+synth_design -top register_file -part xc7a35tcpg236-1
 
 
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef ALU.dcp
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file ALU_utilization_synth.rpt -pb ALU_utilization_synth.pb"
+write_checkpoint -force -noxdef register_file.dcp
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file register_file_utilization_synth.rpt -pb register_file_utilization_synth.pb"

@@ -37,8 +37,8 @@ end alu_sim;
 
 architecture Behavioral of alu_sim is
 
-    signal A: STD_LOGIC_VECTOR(15 downto 0) := std_logic_vector(to_unsigned(8,16));
-    signal B: STD_LOGIC_VECTOR(15 downto 0) := std_logic_vector(to_unsigned(3,16));
+    signal A: STD_LOGIC_VECTOR(15 downto 0) := std_logic_vector(to_signed(-4,16));
+    signal B: STD_LOGIC_VECTOR(15 downto 0) := std_logic_vector(to_signed(-4,16));
     signal OP: STD_LOGIC_VECTOR(2 downto 0);
     signal Y: STD_LOGIC_VECTOR(15 downto 0);
     signal Z: STD_LOGIC;

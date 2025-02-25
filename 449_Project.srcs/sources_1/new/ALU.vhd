@@ -72,7 +72,7 @@ begin
                                     Y(i) <= '0';
                                 end if;
                             end loop;
-            when "111" =>   if unsigned(A) < 0 then
+            when "111" =>   if signed(A) < 0 then
                                 N <= '1';
                             else
                                 N <= '0';
