@@ -25,7 +25,7 @@ use ieee.std_logic_unsigned.all;
 
 entity register_file is
     port(   
-            rst : in std_logic; 
+            rst: in std_logic; 
             clk: in std_logic;
             --read signals
             rd_index1: in std_logic_vector(2 downto 0); 

@@ -31,7 +31,7 @@ entity Program_Counter is
             rst: in STD_LOGIC;
             clk: in STD_LOGIC;
             stall: in STD_LOGIC;
-            PC : out STD_LOGIC_VECTOR(15 downto 0));
+            PC: out STD_LOGIC_VECTOR(15 downto 0));
 end Program_Counter;
 
 architecture Behavioral of Program_Counter is
