@@ -36,10 +36,10 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity ALU is
     Port (
+        clk : in STD_LOGIC;
+        rst : in STD_LOGIC;
         A : in STD_LOGIC_VECTOR(15 downto 0);
         B : in STD_LOGIC_VECTOR(15 downto 0);
---        clk : in STD_LOGIC;
---        rst : in STD_LOGIC;
         OP : in STD_LOGIC_VECTOR(2 downto 0);       -- Opcode is 7 bits
         Y : out STD_LOGIC_VECTOR(15 downto 0);
         Z : out STD_LOGIC;
@@ -48,42 +48,48 @@ end ALU;
 
 architecture Behavioral of ALU is
 begin
-    process (A, B, OP)
+    process (clk, rst, A, B, OP)
         variable p1: STD_LOGIC_VECTOR(31 downto 0);
     begin
-        case OP is
-            when "001" => Y <= A + B;
-            when "010" => Y <= A - B;
-            when "011" => p1 := std_logic_vector(unsigned(A) * unsigned(B));
-                              Y <= p1(15 downto 0);
-            when "100" => Y <= A NAND B;
-             when "101" =>  for i in 0 to 15 loop
-                                if i <= 15 - to_integer(unsigned(B)) then
-                                    Y(i + to_integer(unsigned(B))) <= A(i);
-                                end if;
-                                if i < to_integer(unsigned(B)) then
-                                    Y(i) <= '0';
-                                end if;
-                            end loop;
-            when "110" =>   for i in 0 to 15 loop
-                                if i >= to_integer(unsigned(B)) then
-                                    Y(i - to_integer(unsigned(B))) <= A(i);
-                                else
-                                    Y(i) <= '0';
-                                end if;
-                            end loop;
-            when "111" =>   if signed(A) < 0 then
-                                N <= '1';
-                            else
-                                N <= '0';
-                            end if;
-                            if unsigned(A) = 0 then
-                                Z <= '1';
-                            else
-                                Z <= '0';
-                            end if;
-            when others => NULL;
-        end case;
+        if rising_edge(clk) then
+            if rst = '1' then
+                Y <= x"0000";
+                Z <= '0';
+                N = '0';
+            else
+                case OP is
+                    when "001" => Y <= A + B;
+                    when "010" => Y <= A - B;
+                    when "011" => p1 := std_logic_vector(unsigned(A) * unsigned(B));
+                                    Y <= p1(15 downto 0);
+                    when "100" => Y <= A NAND B;
+                    when "101" =>  for i in 0 to 15 loop
+                                        if i <= 15 - to_integer(unsigned(B)) then
+                                            Y(i + to_integer(unsigned(B))) <= A(i);
+                                        end if;
+                                        if i < to_integer(unsigned(B)) then
+                                            Y(i) <= '0';
+                                        end if;
+                                    end loop;
+                    when "110" =>   for i in 0 to 15 loop
+                                        if i >= to_integer(unsigned(B)) then
+                                            Y(i - to_integer(unsigned(B))) <= A(i);
+                                        else
+                                            Y(i) <= '0';
+                                        end if;
+                                    end loop;
+                    when "111" =>   if signed(A) < 0 then
+                                        N <= '1';
+                                    else
+                                        N <= '0';
+                                    end if;
+                                    if unsigned(A) = 0 then
+                                        Z <= '1';
+                                    else
+                                        Z <= '0';
+                                    end if;
+                    when others => NULL;
+                end case;
     end process;
     
 end Behavioral;
