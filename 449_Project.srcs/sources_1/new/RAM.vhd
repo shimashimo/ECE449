@@ -1,12 +1,25 @@
 ----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
 -- Create Date: 02/24/2025 04:21:35 PM
+-- Design Name: 
+-- Module Name: RAM - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
 ----------------------------------------------------------------------------------
-
 
 Library xpm;
 use xpm.vcomponents.all;
-
-
 
 
 entity RAM is
@@ -19,10 +32,9 @@ entity RAM is
 		write_a: in STD_LOGIC;
 		addr_a: in STD_LOGIC_VECTOR(15 downto 0);
 		addr_b: in STD_LOGIC_VECTOR(15 downto 0);
-		data_in: in STD_LOGIC_VECTOR(15 downto 0);
-		data_out_a: out STD_LOGIC_VECTOR(15 downto 0);
-		data_out_b: out STD_LOGIC_VECTOR(15 downto 0);
-	);
+		din: in STD_LOGIC_VECTOR(15 downto 0);
+		dout_a: out STD_LOGIC_VECTOR(15 downto 0);
+		dout_b: out STD_LOGIC_VECTOR(15 downto 0));
 end RAM;
 
 architecture Behavioural of RAM is
@@ -52,53 +64,33 @@ begin
 		USE_EMBEDDED_CONSTRAINT => 0, -- DECIMAL
 		USE_MEM_INIT => 1, -- DECIMAL
 		WRITE_DATA_WIDTH_A => 16 -- DECIMAL
-		)
-		port map (
-		douta => douta, 	-- READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
-		doutb => doutb, 	-- READ_DATA_WIDTH_B-bit output: Data output for port B read operations.
-		addra => addra, 	-- ADDR_WIDTH_A-bit input: Address for port A write and read operations.
-		addrb => addrb, 	-- ADDR_WIDTH_B-bit input: Address for port B write and read operations.
-		clka => clka, 		-- 1-bit input: Clock signal for port A. Also clocks port B when parameter
-							-- CLOCKING_MODE is "common_clock".
-		clkb => clkb, 		-- 1-bit input: Clock signal for port B when parameter CLOCKING_MODE is
-		-- "independent_clock". Unused when parameter CLOCKING_MODE is "common_clock".
-		dina => dina, 		-- WRITE_DATA_WIDTH_A-bit input: Data input for port A write operations.
-		ena => ena, 		-- 1-bit input: Memory enable signal for port A. Must be high on clock cycles when read
-							-- or write operations are initiated. Pipelined internally.
-		enb => enb, 		-- 1-bit input: Memory enable signal for port B. Must be high on clock cycles when read
-							-- or write operations are initiated. Pipelined internally.
-		regcea => regcea, 	-- 1-bit input: Clock Enable for the last register stage on the output data path.
-		regceb => regceb, 	-- 1-bit input: Do not change from the provided value.
-		rsta => rsta, 		-- 1-bit input: Reset signal for the final port A output register stage. Synchronously
-							-- resets output port douta to the value specified by parameter READ_RESET_VALUE_A.
-		rstb => rstb, 		-- 1-bit input: Reset signal for the final port B output register stage. Synchronously
-							-- resets output port doutb to the value specified by parameter READ_RESET_VALUE_B.
-		wea => wea 			-- WRITE_DATA_WIDTH_A-bit input: Write enable vector for port A input data port dina. 1
-							-- bit wide when word-wide writes are used. In byte-wide write configurations, each bit
-							-- controls the writing one byte of dina to address addra. For example, to
-							-- synchronously write only bits [15-8] of dina when WRITE_DATA_WIDTH_A is 32, wea
-							-- would be 4'b0010.
+	)
+	port map (
+	douta => dout_a, 	-- READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
+	doutb => dout_b, 	-- READ_DATA_WIDTH_B-bit output: Data output for port B read operations.
+	addra => addr_a, 	-- ADDR_WIDTH_A-bit input: Address for port A write and read operations.
+	addrb => addr_b, 	-- ADDR_WIDTH_B-bit input: Address for port B write and read operations.
+	clka => clk, 		-- 1-bit input: Clock signal for port A. Also clocks port B when parameter
+						-- CLOCKING_MODE is "common_clock".
+	clkb => clk, 		-- 1-bit input: Clock signal for port B when parameter CLOCKING_MODE is
+	-- "independent_clock". Unused when parameter CLOCKING_MODE is "common_clock".
+	dina => din, 		-- WRITE_DATA_WIDTH_A-bit input: Data input for port A write operations.
+	ena => enb_a, 		-- 1-bit input: Memory enable signal for port A. Must be high on clock cycles when read
+						-- or write operations are initiated. Pipelined internally.
+	enb => enb_b, 		-- 1-bit input: Memory enable signal for port B. Must be high on clock cycles when read
+						-- or write operations are initiated. Pipelined internally.
+	regcea => 'regcea', 	-- 1-bit input: Clock Enable for the last register stage on the output data path.
+	regceb => regceb, 	-- 1-bit input: Do not change from the provided value.
+	rsta => rst_a, 		-- 1-bit input: Reset signal for the final port A output register stage. Synchronously
+						-- resets output port douta to the value specified by parameter READ_RESET_VALUE_A.
+	rstb => rst_b, 		-- 1-bit input: Reset signal for the final port B output register stage. Synchronously
+						-- resets output port doutb to the value specified by parameter READ_RESET_VALUE_B.
+	wea => write_a 			-- WRITE_DATA_WIDTH_A-bit input: Write enable vector for port A input data port dina. 1
+						-- bit wide when word-wide writes are used. In byte-wide write configurations, each bit
+						-- controls the writing one byte of dina to address addra. For example, to
+						-- synchronously write only bits [15-8] of dina when WRITE_DATA_WIDTH_A is 32, wea
+						-- would be 4'b0010.
 	);
 	-- End of xpm_memory_dpdistram_inst instantiation
-
-	Port Map(
-		-- port a
-		clka => clk;
-		rsta => rst_a;
-		ena => enb_a;
-		regcea => '1'; 
-		wea => write_a;
-		addra => addr_a;
-		dina => data_in;
-		douta => data_out_a;
-
-		-- port b
-		clkb => clk;
-		rstb => rst_b;
-		enb => enb_b;
-		regceb => '1'; 
-		addrb => addr_b;
-		doutb => data_out_b;
-	);
 
 end Behavioural;
