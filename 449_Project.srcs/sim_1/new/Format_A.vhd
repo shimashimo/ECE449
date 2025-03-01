@@ -32,17 +32,13 @@ use IEEE.numeric_std.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity alu_sim is
-    Port(
-        clk: in STD_LOGIC;
-        out: out STD_LOGIC_VECTOR(15 downto 0)
-    );
-end alu_sim;
+entity format_a_sim is
+end format_a_sim;
 
-architecture Behavioral of alu_sim is
+architecture Behavioral of format_a_sim is
 
-    signal A: STD_LOGIC_VECTOR(15 downto 0) := std_logic_vector(to_signed(-4,16));
-    signal B: STD_LOGIC_VECTOR(15 downto 0) := std_logic_vector(to_signed(-4,16));
+    signal A: STD_LOGIC_VECTOR(15 downto 0);
+    signal B: STD_LOGIC_VECTOR(15 downto 0);
     signal OP: STD_LOGIC_VECTOR(2 downto 0);
     signal Y: STD_LOGIC_VECTOR(15 downto 0);
     signal Z: STD_LOGIC;
@@ -50,42 +46,76 @@ architecture Behavioral of alu_sim is
     signal r1: STD_LOGIC_VECTOR(15 downto 0);
     signal r2: STD_LOGIC_VECTOR(15 downto 0);
     signal r3: STD_LOGIC_VECTOR(15 downto 0);    
+    signal rst: STD_LOGIC;
+    signal clk: STD_LOGIC;
+    signal output: STD_LOGIC_VECTOR(15 downto 0);
+    signal pc: STD_LOGIC_VECTOR(3 downto 0) := "0000";
     
 begin
 UUT: entity work.ALU
-    port map(A => A, B => B, OP => OP, Y => Y, Z => Z, N => N);
+    port map(clk => clk, rst => rst, A => A, B => B, OP => OP, Y => Y, Z => Z, N => N);
+
+process begin
+    clk <= '0';
+    wait for 1us;
+    clk <= '1';
+    wait for 1us;
+end process;
 
 testbench: process(clk)
     begin
     
-    r1 <= x"03";
-    r2 <= x"05";
-
-    wait until rising_edge(clk);
-
-    OP <= "001";
-    A <= r2;
-    B <= r1;
-    r3 <= Y;
-
-    wait until rising_edge(clk);
-
-    OP <= "101";
-    A <= r3;
-    B <= x"02";
-
-    wait until rising_edge(clk);
-
-    OP <= "011";
-    A <= r1;
-    B <= r3;
-    r2 <= Y;
-
-    wait until rising_edge(clk);
-
-    out <= r2
-
-    end loop;
+    if pc = "0000" then
+              rst <= '1';
+              r1 <= x"0003";
+              r2 <= x"0005";
+              A <= x"0000";
+              B <= x"0000";
+              OP <= "000";
+    end if;
+            
+    if falling_edge(clk) then  
+        if pc = "0001" then
+            rst <= '0';
+        end if;
+        
+        if pc = "0010" then
+            OP <= "001";
+            A <= r2;
+            B <= r1;
+        end if;
+        
+        if pc = "0011" then
+            r3 <= Y;
+        end if; 
+    
+        if pc = "0100" then
+            OP <= "101";
+            A <= r3;
+            B <= x"0002";
+        end if;
+        
+        if PC = "0101" then 
+            r3 <= Y;
+        end if;
+    
+        if pc = "0110" then
+            OP <= "011";
+            A <= r1;
+            B <= r3;
+        end if;
+    
+        if pc = "0111" then
+            r2 <= Y;
+        end if;
+        
+        if pc = "1000" then
+            output <= r2;
+        end if;
+        
+        pc <= STD_LOGIC_VECTOR(unsigned(pc) + 1);
+      
+    end if;
 end process testbench;
 
 end Behavioral;

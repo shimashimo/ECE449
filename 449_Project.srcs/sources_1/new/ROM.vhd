@@ -17,6 +17,9 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 Library xpm;
 use xpm.vcomponents.all;
@@ -50,26 +53,25 @@ begin
         READ_DATA_WIDTH_A => 32, -- DECIMAL
         READ_LATENCY_A => 2, -- DECIMAL
         READ_RESET_VALUE_A => "0", -- String
-        RST_MODE_A => "SYNC", -- String
         USE_MEM_INIT => 1, -- DECIMAL
         WAKEUP_TIME => "disable_sleep" -- String
     )
     port map (
-    dbiterra => dbiterra,   -- 1-bit output: Leave open.
+    dbiterra => open,   -- 1-bit output: Leave open.
     douta => data_out,         -- READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
-    sbiterra => sbiterra,   -- 1-bit output: Leave open.
+    sbiterra => open,   -- 1-bit output: Leave open.
 
     addra => addr,         -- ADDR_WIDTH_A-bit input: Address for port A read operations.
     clka => clk,           -- 1-bit input: Clock signal for port A.
     ena => enb,             -- 1-bit input: Memory enable signal for port A. Must be high on clock
                             -- cycles when read operations are initiated. Pipelined internally.
-    injectdbiterra => injectdbiterra, -- 1-bit input: Do not change from the provided value.
-    injectsbiterra => injectsbiterra, -- 1-bit input: Do not change from the provided value.
-    regcea => regcea,       -- 1-bit input: Do not change from the provided value.
+    injectdbiterra => '0', -- 1-bit input: Do not change from the provided value.
+    injectsbiterra => '0', -- 1-bit input: Do not change from the provided value.
+    regcea => '1',       -- 1-bit input: Do not change from the provided value.
     rsta => rst,           -- 1-bit input: Reset signal for the final port A output register
                             -- stage. Synchronously resets output port douta to the value specified
                             -- by parameter READ_RESET_VALUE_A.
-    sleep => sleep -- 1-bit input: sleep signal to enable the dynamic power saving feature.
+    sleep => '0' -- 1-bit input: sleep signal to enable the dynamic power saving feature.
     );
     -- End of xpm_memory_sprom_inst instantiation
 

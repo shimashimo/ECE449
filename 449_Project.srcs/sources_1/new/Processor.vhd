@@ -68,7 +68,6 @@ RAM : entity work.RAM port map(clk, rst_a, rst_b, enb_a, enb_b, write_a, addr_a,
 PC : entity work.Program_Counter port map(brch_addr, brch_en, rst, clk, stall, PC);
 
 begin
-
     process(clk) begin
         enb_a <= '1';   --enable port a RAM
         wr_enable <= '0';

@@ -45,15 +45,16 @@ begin
                 prog_ctr <= x"0000";
             end if;
 
-            if (stall = 1) then
+            if (stall = '1') then
                 prog_ctr <= prog_ctr;
             end if;
 
-            if (brch_en = 1) then
+            if (brch_en = '1') then
                 prog_ctr <= brch_addr;
             else
                 prog_ctr <= std_logic_vector(signed(prog_ctr) + 2);
             end if;
+        end if;
     end process;
             
     PC <= prog_ctr;                

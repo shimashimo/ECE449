@@ -48,14 +48,14 @@ end ALU;
 
 architecture Behavioral of ALU is
 begin
-    process (clk, rst, A, B, OP)
+    process (clk)
         variable p1: STD_LOGIC_VECTOR(31 downto 0);
     begin
         if rising_edge(clk) then
             if rst = '1' then
                 Y <= x"0000";
                 Z <= '0';
-                N = '0';
+                N <= '0';
             else
                 case OP is
                     when "001" => Y <= A + B;
@@ -90,6 +90,8 @@ begin
                                     end if;
                     when others => NULL;
                 end case;
+            end if;
+        end if;
     end process;
     
 end Behavioral;

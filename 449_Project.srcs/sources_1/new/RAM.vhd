@@ -18,6 +18,10 @@
 -- 
 ----------------------------------------------------------------------------------
 
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
 Library xpm;
 use xpm.vcomponents.all;
 
@@ -26,10 +30,10 @@ entity RAM is
 	Port (
 		clk: in STD_LOGIC;
 		rst_a: in STD_LOGIC;
-		rst_b: im STD_LOGIC;
+		rst_b: in STD_LOGIC;
 		enb_a: in STD_LOGIC;
 		enb_b: in STD_LOGIC;
-		write_a: in STD_LOGIC;
+		write_a: in STD_LOGIC_VECTOR(15 downto 0);
 		addr_a: in STD_LOGIC_VECTOR(15 downto 0);
 		addr_b: in STD_LOGIC_VECTOR(15 downto 0);
 		din: in STD_LOGIC_VECTOR(15 downto 0);
@@ -59,8 +63,6 @@ begin
 		READ_LATENCY_B => 2, -- DECIMAL
 		READ_RESET_VALUE_A => "0", -- String
 		READ_RESET_VALUE_B => "0", -- String
-		RST_MODE_A => "SYNC", -- String
-		RST_MODE_B => "SYNC", -- String
 		USE_EMBEDDED_CONSTRAINT => 0, -- DECIMAL
 		USE_MEM_INIT => 1, -- DECIMAL
 		WRITE_DATA_WIDTH_A => 16 -- DECIMAL
@@ -79,8 +81,8 @@ begin
 						-- or write operations are initiated. Pipelined internally.
 	enb => enb_b, 		-- 1-bit input: Memory enable signal for port B. Must be high on clock cycles when read
 						-- or write operations are initiated. Pipelined internally.
-	regcea => 'regcea', 	-- 1-bit input: Clock Enable for the last register stage on the output data path.
-	regceb => regceb, 	-- 1-bit input: Do not change from the provided value.
+	regcea => '1', 	-- 1-bit input: Clock Enable for the last register stage on the output data path.
+	regceb => '1', 	-- 1-bit input: Do not change from the provided value.
 	rsta => rst_a, 		-- 1-bit input: Reset signal for the final port A output register stage. Synchronously
 						-- resets output port douta to the value specified by parameter READ_RESET_VALUE_A.
 	rstb => rst_b, 		-- 1-bit input: Reset signal for the final port B output register stage. Synchronously
