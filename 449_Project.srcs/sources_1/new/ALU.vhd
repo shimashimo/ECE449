@@ -36,7 +36,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity ALU is
     Port (
-        clk : in STD_LOGIC;
+        -- clk : in STD_LOGIC;
         rst : in STD_LOGIC;
         A : in STD_LOGIC_VECTOR(15 downto 0);
         B : in STD_LOGIC_VECTOR(15 downto 0);
@@ -48,10 +48,10 @@ end ALU;
 
 architecture Behavioral of ALU is
 begin
-    process (clk)
+    process (rst,A,B)
         variable p1: STD_LOGIC_VECTOR(31 downto 0);
     begin
-        if rising_edge(clk) then
+       -- if rising_edge(clk) then
             if rst = '1' then
                 Y <= x"0000";
                 Z <= '0';
@@ -91,7 +91,7 @@ begin
                     when others => NULL;
                 end case;
             end if;
-        end if;
+       -- end if;
     end process;
     
 end Behavioral;

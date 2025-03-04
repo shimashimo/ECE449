@@ -1,6 +1,6 @@
-webtalk_init -webtalk_dir C:/Users/echatham/Desktop/449_Project/449_Project.sim/sim_1/behav/xsim/xsim.dir/format_a_sim_behav/webtalk/
+webtalk_init -webtalk_dir C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.sim/sim_1/behav/xsim/xsim.dir/format_a_sim_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Fri Feb 28 14:34:13 2025" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Mon Mar  3 16:05:16 2025" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2017.4 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "2086221" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -12,9 +12,9 @@ webtalk_add_data -client project -key target_family -value "not_applicable" -con
 webtalk_add_data -client project -key target_device -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key target_package -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
-webtalk_add_data -client project -key random_id -value "77810297-3fac-4a64-b4c3-c6733fc5d4b5" -context "software_version_and_target_device"
+webtalk_add_data -client project -key random_id -value "59efa9d5-7b90-4d51-ac12-86a08706fb0b" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "f26633030bc64ef7b979c6c83cfe6bc0" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "29" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "34" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Microsoft Windows 8 or later , 64-bit" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz" -context "user_environment"
@@ -36,7 +36,7 @@ webtalk_add_data -client xsim -key Total_Nets -value "0" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Processes -value "3" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Instances -value "8" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Xilinx_HDL_Libraries_Used -value "secureip " -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Time -value "0.58_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Memory -value "47764_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 254006047 -regid "" -xml C:/Users/echatham/Desktop/449_Project/449_Project.sim/sim_1/behav/xsim/xsim.dir/format_a_sim_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/echatham/Desktop/449_Project/449_Project.sim/sim_1/behav/xsim/xsim.dir/format_a_sim_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/echatham/Desktop/449_Project/449_Project.sim/sim_1/behav/xsim/xsim.dir/format_a_sim_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Compiler_Time -value "0.53_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Compiler_Memory -value "48980_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 338323537 -regid "" -xml C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.sim/sim_1/behav/xsim/xsim.dir/format_a_sim_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.sim/sim_1/behav/xsim/xsim.dir/format_a_sim_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.sim/sim_1/behav/xsim/xsim.dir/format_a_sim_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

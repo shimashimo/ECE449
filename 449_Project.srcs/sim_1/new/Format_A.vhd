@@ -46,14 +46,14 @@ architecture Behavioral of format_a_sim is
     signal r1: STD_LOGIC_VECTOR(15 downto 0);
     signal r2: STD_LOGIC_VECTOR(15 downto 0);
     signal r3: STD_LOGIC_VECTOR(15 downto 0);    
-    signal rst: STD_LOGIC;
+    signal rst: STD_LOGIC := '0';
     signal clk: STD_LOGIC;
     signal output: STD_LOGIC_VECTOR(15 downto 0);
     signal pc: STD_LOGIC_VECTOR(3 downto 0) := "0000";
     
 begin
 UUT: entity work.ALU
-    port map(clk => clk, rst => rst, A => A, B => B, OP => OP, Y => Y, Z => Z, N => N);
+    port map(rst => rst, A => A, B => B, OP => OP, Y => Y, Z => Z, N => N);
 
 process begin
     clk <= '0';
@@ -65,7 +65,7 @@ end process;
 testbench: process(clk)
     begin
     
-    if pc = "0000" then
+    if pc = "0000" then -- Reset all values to 0, set initial values of registers, r1 and r2
               rst <= '1';
               r1 <= x"0003";
               r2 <= x"0005";
@@ -74,7 +74,7 @@ testbench: process(clk)
               OP <= "000";
     end if;
             
-    if falling_edge(clk) then  
+    if rising_edge(clk) then  
         if pc = "0001" then
             rst <= '0';
         end if;

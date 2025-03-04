@@ -45,6 +45,7 @@ entity Processor is
 end Processor;
 
 architecture Behavioral of Processor is
+signal instruction: STD_LOGIC_VECTOR(15 downto 0);   -- Instruction from Instruction Memory
 signal fetch: STD_LOGIC;
 signal decode: STD_LOGIC;
 signal execute: STD_LOGIC;
@@ -62,12 +63,15 @@ signal op1: STD_LOGIC_VECTOR(15 downto 0);  -- rename to instr?
 signal op2: STD_LOGIC_VECTOR(15 downto 0);
 signal alu_result: STD_LOGIC_VECTOR(15 downto 0);
 
+
+begin
+IF_ID: entity work.IF_ID port map(clk, rst, instruction, 
 ALU : entity work.ALU port map(clk, rst, A, B, OP, Y, Z, N);
 Reg : entity work.register_file port map(rst, clk, rd_index1, rd_index2, rd_data1, rd_data2, wr_index, wr_data, wr_enable);
 RAM : entity work.RAM port map(clk, rst_a, rst_b, enb_a, enb_b, write_a, addr_a, addr_b, din, dout_a, dout_b);
 PC : entity work.Program_Counter port map(brch_addr, brch_en, rst, clk, stall, PC);
 
-begin
+
     process(clk) begin
         enb_a <= '1';   --enable port a RAM
         wr_enable <= '0';
