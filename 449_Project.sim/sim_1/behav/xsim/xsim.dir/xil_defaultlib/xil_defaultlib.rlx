@@ -3,4 +3,13 @@
 Dec 15 2017
 21:07:18
 C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/Format_A.vhd,1741042536,vhdl,,,,format_a_sim,,,,,,,,
-C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/ALU.vhd,1741041215,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/Format_A.vhd,,,alu,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,1741400190,vhdl,,,,format_b_testbench,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/ALU.vhd,1741041215,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,,,alu,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/Branch.vhd,1741398817,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,,,branch,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/Controller.vhd,1741388480,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,,,controller,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/Decoder.vhd,1741399884,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,,,if_id,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd,1741397089,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,,,ex_mem,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd,1741400008,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,,,id_ex,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/MEM_WB.vhd,1741398539,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,,,mem_wb,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/Program_Counter.vhd,1741400287,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,,,program_counter,,,,,,,,
+C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sources_1/new/Register.vhd,1741394832,vhdl,C:/Users/echatham/Desktop/ECE449_Proj/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd,,,register_file,,,,,,,,

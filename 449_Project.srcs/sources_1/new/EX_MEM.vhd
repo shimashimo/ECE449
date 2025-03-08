@@ -33,16 +33,17 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity EX_MEM is
     Port ( 
-            rst: in STD_LOGIC;
             clk: in STD_LOGIC;
+            rst: in STD_LOGIC;
             alu_result: in STD_LOGIC_VECTOR(15 downto 0);
             mem_op: in STD_LOGIC;
             wb_op: in STD_LOGIC;
-            inst_in: in STD_LOGIC_VECTOR(15 downto 0);
+            inst_in: in STD_LOGIC_VECTOR(15 downto 0);      -- Propagate whole instruction
             mem_addr: out STD_LOGIC_VECTOR(15 downto 0);
             wr_en: out STD_LOGIC;
             wb_out: out STD_LOGIC;
-            inst_out: out STD_LOGIC_VECTOR(15 downto 0)
+            inst_out: out STD_LOGIC_VECTOR(15 downto 0);     -- Propagate whole instruction
+            alu_result_out: out STD_LOGIC_VECTOR(15 downto 0)
             );
 end EX_MEM;
 
@@ -52,6 +53,8 @@ begin
     process(clk) begin
         if (clk = '1') then
             inst_out <= inst_in;
+            wb_out <= wb_op;
+            alu_result_out <= alu_result;
         end if;
     
     end process;

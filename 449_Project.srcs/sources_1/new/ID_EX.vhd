@@ -35,19 +35,21 @@ entity ID_EX is
   Port ( 
         clk: in STD_LOGIC;
         rst: in STD_LOGIC;
-        inst_in: in STD_LOGIC_VECTOR(15 downto 0);
+        inst_in: in STD_LOGIC_VECTOR(15 downto 0);  -- Propagete Instruction
         op_in: in STD_LOGIC_VECTOR(6 downto 0);
         rd_data1: in STD_LOGIC_VECTOR(15 downto 0);
         rd_data2: in STD_LOGIC_VECTOR(15 downto 0);
         alu_in: in STD_LOGIC_VECTOR(2 downto 0);
         mem_in: in STD_LOGIC;
         wb_in: in STD_LOGIC;
+        PC_in: in STD_LOGIC_VECTOR(15 downto 0);
+        PC_out: out STD_LOGIC_VECTOR(15 downto 0);
         alu_out: out STD_LOGIC_VECTOR(2 downto 0);
         mem_out: out STD_LOGIC;
         wb_out: out STD_LOGIC;
         RD1: out STD_LOGIC_VECTOR(15 downto 0);
         RD2: out STD_LOGIC_VECTOR(15 downto 0);
-        inst_out: out STD_LOGIC_VECTOR(15 downto 0)
+        inst_out: out STD_LOGIC_VECTOR(15 downto 0) -- Propagete Instruction
   );
 end ID_EX;
 
@@ -65,7 +67,7 @@ process (clk) begin
         end if;
         
         if alu_in /= "000" then
-            alu_out <= op_in;
+            alu_out <= alu_in;
             RD1 <= rd_data1;
             RD2 <= rd_data2;
         end if;

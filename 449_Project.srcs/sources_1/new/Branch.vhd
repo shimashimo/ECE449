@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -33,15 +34,73 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Branch is
     Port(
-        OP: in STD_LOGIC_VECTOR(6 downto 0);
-        
-        brch_addr: out STD_LOGIC_VECTOR(15 downto 0)
+        PC: in STD_LOGIC_VECTOR(15 downto 0);
+        inst_in: in STD_LOGIC_VECTOR(15 downto 0);
+        disp: in STD_LOGIC_VECTOR(8 downto 0);
+        Z: in STD_LOGIC;
+        N: in STD_LOGIC;
+        ra: in STD_LOGIC_VECTOR(15 downto 0);
+        old_PC: out STD_LOGIC_VECTOR(15 downto 0);
+        wb_en: out STD_LOGIC;
+        brch_addr: out STD_LOGIC_VECTOR(15 downto 0);
+        brch_en: out STD_LOGIC
         );
 end Branch;
 
 architecture Behavioral of Branch is
 
 begin
-
+    process (inst_in) begin
+        case(inst_in(15 downto 9)) is 
+            when "1000000" => -- BRR
+                brch_addr <= std_logic_vector(signed(PC)+2*signed(disp));
+                brch_en <= '1';
+            when "1000001" => --BRR.N
+                if N = '1' then
+                    brch_addr <= std_logic_vector(signed(PC)+2*signed(disp));
+                    brch_en <= '1';
+                else 
+                    brch_addr <= std_logic_vector(signed(PC)+2);
+                    brch_en <= '1';
+                end if;
+            when "1000010" => --BRR.Z
+                if Z = '1' then
+                    brch_addr <= std_logic_vector(signed(PC)+2*signed(disp));
+                    brch_en <= '1';
+                else 
+                    brch_addr <= std_logic_vector(signed(PC)+2);
+                    brch_en <= '1';
+                end if;
+            when "1000011" => --BR
+                brch_addr <= std_logic_vector(signed(ra)+2*signed(disp));
+                brch_en <= '1';
+            when "1000100" => --BR.N
+                if N = '1' then
+                    brch_addr <= std_logic_vector(signed(ra)+2*signed(disp));
+                    brch_en <= '1';
+                else 
+                    brch_addr <= std_logic_vector(signed(PC)+2);
+                    brch_en <= '1';
+                end if;
+            when "1000101" => --BR.Z
+                if Z = '1' then
+                    brch_addr <= std_logic_vector(signed(ra)+2*signed(disp));
+                    brch_en <= '1';
+                else 
+                    brch_addr <= std_logic_vector(signed(PC)+2);
+                    brch_en <= '1';
+                end if;     
+            when "1000110" => -- BR.SUB
+                brch_addr <= std_logic_vector(signed(ra)+2*signed(disp));
+                brch_en <= '1';
+                old_PC <= PC;
+                wb_en <= '1';
+            when others => 
+                old_PC <= (others => '0');
+                wb_en <= '0';
+                brch_addr <= (others => '0');
+                brch_en <= '0';
+        end case;
+    end process;
 
 end Behavioral;

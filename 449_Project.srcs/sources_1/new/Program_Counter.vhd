@@ -26,10 +26,10 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity Program_Counter is
     Port ( 
+            clk: in STD_LOGIC;
+            rst: in STD_LOGIC;
             brch_addr: in STD_LOGIC_VECTOR(15 downto 0);
             brch_en: in STD_LOGIC;
-            rst: in STD_LOGIC;
-            clk: in STD_LOGIC;
             stall: in STD_LOGIC;
             PC: out STD_LOGIC_VECTOR(15 downto 0)); -- Instruction Address
 end Program_Counter;
@@ -51,12 +51,14 @@ begin
 
             if (brch_en = '1') then
                 prog_ctr <= brch_addr;
-            else
+            end if;
+            
+            if (rst /= '1' and brch_en /= '1' and stall /= '1') then
                 prog_ctr <= std_logic_vector(signed(prog_ctr) + 2);
             end if;
         end if;
-    end process;
-            
-    PC <= prog_ctr;                
+        
+        PC <= prog_ctr;  
+    end process;                       
 
 end Behavioral;
