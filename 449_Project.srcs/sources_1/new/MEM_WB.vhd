@@ -49,19 +49,25 @@ architecture Behavioral of MEM_WB is
 begin
     process(clk) begin
         if clk = '1' then
+        
             if rst = '1' then
                 wr_en <= '0';
                 data_out <= (others => '0');
                 ra <= (others => '0');
             end if;
+            
             if inst_in(15 downto 9) = "1000110" then 
                 ra <= "111";
             else 
                 ra <= inst_in(8 downto 6);
             end if;
-            wr_en <= wb_in;
-            data_out <= data_in;
             
+            if inst_in(15 downto 9) = "0100001" then
+                data_out <= "0000000000" & inst_in(5 downto 0);
+            else
+                data_out <= data_in;
+            end if;            
+            wr_en <= wb_in;
         end if;
     end process;
 

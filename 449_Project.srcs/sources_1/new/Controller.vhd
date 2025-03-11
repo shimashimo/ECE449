@@ -66,7 +66,13 @@ begin
                 mem_op <= '1';
                 wb_op <= '0';
                 alu_op <= "000";
-            when others => NULL;
+            when "1000110" =>
+                wb_op <= '1';
+            when others =>
+                mem_op <= '0';
+                wb_op <= '0';
+                alu_op <= "000";
+                
         end case;
     
     end process;

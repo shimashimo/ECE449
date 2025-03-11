@@ -79,7 +79,7 @@ begin
                 when others => 
                     out_op <= "0000000";
             end case;
-            
+            PC_out <= PC_in;
             inst_out <= inst;
             
         end if; 

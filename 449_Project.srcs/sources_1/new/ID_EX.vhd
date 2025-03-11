@@ -81,7 +81,7 @@ process (clk) begin
         end if;
         
         inst_out <= inst_in; 
-
+        PC_out <= PC_in;
     end if;
 
 end process;
