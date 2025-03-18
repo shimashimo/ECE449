@@ -1,10 +1,12 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
+"../../../../449_Project.srcs/sources_1/new/3to1_MUX.vhd" \
 "../../../../449_Project.srcs/sources_1/new/ALU.vhd" \
 "../../../../449_Project.srcs/sources_1/new/Branch.vhd" \
 "../../../../449_Project.srcs/sources_1/new/Controller.vhd" \
 "../../../../449_Project.srcs/sources_1/new/Decoder.vhd" \
 "../../../../449_Project.srcs/sources_1/new/EX_MEM.vhd" \
+"../../../../449_Project.srcs/sources_1/new/ForwardingUnit.vhd" \
 "../../../../449_Project.srcs/sources_1/new/ID_EX.vhd" \
 "../../../../449_Project.srcs/sources_1/new/MEM_WB.vhd" \
 "../../../../449_Project.srcs/sources_1/new/Register.vhd" \

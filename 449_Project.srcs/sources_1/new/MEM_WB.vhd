@@ -36,6 +36,7 @@ entity MEM_WB is
             clk: in STD_LOGIC;
             rst: in STD_LOGIC;
             data_in: in STD_LOGIC_VECTOR(15 downto 0);
+            old_PC_in: in STD_LOGIC_VECTOR(15 downto 0);
             inst_in: in STD_LOGIC_VECTOR(15 downto 0);
             wb_in: in STD_LOGIC;
             wr_en: out STD_LOGIC;
@@ -48,7 +49,7 @@ architecture Behavioral of MEM_WB is
 
 begin
     process(clk) begin
-        if clk = '1' then
+        if rising_edge(clk) then
         
             if rst = '1' then
                 wr_en <= '0';
@@ -56,17 +57,18 @@ begin
                 ra <= (others => '0');
             end if;
             
-            if inst_in(15 downto 9) = "1000110" then 
-                ra <= "111";
-            else 
-                ra <= inst_in(8 downto 6);
-            end if;
-            
             if inst_in(15 downto 9) = "0100001" then
                 data_out <= "0000000000" & inst_in(5 downto 0);
             else
                 data_out <= data_in;
             end if;            
+            
+            if inst_in(15 downto 9) = "1000110" then 
+                ra <= "111";
+                data_out <= old_PC_in;
+            else 
+                ra <= inst_in(8 downto 6);
+            end if;
             wr_en <= wb_in;
         end if;
     end process;

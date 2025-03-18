@@ -43,6 +43,9 @@ entity ID_EX is
         mem_in: in STD_LOGIC;
         wb_in: in STD_LOGIC;
         PC_in: in STD_LOGIC_VECTOR(15 downto 0);
+        brch_en: in STD_LOGIC;
+        disp: in STD_LOGIC_VECTOR(8 downto 0);
+        disp_out: out STD_LOGIC_VECTOR(8 downto 0);
         PC_out: out STD_LOGIC_VECTOR(15 downto 0);
         alu_out: out STD_LOGIC_VECTOR(2 downto 0);
         mem_out: out STD_LOGIC;
@@ -57,13 +60,15 @@ architecture Behavioral of ID_EX is
 
 begin
 process (clk) begin
-    if(clk = '1') then  -- Latching?
+    if(rising_edge(clk)) then  -- Latching?
         if(rst = '1') then
+            PC_out <= (others => '0');
             alu_out <= "000";
             mem_out <= '0';
             wb_out <= '0';
             RD1 <= (others => '0');
             RD2 <= (others => '0');
+            inst_out <= (others => '0');
         end if;
         
         if alu_in /= "000" then
@@ -80,6 +85,7 @@ process (clk) begin
             wb_out <= wb_in;
         end if;
         
+        disp_out <= disp;
         inst_out <= inst_in; 
         PC_out <= PC_in;
     end if;

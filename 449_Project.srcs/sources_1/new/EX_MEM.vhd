@@ -51,7 +51,7 @@ architecture Behavioral of EX_MEM is
 
 begin
     process(clk) begin
-        if (clk = '1') then
+        if (rising_edge(clk)) then
             inst_out <= inst_in;
             wb_out <= wb_op;
             alu_result_out <= alu_result;

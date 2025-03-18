@@ -37,6 +37,7 @@ entity IF_ID is
           rst: in STD_LOGIC;
           inst: in STD_LOGIC_VECTOR(15 downto 0);       -- Propagete Instruction
           PC_in: in STD_LOGIC_VECTOR(15 downto 0);
+          brch_en: in STD_LOGIC;
           PC_out: out STD_LOGIC_VECTOR(15 downto 0);
           out_op: out STD_LOGIC_VECTOR(6 downto 0);
           ra: out STD_LOGIC_VECTOR(2 downto 0);
@@ -51,7 +52,7 @@ end IF_ID;
 architecture Behavioral of IF_ID is
 begin
     process (clk) begin
-        if(clk = '1') then  -- Latching?
+        if(rising_edge(clk)) then  -- Latching?
         
             case inst(15 downto 9) is
                 when "0000001" | "0000010" | "0000011" | "0000100" =>
@@ -82,13 +83,18 @@ begin
             PC_out <= PC_in;
             inst_out <= inst;
             
+            if(rst = '1') then  -- Do we want reset to be on next clock edge? Only when clock == 1? Or reset immediately?
+                PC_out <= (others => '0');
+                out_op <= (others => '0');
+                ra <= "000";
+                rb <= "000";
+                rc <= "000";
+                inst_out <= (others => '0');
+                misc <= (others => '0');
+                disp <= (others => '0');
+            end if;
         end if; 
-        if(rst = '1') then  -- Do we want reset to be on next clock edge? Only when clock == 1? Or reset immediately?
-            ra <= "000";
-            rb <= "000";
-            rc <= "000";
-            misc <= (others => '0');
-        end if;
+
         
     end process;
 end Behavioral;

@@ -36,25 +36,26 @@ end Program_Counter;
 
 architecture Behavioral of Program_Counter is
 
-signal prog_ctr: STD_LOGIC_VECTOR(15 downto 0);
-
 begin
-    process (clk) begin
+    process (clk) 
+    variable prog_ctr: STD_LOGIC_VECTOR(15 downto 0);
+    begin
+    
         if (rising_edge(clk)) then
             if (rst = '1') then 
-                prog_ctr <= x"0000";
+                prog_ctr := x"0000";
             end if;
 
             if (stall = '1') then
-                prog_ctr <= prog_ctr;
+                prog_ctr := prog_ctr;
             end if;
 
             if (brch_en = '1') then
-                prog_ctr <= brch_addr;
+                prog_ctr := brch_addr;
             end if;
             
             if (rst /= '1' and brch_en /= '1' and stall /= '1') then
-                prog_ctr <= std_logic_vector(signed(prog_ctr) + 2);
+                prog_ctr := std_logic_vector(signed(prog_ctr) + 2);
             end if;
         end if;
         
