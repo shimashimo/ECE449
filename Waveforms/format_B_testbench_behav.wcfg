@@ -10,13 +10,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="167793480000fs"></ZoomStartTime>
-      <ZoomEndTime time="568793480000fs"></ZoomEndTime>
-      <Cursor1Time time="281346282000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="47700000001fs"></ZoomEndTime>
+      <Cursor1Time time="27000000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="134"></ValueColumnWidth>
+      <ValueColumnWidth column_width="130"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="39" />
    <wvobject fp_name="/format_B_testbench/clk" type="logic">
@@ -48,6 +48,10 @@
       <obj_property name="ElementShortName">stall</obj_property>
       <obj_property name="ObjectShortName">stall</obj_property>
    </wvobject>
+   <wvobject fp_name="/format_B_testbench/IF_ID_PC" type="array">
+      <obj_property name="ElementShortName">IF_ID_PC[15:0]</obj_property>
+      <obj_property name="ObjectShortName">IF_ID_PC[15:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/format_B_testbench/IF_ID_inst" type="array">
       <obj_property name="ElementShortName">IF_ID_inst[15:0]</obj_property>
       <obj_property name="ObjectShortName">IF_ID_inst[15:0]</obj_property>
@@ -76,10 +80,6 @@
       <obj_property name="ElementShortName">IF_ID_disp[8:0]</obj_property>
       <obj_property name="ObjectShortName">IF_ID_disp[8:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/format_B_testbench/IF_ID_PC" type="array">
-      <obj_property name="ElementShortName">IF_ID_PC[15:0]</obj_property>
-      <obj_property name="ObjectShortName">IF_ID_PC[15:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/format_B_testbench/rd_data1" type="array">
       <obj_property name="ElementShortName">rd_data1[15:0]</obj_property>
       <obj_property name="ObjectShortName">rd_data1[15:0]</obj_property>
@@ -87,6 +87,14 @@
    <wvobject fp_name="/format_B_testbench/rd_data2" type="array">
       <obj_property name="ElementShortName">rd_data2[15:0]</obj_property>
       <obj_property name="ObjectShortName">rd_data2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_B_testbench/ID_EX_PC" type="array">
+      <obj_property name="ElementShortName">ID_EX_PC[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_EX_PC[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_B_testbench/ID_EX_inst_out" type="array">
+      <obj_property name="ElementShortName">ID_EX_inst_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_EX_inst_out[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/format_B_testbench/ID_EX_alu_out" type="array">
       <obj_property name="ElementShortName">ID_EX_alu_out[2:0]</obj_property>
@@ -107,14 +115,6 @@
    <wvobject fp_name="/format_B_testbench/ID_EX_RD2" type="array">
       <obj_property name="ElementShortName">ID_EX_RD2[15:0]</obj_property>
       <obj_property name="ObjectShortName">ID_EX_RD2[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_B_testbench/ID_EX_inst_out" type="array">
-      <obj_property name="ElementShortName">ID_EX_inst_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">ID_EX_inst_out[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_B_testbench/ID_EX_PC" type="array">
-      <obj_property name="ElementShortName">ID_EX_PC[15:0]</obj_property>
-      <obj_property name="ObjectShortName">ID_EX_PC[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/format_B_testbench/CON_alu_op" type="array">
       <obj_property name="ElementShortName">CON_alu_op[2:0]</obj_property>

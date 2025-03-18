@@ -44,7 +44,8 @@ entity Branch is
         old_PC: out STD_LOGIC_VECTOR(15 downto 0);
 --        wb_en: out STD_LOGIC;
         brch_addr: out STD_LOGIC_VECTOR(15 downto 0);
-        brch_en: out STD_LOGIC
+        brch_en: out STD_LOGIC;
+        flush_en: out STD_LOGIC
         );
 end Branch;
 
@@ -54,7 +55,7 @@ begin
     process (inst_in, clk) 
     variable p1: STD_LOGIC_VECTOR(17 downto 0);
     begin
-        if falling_edge(clk) then
+        if rising_edge(clk) then
             case(inst_in(15 downto 9)) is 
                 when "1000000" => -- BRR
                     p1 := std_logic_vector(signed(PC)+2*signed(disp));

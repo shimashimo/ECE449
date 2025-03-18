@@ -42,7 +42,6 @@ begin
     process (rst,A,B)
         variable p1: STD_LOGIC_VECTOR(31 downto 0);
     begin
-       -- if rising_edge(clk) then
             if rst = '1' then
                 Y <= x"0000";
                 Z <= '0';
@@ -82,7 +81,6 @@ begin
                     when others => NULL;
                 end case;
             end if;
-       -- end if;
     end process;
     
 end Behavioral;

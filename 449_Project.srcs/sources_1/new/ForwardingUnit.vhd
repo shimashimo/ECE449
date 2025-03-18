@@ -57,7 +57,6 @@ architecture Behavioral of ForwardingUnit is
 signal ID_EX_rs : std_logic_vector(2 downto 0);
 signal ID_EX_rt : std_logic_vector(2 downto 0);
 signal ID_EX_rd : std_logic_vector(2 downto 0);
-
 signal EX_MEM_rd : std_logic_vector(2 downto 0);
 
 
@@ -66,11 +65,10 @@ begin
         begin
             ID_EX_rd <= ID_EX_instr(8 downto 6);
             ID_EX_rs <= ID_EX_instr(5 downto 3);
-            ID_EX_rt <= ID_EX_instr(2 downto 0);
-            
+            ID_EX_rt <= ID_EX_instr(2 downto 0);  
             EX_MEM_rd <= EX_MEM_instr(8 downto 6);
             
-            -- EX hazard
+            
             if (EX_MEM_wb = '1') and (EX_MEM_rd /= "000") and (EX_MEM_rd = ID_EX_rs) then
                 ForwardA <= "10";
             

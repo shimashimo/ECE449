@@ -55,21 +55,23 @@ begin
                 wr_en <= '0';
                 data_out <= (others => '0');
                 ra <= (others => '0');
-            end if;
-            
-            if inst_in(15 downto 9) = "0100001" then
-                data_out <= "0000000000" & inst_in(5 downto 0);
             else
-                data_out <= data_in;
-            end if;            
-            
-            if inst_in(15 downto 9) = "1000110" then 
-                ra <= "111";
-                data_out <= old_PC_in;
-            else 
-                ra <= inst_in(8 downto 6);
-            end if;
-            wr_en <= wb_in;
+                -- Sets data_out
+                if inst_in(15 downto 9) = "0100001" then    -- Instr = IN - Take input from port and put into R[ra]
+                    data_out <= "0000000000" & inst_in(5 downto 0);
+                else
+                    data_out <= data_in;
+                end if;            
+                
+                -- sets special ra for BR.SUB - otherwise ra is specified in instruction(8 downto 6)
+                if inst_in(15 downto 9) = "1000110" then    -- Instr = BR.SUB - Save address of next instruction to R7
+                    ra <= "111";
+                    data_out <= old_PC_in;
+                else 
+                    ra <= inst_in(8 downto 6);
+                end if;
+                wr_en <= wb_in;
+           end if;
         end if;
     end process;
 

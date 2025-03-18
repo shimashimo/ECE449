@@ -62,6 +62,7 @@ begin
 process (clk) begin
     if(rising_edge(clk)) then  -- Latching?
         if(rst = '1') then
+            disp_out <= (others => '0');
             PC_out <= (others => '0');
             alu_out <= "000";
             mem_out <= '0';
@@ -69,25 +70,25 @@ process (clk) begin
             RD1 <= (others => '0');
             RD2 <= (others => '0');
             inst_out <= (others => '0');
+        else
+            if alu_in /= "000" then
+                alu_out <= alu_in;
+                RD1 <= rd_data1;
+                RD2 <= rd_data2;
+            end if;
+            
+            if mem_in = '1' then
+                mem_out <= mem_in;
+            end if;
+            
+            if wb_in = '1' then
+                wb_out <= wb_in;
+            end if;
+            
+            disp_out <= disp;
+            inst_out <= inst_in; 
+            PC_out <= PC_in;
         end if;
-        
-        if alu_in /= "000" then
-            alu_out <= alu_in;
-            RD1 <= rd_data1;
-            RD2 <= rd_data2;
-        end if;
-        
-        if mem_in = '1' then
-            mem_out <= mem_in;
-        end if;
-        
-        if wb_in = '1' then
-            wb_out <= wb_in;
-        end if;
-        
-        disp_out <= disp;
-        inst_out <= inst_in; 
-        PC_out <= PC_in;
     end if;
 
 end process;

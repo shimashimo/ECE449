@@ -36,6 +36,8 @@ entity format_B_testbench is
 end format_B_testbench;
 
 architecture Behavioral of format_B_testbench is
+
+-- Branch
 signal clk: STD_LOGIC; 
 signal rst: STD_LOGIC := '1';
 signal PC: STD_LOGIC_VECTOR(15 downto 0);
@@ -103,7 +105,7 @@ signal MEM_WB_ra: STD_LOGIC_VECTOR(2 downto 0);
 
 begin
 Prog_count: entity work.Program_Counter port map(clk, rst, brch_addr, brch_en, stall, PC);
-IF_ID: entity work.IF_ID port map(clk, rst, instruction, PC, brch_en,IF_ID_PC, IF_ID_op, IF_ID_ra, IF_ID_rb, IF_ID_rc, IF_ID_inst, IF_ID_misc, IF_ID_disp);
+IF_ID: entity work.IF_ID port map(clk, rst, instruction, fetch_PC, brch_en,IF_ID_PC, IF_ID_op, IF_ID_ra, IF_ID_rb, IF_ID_rc, IF_ID_inst, IF_ID_misc, IF_ID_disp);
 reg: entity work.register_file port map(clk, rst, IF_ID_rb, IF_ID_rc, MEM_WB_ra, MEM_WB_data_out, MEM_WB_wr_en, rd_data1, rd_data2);
 controller: entity work.Controller port map(rst, IF_ID_op, CON_alu_op, CON_mem_op, CON_wb_op);
 ID_EX: entity work.ID_EX port map(clk, rst, IF_ID_inst, IF_ID_op, rd_data1, rd_data2, CON_alu_op, CON_mem_op, CON_wb_op, IF_ID_PC, brch_en,IF_ID_disp, ID_EX_disp, ID_EX_PC, ID_EX_alu_out, ID_EX_mem_out, ID_EX_wb_out, ID_EX_RD1, ID_EX_RD2, ID_EX_inst_out);
@@ -111,15 +113,15 @@ ForwardingUnit: entity work.ForwardingUnit port map(ID_EX_inst_out, EX_MEM_inst_
 MUXA: entity work.MUX3to1 port map(ID_EX_RD1, MEM_WB_data_out, EX_MEM_alu_result_out, ForwardA, A);
 MUXB: entity work.MUX3to1 port map(ID_EX_RD2, MEM_WB_data_out, EX_MEM_alu_result_out, ForwardB, B);
 ALU: entity work.ALU port map(rst, A, B, ID_EX_alu_out, Y, Z, N);
-branch: entity work.branch port map(clk, ID_EX_PC, ID_EX_inst_out, ID_EX_disp, Z, N, ID_EX_RD1, old_PC, brch_addr, brch_en);
+branch: entity work.Branch port map(clk, ID_EX_PC, ID_EX_inst_out, ID_EX_disp, Z, N, ID_EX_RD1, old_PC, brch_addr, brch_en);
 EX_MEM: entity work.EX_MEM port map(clk, rst, Y, ID_EX_mem_out, ID_EX_wb_out, ID_EX_inst_out, EX_MEM_mem_addr, EX_MEM_wr_en, EX_MEM_wb_out, EX_MEM_inst_out, EX_MEM_alu_result_out);
 MEM_WB: entity work.MEM_WB port map(clk, rst, EX_MEM_alu_result_out, old_PC, EX_MEM_inst_out, EX_MEM_wb_out, MEM_WB_wr_en, MEM_WB_data_out, MEM_WB_ra);
 
 process begin
     clk <= '0';
-    wait for 10us;
+    wait for 1us;
     clk <= '1';
-    wait for 10us;
+    wait for 1us;
 end process;
 
 testbench: process(clk) begin
@@ -146,22 +148,22 @@ testbench: process(clk) begin
         when x"000e" =>
             instruction <= "0100001111000000";  -- IN R7 value of 0
         when x"0010" => 
-            instruction <= "1000110100001010";  -- BR.SUB R4, 10    - Go to subroutine
+            instruction <= "1000110100001010";  -- BR.SUB R4, 10    - Go to subroutine (go to PC = 0x14)
         when x"0012" => 
-            instruction <= "1000000000000000";  -- 
+            instruction <= "1000000000000000";  -- BRR 0 - Infinite Loop; PC <= PC+2*0 = PC. This is for when program is done and halts infinitely
         when x"0014" => 
-            instruction <= "0000001010001101";
+            instruction <= "0000001010001101";  -- ADD R2, R1, R5 ; Start of subroutine. Runs 5 times. - R2 <-- R1 + 1
         when x"0016" => 
-            instruction <= "0000011001000010";         
+            instruction <= "0000011001000010";  -- MUL R1, R0, R2 ; R1 <-- R0 x R2       
         when x"0018" => 
-            instruction <= "0000010110110101";   
+            instruction <= "0000010110110101";  -- SUB R6, R6, R5 ; R6 <-- R6 - 1   The counter for the loop.
         when x"001a" => 
-            instruction <= "0000111110000000";       
+            instruction <= "0000111110000000";  -- TEST R6        ; Set the z flag for the branch decision     
         when x"001c" => 
-            instruction <= "1000010000000010";  
+            instruction <= "1000010000000010";  -- BRR.z 2     ; If r6 is zero, jump out of the loop.
         when x"001e" => 
-            instruction <= "1000000111111011";    
-        when others => instruction <= x"0000";
+            instruction <= "1000000111111011";  -- BRR -5		; If not jump to the start of the subroutine.  Go back to PC = 0x14
+        when others => instruction <= x"0000";  
     end case;
     fetch_PC <= PC;
     end if;

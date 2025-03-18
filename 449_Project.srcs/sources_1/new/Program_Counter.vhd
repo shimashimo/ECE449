@@ -31,7 +31,7 @@ entity Program_Counter is
             brch_addr: in STD_LOGIC_VECTOR(15 downto 0);
             brch_en: in STD_LOGIC;
             stall: in STD_LOGIC;
-            PC: out STD_LOGIC_VECTOR(15 downto 0)); -- Instruction Address
+            PC: out STD_LOGIC_VECTOR(15 downto 0) := (others => '0')); -- Instruction Address
 end Program_Counter;
 
 architecture Behavioral of Program_Counter is
@@ -44,17 +44,18 @@ begin
         if (rising_edge(clk)) then
             if (rst = '1') then 
                 prog_ctr := x"0000";
-            end if;
-
-            if (stall = '1') then
-                prog_ctr := prog_ctr;
-            end if;
-
-            if (brch_en = '1') then
-                prog_ctr := brch_addr;
-            end if;
             
-            if (rst /= '1' and brch_en /= '1' and stall /= '1') then
+
+            elsif (stall = '1') then
+                prog_ctr := prog_ctr;
+            
+
+            elsif (brch_en = '1') then
+                prog_ctr := brch_addr;
+            
+            
+--            if (rst /= '1' and brch_en /= '1' and stall /= '1') then
+            else
                 prog_ctr := std_logic_vector(signed(prog_ctr) + 2);
             end if;
         end if;
