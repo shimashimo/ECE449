@@ -33,9 +33,6 @@ use IEEE.numeric_std.ALL;
 --use UNISIM.VComponents.all;
 
 entity alu_sim is
-    Port(
-        clk: in STD_LOGIC
-    );
 end alu_sim;
 
 architecture Behavioral of alu_sim is
@@ -50,15 +47,23 @@ architecture Behavioral of alu_sim is
     
 begin
 UUT: entity work.ALU
-    port map(clk => clk, rst => rst, A => A, B => B, OP => OP, Y => Y, Z => Z, N => N);
+    port map(rst => rst, A => A, B => B, OP => OP, Y => Y, Z => Z, N => N);
 
-testbench: process(clk)
+
+
+process
     begin
-    for i in 0 to 7 loop
-        if falling_edge(clk) then
-            OP <= std_logic_vector(to_unsigned(i,3));
-        end if;
-    end loop;
-end process testbench;
+        OP <= "010";
+        A <= x"000a";
+        B <= x"000a";
+        wait for 1 us;
+        
+        OP <= "111";
+        A <= x"0000";
+        B <= x"0000";
+        wait for 5 us;
+        
+        
+end process;
 
 end Behavioral;

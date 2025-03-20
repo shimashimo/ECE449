@@ -37,8 +37,7 @@ entity IF_ID is
           rst: in STD_LOGIC;
           inst: in STD_LOGIC_VECTOR(15 downto 0);       -- Propagete Instruction
           PC_in: in STD_LOGIC_VECTOR(15 downto 0);
-          brch_en: in STD_LOGIC;
---          flush_en: in STD_LOGIC;   -- Flush PC and Instruc
+          flush_en: in STD_LOGIC;   -- Flush PC and Instruc
           PC_out: out STD_LOGIC_VECTOR(15 downto 0);
           out_op: out STD_LOGIC_VECTOR(6 downto 0);
           ra: out STD_LOGIC_VECTOR(2 downto 0);
@@ -63,35 +62,60 @@ begin
                         inst_out <= (others => '0');
                         misc <= (others => '0');
                         disp <= (others => '0');
-            else 
-                case inst(15 downto 9) is
-                    when "0000001" | "0000010" | "0000011" | "0000100" =>
-                        out_op <= inst(15 downto 9); --A1 
-                        ra <= inst(8 downto 6);
-                        rb <= inst(5 downto 3);
-                        rc <= inst(2 downto 0);
-                    when "0000101" | "0000110" =>  --A2
-                        out_op <= inst(15 downto 9);
-                        ra <= inst(8 downto 6);
-                        rb <= inst(8 downto 6);
-                        misc <= "000" & inst(5 downto 0) ;
-                    when "0000111" | "0100000" | "0100001" =>  --A3
-                        out_op <= inst(15 downto 9);
-                        rb <= inst(8 downto 6);
-                        misc <= "000" & inst(5 downto 0) ;
-                    when "1000000" | "1000001" | "1000010" => --BRR
-                        out_op <= inst(15 downto 9);
-                        disp <= inst(8 downto 0);
-                    when "1000011" | "1000100" | "1000101" | "1000110" => --BR
-                        out_op <= inst(15 downto 9);
-                        ra <= inst(8 downto 6);
-                        rb <= inst(8 downto 6);
-                        disp <= "000" & inst(5 downto 0);   
-                    when others => 
-                        out_op <= "0000000";
-                end case;
-                PC_out <= PC_in;
-                inst_out <= inst;
+            else
+                if flush_en = '1' then
+                    PC_out <= PC_in;
+                    inst_out <= (others => '0');
+                    out_op <= (others => '0');
+                    -- Floating values - (latched values - previous values will propagate through?)
+                else
+                    PC_out <= PC_in;
+                    inst_out <= inst;
+                    case inst(15 downto 9) is
+                        when "0000001" | "0000010" | "0000011" | "0000100" =>
+                            out_op <= inst(15 downto 9);    --A1 
+                            ra <= inst(8 downto 6);
+                            rb <= inst(5 downto 3);
+                            rc <= inst(2 downto 0);
+                            misc <= (others => '0');
+                            disp <= (others => '0');
+                        when "0000101" | "0000110" =>       --A2
+                            out_op <= inst(15 downto 9);
+                            ra <= inst(8 downto 6);
+                            rb <= inst(8 downto 6);
+                            rc <= (others => '0');
+                            misc <= "000" & inst(5 downto 0) ;
+                            disp <= (others => '0');
+                        when "0000111" | "0100000" | "0100001" =>   --A3
+                            out_op <= inst(15 downto 9);
+                            ra <= (others => '0');
+                            rb <= inst(8 downto 6);
+                            rc <= (others => '0');
+                            misc <= "000" & inst(5 downto 0);
+                            disp <= (others => '0');
+                        when "1000000" | "1000001" | "1000010" =>   --BRR, BRR.N, BRR.Z
+                            out_op <= inst(15 downto 9);
+                            ra <= "000";
+                            rb <= "000";
+                            rc <= (others => '0');
+                            misc <= (others => '0');
+                            disp <= inst(8 downto 0);
+                        when "1000011" | "1000100" | "1000101" | "1000110" => --BR, BR.N, BR.Z, BR.SUB
+                            out_op <= inst(15 downto 9);
+                            ra <= inst(8 downto 6);
+                            rb <= inst(8 downto 6);
+                            rc <= (others => '0');
+                            misc <= (others => '0');
+                            disp <= "000" & inst(5 downto 0);   
+                        when others => 
+                            out_op <= "0000000";    -- NOP
+                            ra   <= (others => '0');
+                            rb   <= (others => '0');
+                            rc   <= (others => '0');
+                            misc <= (others => '0');
+                            disp <= (others => '0');
+                    end case;
+                end if;
             end if;
         end if; 
 

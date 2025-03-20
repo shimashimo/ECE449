@@ -113,7 +113,7 @@ ForwardingUnit: entity work.ForwardingUnit port map(ID_EX_inst_out, EX_MEM_inst_
 MUXA: entity work.MUX3to1 port map(ID_EX_RD1, MEM_WB_data_out, EX_MEM_alu_result_out, ForwardA, A);
 MUXB: entity work.MUX3to1 port map(ID_EX_RD2, MEM_WB_data_out, EX_MEM_alu_result_out, ForwardB, B);
 ALU: entity work.ALU port map(rst, A, B, ID_EX_alu_out, Y, Z, N);
-branch: entity work.Branch port map(clk, ID_EX_PC, ID_EX_inst_out, ID_EX_disp, Z, N, ID_EX_RD1, old_PC, brch_addr, brch_en);
+branch: entity work.Branch port map(ID_EX_PC, ID_EX_inst_out, ID_EX_disp, Z, N, ID_EX_RD1, old_PC, brch_addr, brch_en);
 EX_MEM: entity work.EX_MEM port map(clk, rst, Y, ID_EX_mem_out, ID_EX_wb_out, ID_EX_inst_out, EX_MEM_mem_addr, EX_MEM_wr_en, EX_MEM_wb_out, EX_MEM_inst_out, EX_MEM_alu_result_out);
 MEM_WB: entity work.MEM_WB port map(clk, rst, EX_MEM_alu_result_out, old_PC, EX_MEM_inst_out, EX_MEM_wb_out, MEM_WB_wr_en, MEM_WB_data_out, MEM_WB_ra);
 
@@ -140,7 +140,7 @@ testbench: process(clk) begin
         when x"0006" =>
             instruction <= "0100001011000101";  -- IN R3 value of 5
         when x"0008" => 
-            instruction <= "0100001100000000";  -- IN R4 value of 528
+            instruction <= "0100001100000000";  -- IN R4 value of 528 (Storing 000000 into R4 in our case)
         when x"000a" =>
             instruction <= "0100001101000001";  -- IN R5 value of 1
         when x"000c" => 

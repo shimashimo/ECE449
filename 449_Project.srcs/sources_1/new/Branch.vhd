@@ -34,7 +34,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity Branch is
     Port(
-        clk: in STD_LOGIC;
+--        clk: in STD_LOGIC;
         PC: in STD_LOGIC_VECTOR(15 downto 0);
         inst_in: in STD_LOGIC_VECTOR(15 downto 0);
         disp: in STD_LOGIC_VECTOR(8 downto 0);
@@ -52,10 +52,10 @@ end Branch;
 architecture Behavioral of Branch is
 
 begin
-    process (inst_in, clk) 
+    process (inst_in, disp, Z, N) 
     variable p1: STD_LOGIC_VECTOR(17 downto 0);
     begin
-        if rising_edge(clk) then
+--        if rising_edge(clk) then
             case(inst_in(15 downto 9)) is 
                 when "1000000" => -- BRR
                     p1 := std_logic_vector(signed(PC)+2*signed(disp));
@@ -114,7 +114,7 @@ begin
                     brch_addr <= (others => '0');
                     brch_en <= '0';
             end case;
-        end if;
+--        end if;
     end process;
 
 end Behavioral;

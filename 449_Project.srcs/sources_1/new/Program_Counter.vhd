@@ -52,7 +52,7 @@ begin
 
             elsif (brch_en = '1') then
                 prog_ctr := brch_addr;
-            
+                
             
 --            if (rst /= '1' and brch_en /= '1' and stall /= '1') then
             else
