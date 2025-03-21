@@ -35,6 +35,7 @@ entity MEM_WB is
     Port (
             clk: in STD_LOGIC;
             rst: in STD_LOGIC;
+            mem_data: in STD_LOGIC_VECTOR(15 downto 0);
             data_in: in STD_LOGIC_VECTOR(15 downto 0);
             old_PC_in: in STD_LOGIC_VECTOR(15 downto 0);
             inst_in: in STD_LOGIC_VECTOR(15 downto 0);
@@ -57,19 +58,30 @@ begin
                 ra <= (others => '0');
             else
                 -- Sets data_out
-                if inst_in(15 downto 9) = "0100001" then    -- Instr = IN - Take input from port and put into R[ra]
-                    data_out <= "0000000000" & inst_in(5 downto 0);
-                else
-                    data_out <= data_in;
-                end if;            
+                case inst_in(15 downto 9) is
+                    when "0100001" =>    -- Instr = IN - Take input from port and put into R[ra]
+                        data_out <= "0000000000" & inst_in(5 downto 0);
+                        ra <= inst_in(8 downto 6);
+                    when "0010010" => -- LOADIMM
+                        ra <= "111";
+                        if inst_in(8) = '1' then
+                            data_out(15 downto 8) <= inst_in(7 downto 0);
+                            data_out(7 downto 0) <= (others => '0');
+                        else
+                            data_out(7 downto 0) <= inst_in(7 downto 0);
+                            data_out(15 downto 8) <= (others => '0');
+                        end if;
+                    when "0010000" => --Load
+                        data_out <= mem_data;
+                        ra <= inst_in(8 downto 6);
+                    when "1000110" => 
+                        ra <= "111";
+                        data_out <= old_PC_in;
+                    when others =>
+                        data_out <= data_in;
+                        ra <= inst_in(8 downto 6);
+                end case;
                 
-                -- sets special ra for BR.SUB - otherwise ra is specified in instruction(8 downto 6)
-                if inst_in(15 downto 9) = "1000110" then    -- Instr = BR.SUB - Save address of next instruction to R7
-                    ra <= "111";
-                    data_out <= old_PC_in;
-                else 
-                    ra <= inst_in(8 downto 6);
-                end if;
                 wr_en <= wb_in;
            end if;
         end if;

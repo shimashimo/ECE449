@@ -88,7 +88,7 @@ begin
                             disp <= (others => '0');
                         when "0000111" | "0100000" | "0100001" =>   --A3
                             out_op <= inst(15 downto 9);
-                            ra <= (others => '0');
+                            ra <= inst(8 downto 6);
                             rb <= inst(8 downto 6);
                             rc <= (others => '0');
                             misc <= "000" & inst(5 downto 0);
@@ -106,7 +106,17 @@ begin
                             rb <= inst(8 downto 6);
                             rc <= (others => '0');
                             misc <= (others => '0');
-                            disp <= "000" & inst(5 downto 0);   
+                            disp <= "000" & inst(5 downto 0);
+                        when "0010000" | "0010011" => -- Load, Move
+                            out_op <= inst(15 downto 9);
+                            rb <= inst(8 downto 6); --ra = dest
+                            rc <= inst(5 downto 3); --rb = source
+                        when "0010001" => -- Store
+                            out_op <= inst(15 downto 9);  
+                            rc <= inst(8 downto 6); --rb = dest
+                            rb <= inst(5 downto 3); --ra = source
+                        when "0010010" => -- LoadIMMM
+                            out_op <= inst(15 downto 9);
                         when others => 
                             out_op <= "0000000";    -- NOP
                             ra   <= (others => '0');

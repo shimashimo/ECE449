@@ -32,7 +32,8 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity MUX3to1 is
-    Port ( A : in STD_LOGIC_VECTOR(15 downto 0);
+    Port ( 
+           A : in STD_LOGIC_VECTOR(15 downto 0);
            B : in STD_LOGIC_VECTOR(15 downto 0);
            C : in STD_LOGIC_VECTOR(15 downto 0);
            Sel : in STD_LOGIC_VECTOR(1 downto 0);

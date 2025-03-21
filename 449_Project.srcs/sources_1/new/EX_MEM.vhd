@@ -39,7 +39,10 @@ entity EX_MEM is
             mem_op: in STD_LOGIC;
             wb_op: in STD_LOGIC;
             inst_in: in STD_LOGIC_VECTOR(15 downto 0);      -- Propagate whole instruction
+            memA: in STD_LOGIC_VECTOR(15 downto 0);
+            memB: in STD_LOGIC_VECTOR(15 downto 0);
             mem_addr: out STD_LOGIC_VECTOR(15 downto 0);
+            mem_data: out STD_LOGIC_VECTOR(15 downto 0);
             wr_en: out STD_LOGIC;
             wb_out: out STD_LOGIC;
             inst_out: out STD_LOGIC_VECTOR(15 downto 0);     -- Propagate whole instruction
@@ -52,6 +55,23 @@ architecture Behavioral of EX_MEM is
 begin
     process(clk) begin
         if (rising_edge(clk)) then
+        mem_addr <= (others => '0');
+            if mem_op = '1' then
+                case inst_in(15 downto 9) is
+                    when "0010000" => -- LOAD
+                        mem_addr <= memB;                        
+                    when "0010011" => -- MOV
+                        alu_result_out <= memB;
+                    when "0010001" => -- STORE
+                        mem_addr <= memB;
+                        mem_data <= memA;
+                        wr_en <= '1';
+                    when others => 
+                        wr_en <= '0';
+                        mem_data <= (others => '0');
+                        mem_addr <= (others => '0');
+                end case;
+            end if;
             inst_out <= inst_in;
             wb_out <= wb_op;
             alu_result_out <= alu_result;

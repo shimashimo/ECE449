@@ -54,19 +54,16 @@ end ForwardingUnit;
 
 architecture Behavioral of ForwardingUnit is
 
-signal ID_EX_rs : std_logic_vector(2 downto 0);
-signal ID_EX_rt : std_logic_vector(2 downto 0);
-signal ID_EX_rd : std_logic_vector(2 downto 0);
-signal EX_MEM_rd : std_logic_vector(2 downto 0);
-
 
 begin
     process(ID_EX_instr, EX_MEM_instr, MEM_WB_rd, EX_MEM_wb, MEM_WB_wb)
+    variable ID_EX_rs : std_logic_vector(2 downto 0);
+    variable ID_EX_rt : std_logic_vector(2 downto 0);
+    variable EX_MEM_rd : std_logic_vector(2 downto 0);
         begin
-            ID_EX_rd <= ID_EX_instr(8 downto 6);
-            ID_EX_rs <= ID_EX_instr(5 downto 3);
-            ID_EX_rt <= ID_EX_instr(2 downto 0);  
-            EX_MEM_rd <= EX_MEM_instr(8 downto 6);
+            ID_EX_rs := ID_EX_instr(5 downto 3);
+            ID_EX_rt := ID_EX_instr(2 downto 0);  
+            EX_MEM_rd := EX_MEM_instr(8 downto 6);
             
             
             if (EX_MEM_wb = '1') and (EX_MEM_rd /= "000") and (EX_MEM_rd = ID_EX_rs) then
@@ -85,7 +82,7 @@ begin
     
             elsif (MEM_WB_wb = '1') and (MEM_WB_rd /= "000")
             and not (EX_MEM_wb = '1' and EX_MEM_rd /= "000") 
-            and EX_MEM_rd /= ID_EX_rs and MEM_WB_rd = ID_EX_rs then  
+            and EX_MEM_rd /= ID_EX_rt and MEM_WB_rd = ID_EX_rt then  
                 ForwardB <= "01";
                 
             else

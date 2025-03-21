@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="47700000001fs"></ZoomEndTime>
-      <Cursor1Time time="27000000000fs"></Cursor1Time>
+      <ZoomStartTime time="16075000000fs"></ZoomStartTime>
+      <ZoomEndTime time="53425000001fs"></ZoomEndTime>
+      <Cursor1Time time="35825000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="130"></ValueColumnWidth>
+      <ValueColumnWidth column_width="126"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="39" />
+   <WVObjectSize size="44" />
    <wvobject fp_name="/format_B_testbench/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -175,5 +175,25 @@
    <wvobject fp_name="/format_B_testbench/MEM_WB_ra" type="array">
       <obj_property name="ElementShortName">MEM_WB_ra[2:0]</obj_property>
       <obj_property name="ObjectShortName">MEM_WB_ra[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_B_testbench/ForwardingUnit/EX_MEM_rd" type="array">
+      <obj_property name="ElementShortName">EX_MEM_rd[2:0]</obj_property>
+      <obj_property name="ObjectShortName">EX_MEM_rd[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_B_testbench/ForwardingUnit/MEM_WB_rd" type="array">
+      <obj_property name="ElementShortName">MEM_WB_rd[2:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM_WB_rd[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_B_testbench/ForwardingUnit/ID_EX_rt" type="array">
+      <obj_property name="ElementShortName">ID_EX_rt[2:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_EX_rt[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_B_testbench/ForwardingUnit/ID_EX_rs" type="array">
+      <obj_property name="ElementShortName">ID_EX_rs[2:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_EX_rs[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_B_testbench/ForwardB" type="array">
+      <obj_property name="ElementShortName">ForwardB[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ForwardB[1:0]</obj_property>
    </wvobject>
 </wave_config>
