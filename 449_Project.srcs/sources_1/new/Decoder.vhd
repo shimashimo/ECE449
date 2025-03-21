@@ -38,6 +38,7 @@ entity IF_ID is
           inst: in STD_LOGIC_VECTOR(15 downto 0);       -- Propagete Instruction
           PC_in: in STD_LOGIC_VECTOR(15 downto 0);
           flush_en: in STD_LOGIC;   -- Flush PC and Instruc
+          stall_en: in STD_LOGIC;
           PC_out: out STD_LOGIC_VECTOR(15 downto 0);
           out_op: out STD_LOGIC_VECTOR(6 downto 0);
           ra: out STD_LOGIC_VECTOR(2 downto 0);
@@ -68,6 +69,9 @@ begin
                     inst_out <= (others => '0');
                     out_op <= (others => '0');
                     -- Floating values - (latched values - previous values will propagate through?)
+                elsif stall_en = '1' then
+                    -- Do Nothing? Want to keep values so
+                    
                 else
                     PC_out <= PC_in;
                     inst_out <= inst;

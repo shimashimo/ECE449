@@ -34,97 +34,99 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity Processor is
 
     Port ( 
---            in_port: in STD_LOGIC_VECTOR(15 downto 0);
             clk: in STD_LOGIC;
             rst: in STD_LOGIC;
-            n: out STD_LOGIC;
-            z: out STD_LOGIC;
---            rst_ex: in STD_LOGIC;
---            rst_ld: in STD_LOGIC;
             out_port: out STD_LOGIC_VECTOR(15 downto 0));
 end Processor;
 
 architecture Behavioral of Processor is
-signal instruction: STD_LOGIC_VECTOR(15 downto 0);   -- Instruction from Instruction Memory
-signal fetch: STD_LOGIC;
-signal decode: STD_LOGIC;
-signal execute: STD_LOGIC;
-signal mem_acces: STD_LOGIC;
-signal wr_back: STD_LOGIC;
-signal address: STD_LOGIC_VECTOR(15 downto 0);
-signal op: STD_LOGIC_VECTOR(5 downto 0);
-signal addr_ra: STD_LOGIC_VECTOR(2 downto 0);
-signal addr_rb: STD_LOGIC_VECTOR(2 downto 0);
-signal addr_rc: STD_LOGIC_VECTOR(2 downto 0);
-signal ra:  STD_LOGIC_VECTOR(15 downto 0);
-signal rb:  STD_LOGIC_VECTOR(15 downto 0);
-signal rc:  STD_LOGIC_VECTOR(15 downto 0);
-signal op1: STD_LOGIC_VECTOR(15 downto 0);  -- rename to instr?
-signal op2: STD_LOGIC_VECTOR(15 downto 0);
-signal alu_result: STD_LOGIC_VECTOR(15 downto 0);
+
+
+-- Branch
+--signal clk: STD_LOGIC; 
+--signal rst: STD_LOGIC := '1';
+signal PC: STD_LOGIC_VECTOR(15 downto 0);
+signal instruction, brch_addr: STD_LOGIC_VECTOR(15 downto 0);
+signal fetch_PC: STD_LOGIC_VECTOR(15 downto 0);
+signal brch_en, stall: STD_LOGIC;
+signal old_PC: STD_LOGIC_VECTOR(15 downto 0);
+
+-- IF_ID 
+signal IF_ID_inst: STD_LOGIC_VECTOR(15 downto 0);
+signal IF_ID_op: STD_LOGIC_VECTOR(6 downto 0);
+signal IF_ID_ra, IF_ID_rb, IF_ID_rc: STD_LOGIC_VECTOR(2 downto 0);
+signal IF_ID_misc, IF_ID_disp: STD_LOGIC_VECTOR(8 downto 0);
+signal IF_ID_PC: STD_LOGIC_VECTOR(15 downto 0);
+
+-- Register File
+signal rd_data1: std_logic_vector(15 downto 0); 
+signal rd_data2: std_logic_vector(15 downto 0);
+
+-- ID_EX
+signal ID_EX_alu_out: STD_LOGIC_VECTOR(2 downto 0);
+signal ID_EX_mem_out: STD_LOGIC;
+signal ID_EX_wb_out: STD_LOGIC;
+signal ID_EX_RD1: STD_LOGIC_VECTOR(15 downto 0);
+signal ID_EX_RD2: STD_LOGIC_VECTOR(15 downto 0);
+signal ID_EX_inst_out: STD_LOGIC_VECTOR(15 downto 0); -- Propagete Instruction
+signal ID_EX_PC: STD_LOGIC_VECTOR(15 downto 0);
+signal ID_EX_disp: STD_LOGIC_VECTOR(8 downto 0);
+
+-- Controller
+signal CON_alu_op: STD_LOGIC_VECTOR(2 downto 0);
+signal CON_mem_op: STD_LOGIC;
+signal CON_wb_op: STD_LOGIC;
+
+-- EX_MEM
+signal EX_MEM_mem_addr: STD_LOGIC_VECTOR(15 downto 0);
+signal EX_MEM_DATA: STD_LOGIC_VECTOR(15 downto 0);
+signal EX_MEM_wr_en: STD_LOGIC;
+signal EX_MEM_wb_out: STD_LOGIC;
+signal EX_MEM_inst_out: STD_LOGIC_VECTOR(15 downto 0);     -- Propagate whole instruction
+signal EX_MEM_alu_result_out: STD_LOGIC_VECTOR(15 downto 0);
+signal EX_MEM_PC: STD_LOGIC_VECTOR(15 downto 0);
+
+-- ALU
+signal Y: STD_LOGIC_VECTOR(15 downto 0);
+signal Z: STD_LOGIC;
+signal N: STD_LOGIC;
+
+-- ForwardingUnit
+signal ForwardA : std_logic_vector(1 downto 0);
+signal ForwardB : std_logic_vector(1 downto 0);
+
+
+-- 3 to 1 MUX
+signal A : std_logic_vector(15 downto 0);
+signal B : std_logic_vector(15 downto 0);
+
+
+-- MEM_WB
+signal MEM_WB_wr_en: STD_LOGIC;
+signal MEM_WB_data_out: STD_LOGIC_VECTOR(15 downto 0);
+signal MEM_WB_ra: STD_LOGIC_VECTOR(2 downto 0);
+
+-- RAM
+signal RAM_data_out: STD_LOGIC_VECTOR(15 downto 0);
 
 
 begin
-IF_ID: entity work.IF_ID port map(clk, rst, instruction, 
-ALU : entity work.ALU port map(clk, rst, A, B, OP, Y, Z, N);
-Reg : entity work.register_file port map(rst, clk, rd_index1, rd_index2, rd_data1, rd_data2, wr_index, wr_data, wr_enable);
-RAM : entity work.RAM port map(clk, rst_a, rst_b, enb_a, enb_b, write_a, addr_a, addr_b, din, dout_a, dout_b);
-PC : entity work.Program_Counter port map(brch_addr, brch_en, rst, clk, stall, PC);
+Prog_count: entity work.Program_Counter port map(clk, rst, brch_addr, brch_en, stall, PC);
+IF_ID: entity work.IF_ID port map(clk, rst, instruction, PC, brch_en, stall, IF_ID_PC, IF_ID_op, IF_ID_ra, IF_ID_rb, IF_ID_rc, IF_ID_inst, IF_ID_misc, IF_ID_disp);
+reg: entity work.register_file port map(clk, rst, IF_ID_rb, IF_ID_rc, MEM_WB_ra, MEM_WB_data_out, MEM_WB_wr_en, rd_data1, rd_data2);
+controller: entity work.Controller port map(rst, IF_ID_op, CON_alu_op, CON_mem_op, CON_wb_op);
+hazard: entity work.HazardDetection port map(IF_ID_inst, ID_EX_inst_out, CON_mem_op, stall);
+ID_EX: entity work.ID_EX port map(clk, rst, IF_ID_inst, IF_ID_op, rd_data1, rd_data2, CON_alu_op, CON_mem_op, CON_wb_op, IF_ID_PC, brch_en, stall, IF_ID_disp, ID_EX_disp, ID_EX_PC, ID_EX_alu_out, ID_EX_mem_out, ID_EX_wb_out, ID_EX_RD1, ID_EX_RD2, ID_EX_inst_out);
+ForwardingUnit: entity work.ForwardingUnit port map(ID_EX_inst_out, EX_MEM_inst_out, MEM_WB_ra, EX_MEM_wb_out, MEM_WB_wr_en, ForwardA, ForwardB);
+MUXA: entity work.MUX3to1 port map(ID_EX_RD1, MEM_WB_data_out, EX_MEM_alu_result_out, ForwardA, A);
+MUXB: entity work.MUX3to1 port map(ID_EX_RD2, MEM_WB_data_out, EX_MEM_alu_result_out, ForwardB, B);
+ALU: entity work.ALU port map(rst, A, B, ID_EX_alu_out, Y, Z, N);
+branch: entity work.Branch port map(ID_EX_PC, ID_EX_inst_out, ID_EX_disp, Z, N, ID_EX_RD1, old_PC, brch_addr, brch_en);
+EX_MEM: entity work.EX_MEM port map(clk, rst, Y, ID_EX_mem_out, ID_EX_wb_out, ID_EX_inst_out, A, B, EX_MEM_mem_addr, EX_MEM_DATA, EX_MEM_wr_en, EX_MEM_wb_out, EX_MEM_inst_out, EX_MEM_alu_result_out);
+MEM_WB: entity work.MEM_WB port map(clk, rst, RAM_DATA_out, EX_MEM_alu_result_out, old_PC, EX_MEM_inst_out, EX_MEM_wb_out, MEM_WB_wr_en, MEM_WB_data_out, MEM_WB_ra);
 
 
     process(clk) begin
-        enb_a <= '1';   --enable port a RAM
-        wr_enable <= '0';
-        brch_en <= '0';
-        fetch <= '1';
-
-        -- fetch
-        if falling_edge(clk) then
-            --fetch
-            if fetch = '1' then
-                addr_a <= address;
-                op1 <= dout_a;
-
-                fetch <= '0';
-                decode <= '1';
-            end if;
         
-            --decode
-            if decode = '1' then
-                op <= op1(15 downto 9);
-                addr_ra <= op1(8 downto 6);
-                addr_rb <= op1(5 downto 3);
-                addr_rc <= op1(2 downto 0);
-
-                decode <= '0';
-                execute <= '1';
-            end if;
-
-            --execute
-            if execute = '1' then
-                OP <= op;
-                A <= rb;
-                B <= rc;
-                ra <= Y;
-
-                execute = '0';
-                mem_acces = '1';
-            end if;
-
-            --memory access
-            -- not implemented
-            if mem_acces = '1' then
-                mem_acces = '0';
-                wr_back = '1';
-            end if;
-
-            --writeback
-            if wr_back = '1' then
-                wr_enable <= '1';
-                wr_index <= addr_a;
-                wr_data <= ra;
-            end if;
-
-        wr_back = '0';
     end process;
 end Behavioral;

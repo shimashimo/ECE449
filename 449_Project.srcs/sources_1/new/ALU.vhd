@@ -97,7 +97,10 @@ begin
                                     end if;
                                     Y <= (others => '0');
                     
-                    when others => NULL;
+                    when others =>  NULL;    -- Output NULL on NOP?
+--                                    Y <= '0';
+--                                    Z <= '0';
+--                                    N <= '0';
                 end case;
             end if;
     end process;

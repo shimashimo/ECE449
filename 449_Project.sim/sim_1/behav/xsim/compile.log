@@ -1,4 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Controller.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity Controller
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/echatham/ECE449/449_Project.srcs/sim_1/new/format_B_testbench.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity format_B_testbench
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/echat/ECE449/449_Project.srcs/sim_1/new/RAM_testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity RAM_testbench

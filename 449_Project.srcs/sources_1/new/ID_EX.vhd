@@ -44,6 +44,7 @@ entity ID_EX is
         wb_in: in STD_LOGIC;                        -- Control Signals
         PC_in: in STD_LOGIC_VECTOR(15 downto 0);
         flush_en: in STD_LOGIC;
+        stall_en: in STD_LOGIC;
         disp_in: in STD_LOGIC_VECTOR(8 downto 0);
         disp_out: out STD_LOGIC_VECTOR(8 downto 0);
         PC_out: out STD_LOGIC_VECTOR(15 downto 0);
@@ -74,6 +75,11 @@ process (clk) begin
             if flush_en = '1' then
                 inst_out <= (others => '0');
                 PC_out <= PC_in;
+            
+            elsif stall_en = '1' then   -- If stalling, only Mem and WB control signals need to be 0; Others can be Don't Cares (X) ¯\_(?)_/¯
+                alu_out <= "000";
+                mem_out <= '0';
+                wb_out <= '0';
            else
     --            if alu_in /= "000" then
     --                alu_out <= alu_in;

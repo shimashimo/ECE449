@@ -33,12 +33,12 @@ entity RAM is
 		rst_b: in STD_LOGIC;
 		enb_a: in STD_LOGIC;
 		enb_b: in STD_LOGIC;
-		write_a: in STD_LOGIC_VECTOR(15 downto 0);
-		addr_a: in STD_LOGIC_VECTOR(15 downto 0);
-		addr_b: in STD_LOGIC_VECTOR(15 downto 0);
-		din: in STD_LOGIC_VECTOR(15 downto 0);
-		dout_a: out STD_LOGIC_VECTOR(15 downto 0);
-		dout_b: out STD_LOGIC_VECTOR(15 downto 0));
+		write_a: in STD_LOGIC_VECTOR(0 downto 0);     -- wea[WRITE_DATA_WIDTH_A / BYTE_WRITE_WIDTH_A - 1) : 0]
+		addr_a: in STD_LOGIC_VECTOR(15 downto 0);     -- addra[(ADDR_WIDTH_A - 1) : 0]
+		addr_b: in STD_LOGIC_VECTOR(15 downto 0);     -- addrb[(ADDR_WIDTH_B - 1) : 0]
+		din: in STD_LOGIC_VECTOR(15 downto 0);        -- [(WRITE_DATA_WIDTH_A - 1) : 0]
+		dout_a: out STD_LOGIC_VECTOR(15 downto 0);    -- douta[(READ_DATA_WIDTH_A - 1) : 0]
+		dout_b: out STD_LOGIC_VECTOR(15 downto 0));   -- doutb[(READ_DATA_WIDTH_B - 1) : 0]
 end RAM;
 
 architecture Behavioural of RAM is
