@@ -54,11 +54,11 @@ begin
                 alu_op <= op_in(2 downto 0);
                 mem_op <= '0';
                 wb_op <= '0';
-            when "0100000" | "0100001" => -- Writeback
+            when "0100000" | "0100001" | "0010010" | "0010011" => -- Writeback
                 wb_op <= '1';
                 mem_op <= '0';
                 alu_op <= "000";
-            when "0010000" | "0010010" | "0010011" => --Memory Access with WB
+            when "0010000" => --Memory Access with WB
                 mem_op <= '1';
                 wb_op <= '1';
                 alu_op <= "000";

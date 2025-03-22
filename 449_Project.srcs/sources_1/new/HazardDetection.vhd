@@ -33,6 +33,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity HazardDetection is
   Port ( 
+        clk: in std_logic;
         IF_ID_instr: in std_logic_vector(15 downto 0);
         ID_EX_instr: in std_logic_vector(15 downto 0);
         ID_EX_mem_op: in std_logic;
@@ -45,7 +46,7 @@ end HazardDetection;
 architecture Behavioral of HazardDetection is
 
 begin
-    process(IF_ID_instr, ID_EX_instr, ID_EX_mem_op)
+    process(IF_ID_instr, ID_EX_instr)
     variable IF_ID_rs : std_logic_vector(2 downto 0);
     variable IF_ID_rt : std_logic_vector(2 downto 0);
     variable ID_EX_rt : std_logic_vector(2 downto 0);
@@ -53,11 +54,22 @@ begin
             IF_ID_rs := IF_ID_instr(5 downto 3);
             IF_ID_rt := IF_ID_instr(2 downto 0);
             ID_EX_rt := ID_EX_instr(2 downto 0); -- Want rb index... i think
-            if ((ID_EX_mem_op = '1') and         -- Stall when current instruction is load
+            if ((ID_EX_instr(15 downto 9) = "0010000") and         -- Stall when current instruction is load
                ((ID_EX_rt = IF_ID_rs) or         -- and the destination register of the load is
                 (ID_EX_rt = IF_ID_rt))) then     -- one of the source registers in the next instruction
                                                  -- Then Stall
                 stall <= '1';
+            elsif ((ID_EX_instr(15 downto 9) = "0010010") and         -- Stall when current instruction is load imm
+                  (("111" = IF_ID_rs) or         -- and the destination register of the load is
+                   ("111" = IF_ID_rt))) or 
+                   (ID_EX_instr(15 downto 9) = "0010010" and 
+                    IF_ID_instr(15 downto 9) = "0010010") then     -- one of the source registers in the next instruction
+                stall <= '1';
+            elsif ((ID_EX_instr(15 downto 9) = "0010011") and         -- Stall when current instruction is load
+                   ((ID_EX_rt = IF_ID_rs) or         -- and the destination register of the load is
+                    (ID_EX_rt = IF_ID_rt))) then     -- one of the source registers in the next instruction
+                                                                     -- Then Stall                                       
+                stall <= '1';                                     -- Then Stall
             else
                 stall <= '0';
             end if;

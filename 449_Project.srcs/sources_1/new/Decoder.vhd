@@ -71,7 +71,8 @@ begin
                     -- Floating values - (latched values - previous values will propagate through?)
                 elsif stall_en = '1' then
                     -- Do Nothing? Want to keep values so
-                    
+                    PC_out <= PC_in;
+                    inst_out <= inst;
                 else
                     PC_out <= PC_in;
                     inst_out <= inst;
@@ -121,6 +122,7 @@ begin
                             rb <= inst(5 downto 3); --ra = source
                         when "0010010" => -- LoadIMMM
                             out_op <= inst(15 downto 9);
+                            rb <= "111"; --rb = memA
                         when others => 
                             out_op <= "0000000";    -- NOP
                             ra   <= (others => '0');

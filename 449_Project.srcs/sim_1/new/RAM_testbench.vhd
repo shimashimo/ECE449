@@ -43,11 +43,11 @@ begin
          enb_b <= '1';  -- Enable read or write operations
          write_a <= (0 => '1', others => '0');    -- Write enable bit is a vector? - for word-wise writing
          addr_a <= x"0000"; -- Write to address 0x0000
-         addr_b <= x"0001"; -- Read from address 0x0001
          din <= x"FFFF";    -- Data to write in port A
          WAIT UNTIL (clk = '1' AND clk'event); -- HERE READ FROM PORT A
          enb_a <= '1';      
          addr_a <= x"0004"; -- When write_a is not enabled, its a read operation then?
+         addr_b <= x"0004"; -- Read from address 0x0001
          WAIT;
     end process;
 end Behavioral;

@@ -65,11 +65,9 @@ begin
                     when "0010010" => -- LOADIMM
                         ra <= "111";
                         if inst_in(8) = '1' then
-                            data_out(15 downto 8) <= inst_in(7 downto 0);
-                            data_out(7 downto 0) <= (others => '0');
+                            data_out <= inst_in(7 downto 0) & data_in(7 downto 0);
                         else
-                            data_out(7 downto 0) <= inst_in(7 downto 0);
-                            data_out(15 downto 8) <= (others => '0');
+                            data_out <= data_in(15 downto 8) & inst_in(7 downto 0);
                         end if;
                     when "0010000" => --Load
                         data_out <= mem_data;

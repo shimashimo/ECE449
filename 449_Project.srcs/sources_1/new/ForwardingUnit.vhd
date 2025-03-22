@@ -61,9 +61,22 @@ begin
     variable ID_EX_rt : std_logic_vector(2 downto 0);
     variable EX_MEM_rd : std_logic_vector(2 downto 0);
         begin
-            ID_EX_rs := ID_EX_instr(5 downto 3);
-            ID_EX_rt := ID_EX_instr(2 downto 0);  
-            EX_MEM_rd := EX_MEM_instr(8 downto 6);
+            if EX_MEM_instr(15 downto 9) = "0010010" then
+                EX_MEM_rd := "111";
+            else
+                EX_MEM_rd := EX_MEM_instr(8 downto 6);
+            end if;
+            
+            if ID_EX_instr(15 downto 9) = "0010010" then
+                ID_EX_rs := "111";
+                ID_EX_rt := "111";  
+            elsif ID_EX_instr(15 downto 9) = "0010011" then
+                ID_EX_rs := ID_EX_instr(5 downto 3);
+                ID_EX_rt := ID_EX_instr(5 downto 3);  
+            else
+                ID_EX_rs := ID_EX_instr(5 downto 3);
+                ID_EX_rt := ID_EX_instr(2 downto 0);  
+            end if;
             
             
             if (EX_MEM_wb = '1') and (EX_MEM_rd /= "000") and (EX_MEM_rd = ID_EX_rs) then
@@ -77,6 +90,10 @@ begin
                 ForwardA <= "00";
             end if;
             
+            if (MEM_WB_wb = '1') and (MEM_WB_rd /= "000") and (MEM_WB_rd = ID_EX_rs) then
+                   ForwardA <= "01";
+            end if;
+            
             if EX_MEM_wb = '1' and EX_MEM_rd /= "000" and EX_MEM_rd = ID_EX_rt then
                 ForwardB <= "10";
     
@@ -87,6 +104,10 @@ begin
                 
             else
                 ForwardB <= "00";
+            end if;
+            
+            if (MEM_WB_wb = '1') and (MEM_WB_rd /= "000") and (MEM_WB_rd = ID_EX_rt) then
+                   ForwardB <= "01";
             end if;
 
     end process;

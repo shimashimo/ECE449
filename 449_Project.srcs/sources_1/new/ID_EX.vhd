@@ -80,6 +80,7 @@ process (clk) begin
                 alu_out <= "000";
                 mem_out <= '0';
                 wb_out <= '0';
+                inst_out <= (others => '0');
            else
     --            if alu_in /= "000" then
     --                alu_out <= alu_in;
@@ -96,13 +97,13 @@ process (clk) begin
     --            end if;
                 inst_out <= inst_in; 
                 PC_out <= PC_in;
-            end if;
                 alu_out <= alu_in;
                 RD1 <= rd_data1;
                 RD2 <= rd_data2;
                 mem_out <= mem_in;
                 wb_out <= wb_in; 
                 disp_out <= disp_in;
+            end if;
         end if;
     end if;
 
