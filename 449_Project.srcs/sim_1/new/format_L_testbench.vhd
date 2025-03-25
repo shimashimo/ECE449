@@ -85,7 +85,7 @@ Prog_count: entity work.Program_Counter port map(clk, rst, brch_addr, brch_en, s
 IF_ID: entity work.IF_ID port map(clk, rst, instruction, PC, brch_en, stall, IF_ID_PC, IF_ID_op, IF_ID_ra, IF_ID_rb, IF_ID_rc, IF_ID_inst, IF_ID_misc, IF_ID_disp);
 reg: entity work.register_file port map(clk, rst, IF_ID_rb, IF_ID_rc, MEM_WB_ra, MEM_WB_data_out, MEM_WB_wr_en, rd_data1, rd_data2);
 controller: entity work.Controller port map(rst, IF_ID_op, CON_alu_op, CON_mem_op, CON_wb_op);
-hazard: entity work.HazardDetection port map(clk, IF_ID_inst, ID_EX_inst_out, CON_mem_op, stall);
+hazard: entity work.HazardDetection port map(clk, IF_ID_inst, ID_EX_inst_out, CON_mem_op, MEM_WB_wr_en, MEM_WB_ra, stall);
 ID_EX: entity work.ID_EX port map(clk, rst, IF_ID_inst, IF_ID_op, rd_data1, rd_data2, CON_alu_op, CON_mem_op, CON_wb_op, IF_ID_PC, brch_en, stall, IF_ID_disp, ID_EX_disp, ID_EX_PC, ID_EX_alu_out, ID_EX_mem_out, ID_EX_wb_out, ID_EX_RD1, ID_EX_RD2, ID_EX_inst_out);
 ForwardingUnit: entity work.ForwardingUnit port map(ID_EX_inst_out, EX_MEM_inst_out, MEM_WB_ra, EX_MEM_wb_out, MEM_WB_wr_en, ForwardA, ForwardB);
 MUXA: entity work.MUX3to1 port map(ID_EX_RD1, MEM_WB_data_out, EX_MEM_alu_result_out, ForwardA, A);
@@ -120,9 +120,11 @@ testbench: process(clk) begin
                 when x"0004" => 
                     instruction <= "0010011001111000";  -- MOV R1, R7
                 when x"0006" =>
-                    instruction <= "0010010000000000";  -- LOADIMM.LOWER 0
-                when x"0008" => 
+--                    instruction <= "0010010000000000";  -- LOADIMM.LOWER 0
                     instruction <= "0010010100000110";  -- LOADIMM.UPPER 6
+                when x"0008" => 
+--                    instruction <= "0010010100000110";  -- LOADIMM.UPPER 6
+                    instruction <= "0010010000000000";  -- LOADIMM.LOWER 0
                 when x"000a" =>
                     instruction <= "0010011010111000";  -- MOV R2, R7
                 when x"000c" => 

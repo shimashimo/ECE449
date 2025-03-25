@@ -80,6 +80,8 @@ process (clk) begin
                 alu_out <= "000";
                 mem_out <= '0';
                 wb_out <= '0';
+                RD1 <= rd_data1;
+                RD2 <= rd_data2;
                 inst_out <= (others => '0');
            else
     --            if alu_in /= "000" then

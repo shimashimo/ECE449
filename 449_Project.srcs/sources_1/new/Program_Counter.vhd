@@ -31,7 +31,7 @@ entity Program_Counter is
             brch_addr: in STD_LOGIC_VECTOR(15 downto 0);
             brch_en: in STD_LOGIC;
             stall: in STD_LOGIC;
-            PC: out STD_LOGIC_VECTOR(15 downto 0) := (others => '0')); -- Instruction Address
+            PC: out STD_LOGIC_VECTOR(15 downto 0) := (others => '0')); -- Instruction address for IF/ID
 end Program_Counter;
 
 architecture Behavioral of Program_Counter is
@@ -54,9 +54,9 @@ begin
             else
                 prog_ctr <= std_logic_vector(signed(prog_ctr) + 2);
             end if;
+            PC <= prog_ctr;  
         end if;
         
-        PC <= prog_ctr;  
     end process;                       
 
 end Behavioral;

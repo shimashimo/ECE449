@@ -37,6 +37,8 @@ entity HazardDetection is
         IF_ID_instr: in std_logic_vector(15 downto 0);
         ID_EX_instr: in std_logic_vector(15 downto 0);
         ID_EX_mem_op: in std_logic;
+        MEM_WB_en: in std_logic;
+        MEM_WB_ra : in std_logic_vector(2 downto 0);
         stall: out std_logic     -- Make IF_ID register into nop
         --PC_stall: out std_logic;        -- Program Counter Stall Signal
         --ctr_stall: out std_logic        -- Controller Stall Signal
@@ -69,7 +71,10 @@ begin
                    ((ID_EX_rt = IF_ID_rs) or         -- and the destination register of the load is
                     (ID_EX_rt = IF_ID_rt))) then     -- one of the source registers in the next instruction
                                                                      -- Then Stall                                       
-                stall <= '1';                                     -- Then Stall
+                stall <= '1'; 
+            elsif MEM_WB_en = '1' and (MEM_WB_ra /= IF_ID_rt)
+                  and (MEM_WB_ra /= IF_ID_rs) then                                                                                     -- Then Stall                                       
+                stall <= '1'; 
             else
                 stall <= '0';
             end if;

@@ -42,7 +42,6 @@ entity EX_MEM is
             memA: in STD_LOGIC_VECTOR(15 downto 0);
             memB: in STD_LOGIC_VECTOR(15 downto 0);
             mem_addra: out STD_LOGIC_VECTOR(15 downto 0);
-            mem_addrb: out STD_LOGIC_VECTOR(15 downto 0);
             mem_data: out STD_LOGIC_VECTOR(15 downto 0);
             mem_en: out STD_LOGIC;
             wr_en: out STD_LOGIC_VECTOR(0 downto 0);
@@ -58,7 +57,6 @@ begin
     process(clk) begin
         if (rising_edge(clk)) then
             mem_addra <= (others => '0');
-            mem_addrb <= (others => '0');
             
             inst_out <= inst_in;
             wb_out <= wb_op;
@@ -67,7 +65,7 @@ begin
             
             case inst_in(15 downto 9) is
                 when "0010000" => -- LOAD
-                    mem_addrb <= memB;   
+                    mem_addra <= memB;   
                     wr_en <= "0";                  
                 when "0010011" => -- MOV
                     alu_result_out <= memB;
@@ -84,7 +82,6 @@ begin
                     mem_en <= '0'; 
                     mem_data <= (others => '0');
                     mem_addra <= (others => '0');
-                    mem_addrb <= (others => '0');
             end case;
         end if;
     

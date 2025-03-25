@@ -2,11 +2,11 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Wed Mar 19 22:32:42 2025
-# Process ID: 9236
-# Current directory: C:/Users/echat/ECE449/449_Project.runs/synth_1
-# Command line: vivado.exe -log ALU.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ALU.tcl
-# Log file: C:/Users/echat/ECE449/449_Project.runs/synth_1/ALU.vds
-# Journal file: C:/Users/echat/ECE449/449_Project.runs/synth_1\vivado.jou
+# Start of session at: Mon Mar 24 18:52:47 2025
+# Process ID: 10660
+# Current directory: C:/Users/echatham/ECE449/449_Project.runs/synth_1
+# Command line: vivado.exe -log Processor.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Processor.tcl
+# Log file: C:/Users/echatham/ECE449/449_Project.runs/synth_1/Processor.vds
+# Journal file: C:/Users/echatham/ECE449/449_Project.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
-source ALU.tcl -notrace
+source Processor.tcl -notrace

@@ -44,8 +44,7 @@ entity Branch is
         old_PC: out STD_LOGIC_VECTOR(15 downto 0);
 --        wb_en: out STD_LOGIC;
         brch_addr: out STD_LOGIC_VECTOR(15 downto 0);
-        brch_en: out STD_LOGIC;
-        flush_en: out STD_LOGIC
+        brch_en: out STD_LOGIC
         );
 end Branch;
 

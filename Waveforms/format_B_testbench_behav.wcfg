@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="65750000001fs"></ZoomEndTime>
-      <Cursor1Time time="16500000000fs"></Cursor1Time>
+      <ZoomStartTime time="10545070000fs"></ZoomStartTime>
+      <ZoomEndTime time="47938116108fs"></ZoomEndTime>
+      <Cursor1Time time="21656937000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="106"></ValueColumnWidth>
+      <ValueColumnWidth column_width="98"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="59" />
+   <WVObjectSize size="72" />
    <wvobject fp_name="/format_L_testbench/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -144,6 +144,54 @@
       <obj_property name="ElementShortName">CON_wb_op</obj_property>
       <obj_property name="ObjectShortName">CON_wb_op</obj_property>
    </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXA/A" type="array">
+      <obj_property name="ElementShortName">A[15:0]</obj_property>
+      <obj_property name="ObjectShortName">A[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXA/B" type="array">
+      <obj_property name="ElementShortName">B[15:0]</obj_property>
+      <obj_property name="ObjectShortName">B[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXA/C" type="array">
+      <obj_property name="ElementShortName">C[15:0]</obj_property>
+      <obj_property name="ObjectShortName">C[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXA/Sel" type="array">
+      <obj_property name="ElementShortName">Sel[1:0]</obj_property>
+      <obj_property name="ObjectShortName">Sel[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXA/Y" type="array">
+      <obj_property name="ElementShortName">Y[15:0]</obj_property>
+      <obj_property name="ObjectShortName">Y[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXB/A" type="array">
+      <obj_property name="ElementShortName">A[15:0]</obj_property>
+      <obj_property name="ObjectShortName">A[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXB/B" type="array">
+      <obj_property name="ElementShortName">B[15:0]</obj_property>
+      <obj_property name="ObjectShortName">B[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXB/C" type="array">
+      <obj_property name="ElementShortName">C[15:0]</obj_property>
+      <obj_property name="ObjectShortName">C[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXB/Sel" type="array">
+      <obj_property name="ElementShortName">Sel[1:0]</obj_property>
+      <obj_property name="ObjectShortName">Sel[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MUXB/Y" type="array">
+      <obj_property name="ElementShortName">Y[15:0]</obj_property>
+      <obj_property name="ObjectShortName">Y[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/EX_MEM/memA" type="array">
+      <obj_property name="ElementShortName">memA[15:0]</obj_property>
+      <obj_property name="ObjectShortName">memA[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/EX_MEM/memB" type="array">
+      <obj_property name="ElementShortName">memB[15:0]</obj_property>
+      <obj_property name="ObjectShortName">memB[15:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/format_L_testbench/EX_MEM_mem_addra" type="array">
       <obj_property name="ElementShortName">EX_MEM_mem_addra[15:0]</obj_property>
       <obj_property name="ObjectShortName">EX_MEM_mem_addra[15:0]</obj_property>
@@ -207,6 +255,10 @@
    <wvobject fp_name="/format_L_testbench/B" type="array">
       <obj_property name="ElementShortName">B[15:0]</obj_property>
       <obj_property name="ObjectShortName">B[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/MEM_WB/data_in" type="array">
+      <obj_property name="ElementShortName">data_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/format_L_testbench/MEM_WB_wr_en" type="logic">
       <obj_property name="ElementShortName">MEM_WB_wr_en</obj_property>
