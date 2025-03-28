@@ -69,10 +69,10 @@ begin
                     inst_out <= (others => '0');
                     out_op <= (others => '0');
                     -- Floating values - (latched values - previous values will propagate through?)
-                elsif stall_en = '1' then
-                    -- Do Nothing? Want to keep values so
-                    PC_out <= PC_in;
-                    inst_out <= inst;
+--                elsif stall_en = '1' then
+--                    -- Do Nothing? Want to keep values so
+--                    PC_out <= PC_in;
+--                    inst_out <= inst;
                 else
                     PC_out <= PC_in;
                     inst_out <= inst;

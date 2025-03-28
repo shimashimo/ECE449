@@ -51,7 +51,7 @@ begin
         MEMORY_SIZE => 128, -- DECIMAL
         MESSAGE_CONTROL => 0, -- DECIMAL
         READ_DATA_WIDTH_A => 32, -- DECIMAL
-        READ_LATENCY_A => 2, -- DECIMAL
+        READ_LATENCY_A => 0, -- DECIMAL
         READ_RESET_VALUE_A => "0", -- String
         USE_MEM_INIT => 1, -- DECIMAL
         WAKEUP_TIME => "disable_sleep" -- String

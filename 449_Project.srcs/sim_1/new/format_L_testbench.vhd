@@ -139,9 +139,9 @@ MEM_WB: entity work.MEM_WB
 
 process begin
     clk <= '0';
-    wait for 1us;
+    wait for 10us;
     clk <= '1';
-    wait for 1us;
+    wait for 10us;
 end process;
 
 testbench: process(clk) begin
@@ -153,19 +153,19 @@ testbench: process(clk) begin
             case PC is 
                 when x"0000" => 
                     rst <= '0'; 
---                    instruction <= "0010010000001111";  -- LOADIMM.LOWER 15
-                    instruction <= "0010010100000101";  -- LOADIMM.UPPER 5
-                when x"0002" =>
---                    instruction <= "0010010100000101";  -- LOADIMM.UPPER 5
                     instruction <= "0010010000001111";  -- LOADIMM.LOWER 15
+--                    instruction <= "0010010100000101";  -- LOADIMM.UPPER 5
+                when x"0002" =>
+                    instruction <= "0010010100000101";  -- LOADIMM.UPPER 5
+--                    instruction <= "0010010000001111";  -- LOADIMM.LOWER 15
                 when x"0004" => 
                     instruction <= "0010011001111000";  -- MOV R1, R7
                 when x"0006" =>
---                    instruction <= "0010010000000000";  -- LOADIMM.LOWER 0
-                    instruction <= "0010010100000110";  -- LOADIMM.UPPER 6
-                when x"0008" => 
---                    instruction <= "0010010100000110";  -- LOADIMM.UPPER 6
                     instruction <= "0010010000000000";  -- LOADIMM.LOWER 0
+--                    instruction <= "0010010100000110";  -- LOADIMM.UPPER 6
+                when x"0008" => 
+                    instruction <= "0010010100000010";  -- LOADIMM.UPPER 6
+--                    instruction <= "0010010000000000";  -- LOADIMM.LOWER 0
                 when x"000a" =>
                     instruction <= "0010011010111000";  -- MOV R2, R7
                 when x"000c" => 

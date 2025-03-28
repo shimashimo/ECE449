@@ -72,9 +72,10 @@ begin
                     (ID_EX_rt = IF_ID_rt))) then     -- one of the source registers in the next instruction
                                                                      -- Then Stall                                       
                 stall <= '1'; 
---            elsif MEM_WB_en = '1' and (MEM_WB_ra /= IF_ID_rt)
---                  and (MEM_WB_ra /= IF_ID_rs) then                                                                                     -- Then Stall                                       
---                stall <= '1'; 
+--            elsif MEM_WB_en = '1' 
+--                and (MEM_WB_ra /= IF_ID_rt)
+--                  and (MEM_WB_ra /= IF_ID_rs) then       
+--                stall <= '1';
             else
                 stall <= '0';
             end if;

@@ -272,13 +272,26 @@ signal RAM_data_outa: STD_LOGIC_VECTOR(15 downto 0);
 signal RAM_data_outb: STD_LOGIC_VECTOR(15 downto 0);
 signal RAM_PC: STD_LOGIC_VECTOR(15 downto 0);
 
+-- registers
+signal reg_0: STD_LOGIC_VECTOR(15 downto 0);
+signal reg_1: STD_LOGIC_VECTOR(15 downto 0);
+signal reg_2: STD_LOGIC_VECTOR(15 downto 0);
+signal reg_3: STD_LOGIC_VECTOR(15 downto 0);
+signal reg_4: STD_LOGIC_VECTOR(15 downto 0);
+signal reg_5: STD_LOGIC_VECTOR(15 downto 0);
+signal reg_6: STD_LOGIC_VECTOR(15 downto 0);
+signal reg_7: STD_LOGIC_VECTOR(15 downto 0);
+
 
 begin
 Prog_count: entity work.Program_Counter 
     port map(clk=>clk, rst_ld=>ResetLoad, rst_ex => ResetExecute, brch_addr=>brch_addr, brch_en=>brch_en, stall=>stall, PC=>PC);
     
+ROM: entity work.ROM
+    port map(clk=>clk, rst=>ResetExecute, enb=>ROM_en, addr=>PC, data_out=>ROM_out);
+    
 IF_ID: entity work.IF_ID 
-    port map(clk=>clk, rst=>ResetExecute, inst=>RAM_data_outb, PC_in=>RAM_PC, flush_en=>brch_en, stall_en=>stall, PC_out=>IF_ID_PC, out_op=>IF_ID_op, ra=>IF_ID_ra, 
+    port map(clk=>clk, rst=>ResetExecute, inst=>ROM_out, PC_in=>PC, flush_en=>brch_en, stall_en=>stall, PC_out=>IF_ID_PC, out_op=>IF_ID_op, ra=>IF_ID_ra, 
              rb=>IF_ID_rb, rc=>IF_ID_rc, inst_out=>IF_ID_inst, misc=>IF_ID_misc, disp=>IF_ID_disp);
              
 reg: entity work.register_file 
@@ -407,14 +420,14 @@ console_display : console
     -- CPU registers
     --
     
-        register_0 => x"0000",
-        register_1 => x"0000",
-        register_2 => x"0000",
-        register_3 => x"0000",
-        register_4 => x"0000",
-        register_5 => x"0000",
-        register_6 => x"0000",
-        register_7 => x"0000",
+        register_0 => reg_0,
+        register_1 => reg_1,
+        register_2 => reg_2,
+        register_3 => reg_3,
+        register_4 => reg_4,
+        register_5 => reg_5,
+        register_6 => reg_6,
+        register_7 => reg_7,
     
         register_0_of => '0',
         register_1_of => '0',
@@ -461,6 +474,26 @@ console_display : console
 
 
     process(clk) begin
-        
+        if (rising_edge(clk)) then
+            case(MEM_WB_ra) is 
+                when "000" =>
+                    reg_0 <= MEM_WB_data_out;
+                when "001" =>
+                    reg_1 <= MEM_WB_data_out;
+                when "010" =>
+                    reg_2 <= MEM_WB_data_out;
+                when "011" =>
+                    reg_3 <= MEM_WB_data_out;
+                when "100" =>
+                    reg_4 <= MEM_WB_data_out;
+                when "101" =>
+                    reg_5 <= MEM_WB_data_out;
+                when "110" =>
+                    reg_6 <= MEM_WB_data_out;
+                when "111" =>
+                    reg_7 <= MEM_WB_data_out;
+                when others => NULL;
+            end case;
+        end if;
     end process;
 end Behavioral;

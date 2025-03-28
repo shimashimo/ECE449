@@ -54,7 +54,8 @@ begin
 		ADDR_WIDTH_B => 16, -- DECIMAL
 		BYTE_WRITE_WIDTH_A => 16, -- DECIMAL
 		CLOCKING_MODE => "common_clock", -- String
-		MEMORY_INIT_FILE => "bootloader.mem", -- String
+--		MEMORY_INIT_FILE => "bootloader.mem", -- String
+        MEMORY_INIT_FILE => "none",
 		MEMORY_INIT_PARAM => "", -- String
 		MEMORY_OPTIMIZATION => "true", -- String
 		MEMORY_SIZE => 8192, -- DECIMAL

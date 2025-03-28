@@ -73,6 +73,9 @@ process (clk) begin
             inst_out <= (others => '0');
         else
             if flush_en = '1' then
+                alu_out <= "000";
+                mem_out <= '0';
+                wb_out <= '0';
                 inst_out <= (others => '0');
                 PC_out <= PC_in;
             
@@ -82,6 +85,7 @@ process (clk) begin
                 wb_out <= '0';
                 RD1 <= rd_data1;
                 RD2 <= rd_data2;
+                PC_out <= (others => '0');
                 inst_out <= (others => '0');
            else
     --            if alu_in /= "000" then
