@@ -35,6 +35,7 @@ entity Processor is
 
     Port ( 
             clk: in STD_LOGIC;
+            ResetLoad: in STD_LOGIC;
             ResetExecute: in STD_LOGIC;
             IN_PORT: in STD_LOGIC_VECTOR(15 downto 6);
             OUT_PORT: out STD_LOGIC_VECTOR(0 downto 0);
@@ -274,7 +275,7 @@ signal RAM_PC: STD_LOGIC_VECTOR(15 downto 0);
 
 begin
 Prog_count: entity work.Program_Counter 
-    port map(clk=>clk, rst=>ResetExecute, brch_addr=>brch_addr, brch_en=>brch_en, stall=>stall, PC=>PC);
+    port map(clk=>clk, rst_ld=>ResetLoad, rst_ex => ResetExecute, brch_addr=>brch_addr, brch_en=>brch_en, stall=>stall, PC=>PC);
     
 IF_ID: entity work.IF_ID 
     port map(clk=>clk, rst=>ResetExecute, inst=>RAM_data_outb, PC_in=>RAM_PC, flush_en=>brch_en, stall_en=>stall, PC_out=>IF_ID_PC, out_op=>IF_ID_op, ra=>IF_ID_ra, 
@@ -321,7 +322,7 @@ RAM: entity work.RAM
              addr_b=>PC, din=>EX_MEM_DATA, dout_a=>RAM_data_outa, dout_b=>RAM_data_outb, PC_out=>RAM_PC);
              
 MEM_WB: entity work.MEM_WB 
-    port map(clk=>clk, rst=>ResetExecute, mem_data=>RAM_DATA_outa, data_in=>EX_MEM_alu_result_out, old_PC_in=>old_PC, inst_in=>EX_MEM_inst_out, wb_in=>EX_MEM_wb_out,
+    port map(clk=>clk, rst=>ResetExecute, in_port_data=>IN_PORT, mem_data=>RAM_DATA_outa, data_in=>EX_MEM_alu_result_out, old_PC_in=>old_PC, inst_in=>EX_MEM_inst_out, wb_in=>EX_MEM_wb_out,
              wr_en=>MEM_WB_wr_en, data_out=>MEM_WB_data_out, ra=>MEM_WB_ra);
 
 led_display_memory : led_display

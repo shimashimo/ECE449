@@ -77,6 +77,9 @@ begin
                     mem_addra <= memB;
                     mem_data <= memA;
                     wr_en <= "1";
+                when "0100000" => -- out
+                    alu_result_out <= memA;
+                    wr_en <= "0";
                 when others => 
                     wr_en <= "0";
                     mem_en <= '0'; 

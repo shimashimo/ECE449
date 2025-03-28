@@ -103,7 +103,7 @@ begin
                 when "1000110" => -- BR.SUB
                     p1 := std_logic_vector(signed(ra)+2*signed(disp));
                     brch_addr <= p1(15 downto 0);
-    --                brch_addr <= (others => '1');
+--                    brch_addr <= x"FFFF";
                     brch_en <= '1';
                     old_PC <= PC;
     --                wb_en <= '1';

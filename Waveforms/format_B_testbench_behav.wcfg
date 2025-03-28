@@ -11,22 +11,26 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="10545070000fs"></ZoomStartTime>
-      <ZoomEndTime time="47938116108fs"></ZoomEndTime>
-      <Cursor1Time time="21656937000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="53845000003fs"></ZoomEndTime>
+      <Cursor1Time time="38518333000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="98"></ValueColumnWidth>
+      <ValueColumnWidth column_width="86"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="72" />
+   <WVObjectSize size="55" />
+   <wvobject fp_name="/format_L_testbench/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
    <wvobject fp_name="/format_L_testbench/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/format_L_testbench/rst" type="logic">
-      <obj_property name="ElementShortName">rst</obj_property>
-      <obj_property name="ObjectShortName">rst</obj_property>
+   <wvobject fp_name="/format_L_testbench/IN_PORT" type="array">
+      <obj_property name="ElementShortName">IN_PORT[15:6]</obj_property>
+      <obj_property name="ObjectShortName">IN_PORT[15:6]</obj_property>
    </wvobject>
    <wvobject fp_name="/format_L_testbench/PC" type="array">
       <obj_property name="ElementShortName">PC[15:0]</obj_property>
@@ -55,6 +59,14 @@
    <wvobject fp_name="/format_L_testbench/old_PC" type="array">
       <obj_property name="ElementShortName">old_PC[15:0]</obj_property>
       <obj_property name="ObjectShortName">old_PC[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/ROM_out" type="array">
+      <obj_property name="ElementShortName">ROM_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ROM_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/format_L_testbench/ROM_en" type="logic">
+      <obj_property name="ElementShortName">ROM_en</obj_property>
+      <obj_property name="ObjectShortName">ROM_en</obj_property>
    </wvobject>
    <wvobject fp_name="/format_L_testbench/IF_ID_inst" type="array">
       <obj_property name="ElementShortName">IF_ID_inst[15:0]</obj_property>
@@ -87,10 +99,6 @@
    <wvobject fp_name="/format_L_testbench/IF_ID_PC" type="array">
       <obj_property name="ElementShortName">IF_ID_PC[15:0]</obj_property>
       <obj_property name="ObjectShortName">IF_ID_PC[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/IF_ID/out_op" type="array">
-      <obj_property name="ElementShortName">out_op[6:0]</obj_property>
-      <obj_property name="ObjectShortName">out_op[6:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/format_L_testbench/rd_data1" type="array">
       <obj_property name="ElementShortName">rd_data1[15:0]</obj_property>
@@ -143,54 +151,6 @@
    <wvobject fp_name="/format_L_testbench/CON_wb_op" type="logic">
       <obj_property name="ElementShortName">CON_wb_op</obj_property>
       <obj_property name="ObjectShortName">CON_wb_op</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXA/A" type="array">
-      <obj_property name="ElementShortName">A[15:0]</obj_property>
-      <obj_property name="ObjectShortName">A[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXA/B" type="array">
-      <obj_property name="ElementShortName">B[15:0]</obj_property>
-      <obj_property name="ObjectShortName">B[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXA/C" type="array">
-      <obj_property name="ElementShortName">C[15:0]</obj_property>
-      <obj_property name="ObjectShortName">C[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXA/Sel" type="array">
-      <obj_property name="ElementShortName">Sel[1:0]</obj_property>
-      <obj_property name="ObjectShortName">Sel[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXA/Y" type="array">
-      <obj_property name="ElementShortName">Y[15:0]</obj_property>
-      <obj_property name="ObjectShortName">Y[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXB/A" type="array">
-      <obj_property name="ElementShortName">A[15:0]</obj_property>
-      <obj_property name="ObjectShortName">A[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXB/B" type="array">
-      <obj_property name="ElementShortName">B[15:0]</obj_property>
-      <obj_property name="ObjectShortName">B[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXB/C" type="array">
-      <obj_property name="ElementShortName">C[15:0]</obj_property>
-      <obj_property name="ObjectShortName">C[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXB/Sel" type="array">
-      <obj_property name="ElementShortName">Sel[1:0]</obj_property>
-      <obj_property name="ObjectShortName">Sel[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/MUXB/Y" type="array">
-      <obj_property name="ElementShortName">Y[15:0]</obj_property>
-      <obj_property name="ObjectShortName">Y[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/EX_MEM/memA" type="array">
-      <obj_property name="ElementShortName">memA[15:0]</obj_property>
-      <obj_property name="ObjectShortName">memA[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/EX_MEM/memB" type="array">
-      <obj_property name="ElementShortName">memB[15:0]</obj_property>
-      <obj_property name="ObjectShortName">memB[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/format_L_testbench/EX_MEM_mem_addra" type="array">
       <obj_property name="ElementShortName">EX_MEM_mem_addra[15:0]</obj_property>
@@ -256,10 +216,6 @@
       <obj_property name="ElementShortName">B[15:0]</obj_property>
       <obj_property name="ObjectShortName">B[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/format_L_testbench/MEM_WB/data_in" type="array">
-      <obj_property name="ElementShortName">data_in[15:0]</obj_property>
-      <obj_property name="ObjectShortName">data_in[15:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/format_L_testbench/MEM_WB_wr_en" type="logic">
       <obj_property name="ElementShortName">MEM_WB_wr_en</obj_property>
       <obj_property name="ObjectShortName">MEM_WB_wr_en</obj_property>
@@ -280,32 +236,8 @@
       <obj_property name="ElementShortName">RAM_data_outb[15:0]</obj_property>
       <obj_property name="ObjectShortName">RAM_data_outb[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/format_L_testbench/hazard/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/hazard/IF_ID_instr" type="array">
-      <obj_property name="ElementShortName">IF_ID_instr[15:0]</obj_property>
-      <obj_property name="ObjectShortName">IF_ID_instr[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/hazard/ID_EX_instr" type="array">
-      <obj_property name="ElementShortName">ID_EX_instr[15:0]</obj_property>
-      <obj_property name="ObjectShortName">ID_EX_instr[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/hazard/ID_EX_mem_op" type="logic">
-      <obj_property name="ElementShortName">ID_EX_mem_op</obj_property>
-      <obj_property name="ObjectShortName">ID_EX_mem_op</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/hazard/stall" type="logic">
-      <obj_property name="ElementShortName">stall</obj_property>
-      <obj_property name="ObjectShortName">stall</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/ID_EX/RD1" type="array">
-      <obj_property name="ElementShortName">RD1[15:0]</obj_property>
-      <obj_property name="ObjectShortName">RD1[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/format_L_testbench/ID_EX/RD2" type="array">
-      <obj_property name="ElementShortName">RD2[15:0]</obj_property>
-      <obj_property name="ObjectShortName">RD2[15:0]</obj_property>
+   <wvobject fp_name="/format_L_testbench/RAM_PC" type="array">
+      <obj_property name="ElementShortName">RAM_PC[15:0]</obj_property>
+      <obj_property name="ObjectShortName">RAM_PC[15:0]</obj_property>
    </wvobject>
 </wave_config>

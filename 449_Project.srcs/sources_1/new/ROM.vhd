@@ -44,8 +44,8 @@ begin
         ADDR_WIDTH_A => 6, -- DECIMAL
         AUTO_SLEEP_TIME => 0, -- DECIMAL
         ECC_MODE => "no_ecc", -- String
-        MEMORY_INIT_FILE => "none", -- String
-        MEMORY_INIT_PARAM => "0", -- String
+        MEMORY_INIT_FILE => "bootloader.hex", -- String
+        MEMORY_INIT_PARAM => "", -- String
         MEMORY_OPTIMIZATION => "true", -- String
         MEMORY_PRIMITIVE => "auto", -- String
         MEMORY_SIZE => 128, -- DECIMAL

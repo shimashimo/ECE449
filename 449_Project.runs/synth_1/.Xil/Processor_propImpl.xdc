@@ -30,8 +30,6 @@ set_property src_info {type:XDC file:1 line:113 export:INPUT save:INPUT read:REA
 set_property PACKAGE_PIN U18 [get_ports ResetExecute]
 set_property src_info {type:XDC file:1 line:115 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN T18 [get_ports ResetLoad]
-set_property src_info {type:XDC file:1 line:116 export:INPUT save:INPUT read:READ} [current_design]
-set_property IOSTANDARD LVCMOS33 [get_ports ResetLoad]
 set_property src_info {type:XDC file:1 line:156 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN A14 [get_ports {IN_PORT[8]}]
 set_property src_info {type:XDC file:1 line:159 export:INPUT save:INPUT read:READ} [current_design]

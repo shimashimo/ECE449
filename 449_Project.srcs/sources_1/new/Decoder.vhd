@@ -91,13 +91,19 @@ begin
                             rc <= (others => '0');
                             misc <= "000" & inst(5 downto 0) ;
                             disp <= (others => '0');
-                        when "0000111" | "0100000" | "0100001" =>   --A3
+                        when "0000111" =>   --A3
                             out_op <= inst(15 downto 9);
                             ra <= inst(8 downto 6);
                             rb <= inst(8 downto 6);
                             rc <= (others => '0');
                             misc <= "000" & inst(5 downto 0);
                             disp <= (others => '0');
+                        when "0100000" => -- out
+                            out_op <= inst(15 downto 9);
+                            rb <= inst(8 downto 6);
+                        when "0100001" => -- in
+                            out_op <= inst(15 downto 9);
+                            ra <= inst(8 downto 6);
                         when "1000000" | "1000001" | "1000010" =>   --BRR, BRR.N, BRR.Z
                             out_op <= inst(15 downto 9);
                             ra <= "000";
