@@ -39,8 +39,8 @@ entity RAM is
 		addr_b: in STD_LOGIC_VECTOR(15 downto 0);     -- addrb[(ADDR_WIDTH_B - 1) : 0]
 		din: in STD_LOGIC_VECTOR(15 downto 0);        -- [(WRITE_DATA_WIDTH_A - 1) : 0]
 		dout_a: out STD_LOGIC_VECTOR(15 downto 0);    -- douta[(READ_DATA_WIDTH_A - 1) : 0]
-		dout_b: out STD_LOGIC_VECTOR(15 downto 0);   -- doutb[(READ_DATA_WIDTH_B - 1) : 0]
-		PC_out: out STD_LOGIC_VECTOR(15 downto 0));
+		dout_b: out STD_LOGIC_VECTOR(15 downto 0)   -- doutb[(READ_DATA_WIDTH_B - 1) : 0]
+		);
 end RAM;
 
 architecture Behavioural of RAM is
@@ -97,8 +97,7 @@ begin
 						-- would be 4'b0010.
 	);
 	-- End of xpm_memory_dpdistram_inst instantiation
-process(addr_b) begin
-    PC_out <= PC_in;
+process begin
 end process;
 
 end Behavioural;

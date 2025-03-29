@@ -2,8 +2,8 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Fri Mar 28 12:03:26 2025
-# Process ID: 19984
+# Start of session at: Fri Mar 28 16:58:09 2025
+# Process ID: 12528
 # Current directory: C:/Users/echatham/ECE449/449_Project.runs/synth_1
 # Command line: vivado.exe -log Processor.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Processor.tcl
 # Log file: C:/Users/echatham/ECE449/449_Project.runs/synth_1/Processor.vds
@@ -15,47 +15,150 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 11720 
+INFO: Helper process launched with PID 5064 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 336.715 ; gain = 105.531
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 336.410 ; gain = 105.145
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-2551] possible infinite loop; process does not have a wait statement [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/RAM.vhd:100]
 INFO: [Synth 8-638] synthesizing module 'Processor' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:58]
 INFO: [Synth 8-638] synthesizing module 'Program_Counter' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Program_Counter.vhd:38]
 INFO: [Synth 8-4471] merging register 'PC_reg[15:0]' into 'prog_ctr_reg[15:0]' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Program_Counter.vhd:61]
 WARNING: [Synth 8-6014] Unused sequential element PC_reg was removed.  [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Program_Counter.vhd:61]
 INFO: [Synth 8-256] done synthesizing module 'Program_Counter' (1#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Program_Counter.vhd:38]
+INFO: [Synth 8-638] synthesizing module 'ROM' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ROM.vhd:37]
+	Parameter MEMORY_SIZE bound to: 8192 - type: integer 
+	Parameter MEMORY_PRIMITIVE bound to: auto - type: string 
+	Parameter ECC_MODE bound to: no_ecc - type: string 
+	Parameter MEMORY_INIT_FILE bound to: bootloader1.mem - type: string 
+	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
+	Parameter USE_MEM_INIT bound to: 1 - type: integer 
+	Parameter WAKEUP_TIME bound to: disable_sleep - type: string 
+	Parameter AUTO_SLEEP_TIME bound to: 0 - type: integer 
+	Parameter MESSAGE_CONTROL bound to: 0 - type: integer 
+	Parameter MEMORY_OPTIMIZATION bound to: true - type: string 
+	Parameter READ_DATA_WIDTH_A bound to: 16 - type: integer 
+	Parameter ADDR_WIDTH_A bound to: 16 - type: integer 
+	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
+	Parameter READ_LATENCY_A bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'xpm_memory_sprom' declared at 'C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:7178' bound to instance 'xpm_memory_sprom_inst' of component 'xpm_memory_sprom' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ROM.vhd:42]
+INFO: [Synth 8-638] synthesizing module 'xpm_memory_sprom' [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:7178]
+	Parameter MEMORY_SIZE bound to: 8192 - type: integer 
+	Parameter MEMORY_PRIMITIVE bound to: auto - type: string 
+	Parameter ECC_MODE bound to: no_ecc - type: string 
+	Parameter MEMORY_INIT_FILE bound to: bootloader1.mem - type: string 
+	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
+	Parameter USE_MEM_INIT bound to: 1 - type: integer 
+	Parameter WAKEUP_TIME bound to: disable_sleep - type: string 
+	Parameter AUTO_SLEEP_TIME bound to: 0 - type: integer 
+	Parameter MESSAGE_CONTROL bound to: 0 - type: integer 
+	Parameter MEMORY_OPTIMIZATION bound to: true - type: string 
+	Parameter READ_DATA_WIDTH_A bound to: 16 - type: integer 
+	Parameter ADDR_WIDTH_A bound to: 16 - type: integer 
+	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
+	Parameter READ_LATENCY_A bound to: 0 - type: integer 
+	Parameter P_MEMORY_PRIMITIVE bound to: 0 - type: integer 
+	Parameter P_CLOCKING_MODE bound to: 0 - type: integer 
+	Parameter P_ECC_MODE bound to: 0 - type: integer 
+	Parameter P_WAKEUP_TIME bound to: 0 - type: integer 
+	Parameter P_MEMORY_OPTIMIZATION bound to: 1 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'xpm_memory_base' [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
+	Parameter MEMORY_TYPE bound to: 3 - type: integer 
+	Parameter MEMORY_SIZE bound to: 8192 - type: integer 
+	Parameter MEMORY_PRIMITIVE bound to: 0 - type: integer 
+	Parameter CLOCKING_MODE bound to: 0 - type: integer 
+	Parameter ECC_MODE bound to: 0 - type: integer 
+	Parameter MEMORY_INIT_FILE bound to: bootloader1.mem - type: string 
+	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
+	Parameter USE_MEM_INIT bound to: 1 - type: integer 
+	Parameter MEMORY_OPTIMIZATION bound to: true - type: string 
+	Parameter WAKEUP_TIME bound to: 0 - type: integer 
+	Parameter AUTO_SLEEP_TIME bound to: 0 - type: integer 
+	Parameter MESSAGE_CONTROL bound to: 0 - type: integer 
+	Parameter VERSION bound to: 0 - type: integer 
+	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
+	Parameter WRITE_DATA_WIDTH_A bound to: 16 - type: integer 
+	Parameter READ_DATA_WIDTH_A bound to: 16 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_A bound to: 16 - type: integer 
+	Parameter ADDR_WIDTH_A bound to: 16 - type: integer 
+	Parameter READ_RESET_VALUE_A bound to: 0 - type: string 
+	Parameter READ_LATENCY_A bound to: 0 - type: integer 
+	Parameter WRITE_MODE_A bound to: 1 - type: integer 
+	Parameter WRITE_DATA_WIDTH_B bound to: 16 - type: integer 
+	Parameter READ_DATA_WIDTH_B bound to: 16 - type: integer 
+	Parameter BYTE_WRITE_WIDTH_B bound to: 16 - type: integer 
+	Parameter ADDR_WIDTH_B bound to: 9 - type: integer 
+	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
+	Parameter READ_LATENCY_B bound to: 0 - type: integer 
+	Parameter WRITE_MODE_B bound to: 1 - type: integer 
+	Parameter P_MEMORY_PRIMITIVE bound to: auto - type: string 
+	Parameter P_MIN_WIDTH_DATA_A bound to: 16 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_B bound to: 16 - type: integer 
+	Parameter P_MIN_WIDTH_DATA bound to: 16 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_ECC bound to: 16 - type: integer 
+	Parameter P_MAX_DEPTH_DATA bound to: 512 - type: integer 
+	Parameter P_ECC_MODE bound to: no_ecc - type: string 
+	Parameter P_MEMORY_OPT bound to: yes - type: string 
+	Parameter P_WIDTH_COL_WRITE_A bound to: 16 - type: integer 
+	Parameter P_WIDTH_COL_WRITE_B bound to: 16 - type: integer 
+	Parameter P_NUM_COLS_WRITE_A bound to: 1 - type: integer 
+	Parameter P_NUM_COLS_WRITE_B bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_WRITE_A bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_WRITE_B bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_READ_A bound to: 1 - type: integer 
+	Parameter P_NUM_ROWS_READ_B bound to: 1 - type: integer 
+	Parameter P_WIDTH_ADDR_WRITE_A bound to: 9 - type: integer 
+	Parameter P_WIDTH_ADDR_WRITE_B bound to: 9 - type: integer 
+	Parameter P_WIDTH_ADDR_READ_A bound to: 9 - type: integer 
+	Parameter P_WIDTH_ADDR_READ_B bound to: 9 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_WRITE_A bound to: 0 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_WRITE_B bound to: 0 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_READ_A bound to: 0 - type: integer 
+	Parameter P_WIDTH_ADDR_LSB_READ_B bound to: 0 - type: integer 
+	Parameter P_ENABLE_BYTE_WRITE_A bound to: 0 - type: integer 
+	Parameter P_ENABLE_BYTE_WRITE_B bound to: 0 - type: integer 
+	Parameter P_SDP_WRITE_MODE bound to: yes - type: string 
+	Parameter NUM_CHAR_LOC bound to: 0 - type: integer 
+	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 16 - type: integer 
+	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
+INFO: [Synth 8-6059] Synth Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value.   [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:456]
+WARNING: [Synth 8-6060] Synth Warning: [XPM_MEMORY 30-17] MEMORY_SIZE (8192), READ_DATA_WIDTH_A (16), and ADDR_WIDTH_A (16) together imply that the addressable range exceeds the memory size for this configuration which uses port A read operations.   [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:499]
+INFO: [Synth 8-3876] $readmem data file 'bootloader1.mem' is read successfully [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:1068]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base' (2#1) [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_sprom' (3#1) [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:7178]
+INFO: [Synth 8-256] done synthesizing module 'ROM' (4#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ROM.vhd:37]
 INFO: [Synth 8-638] synthesizing module 'IF_ID' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Decoder.vhd:53]
-INFO: [Synth 8-256] done synthesizing module 'IF_ID' (2#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Decoder.vhd:53]
+INFO: [Synth 8-256] done synthesizing module 'IF_ID' (5#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Decoder.vhd:53]
 INFO: [Synth 8-638] synthesizing module 'register_file' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Register.vhd:43]
 INFO: [Synth 8-226] default block is never used [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Register.vhd:57]
-INFO: [Synth 8-256] done synthesizing module 'register_file' (3#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Register.vhd:43]
+INFO: [Synth 8-256] done synthesizing module 'register_file' (6#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Register.vhd:43]
 INFO: [Synth 8-638] synthesizing module 'Controller' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Controller.vhd:44]
-INFO: [Synth 8-256] done synthesizing module 'Controller' (4#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Controller.vhd:44]
+INFO: [Synth 8-256] done synthesizing module 'Controller' (7#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Controller.vhd:44]
 INFO: [Synth 8-638] synthesizing module 'HazardDetection' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/HazardDetection.vhd:48]
-INFO: [Synth 8-256] done synthesizing module 'HazardDetection' (5#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/HazardDetection.vhd:48]
+INFO: [Synth 8-256] done synthesizing module 'HazardDetection' (8#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/HazardDetection.vhd:48]
 INFO: [Synth 8-638] synthesizing module 'ID_EX' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd:60]
-INFO: [Synth 8-256] done synthesizing module 'ID_EX' (6#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd:60]
+INFO: [Synth 8-256] done synthesizing module 'ID_EX' (9#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd:60]
 INFO: [Synth 8-638] synthesizing module 'ForwardingUnit' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ForwardingUnit.vhd:55]
-INFO: [Synth 8-256] done synthesizing module 'ForwardingUnit' (7#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ForwardingUnit.vhd:55]
+INFO: [Synth 8-256] done synthesizing module 'ForwardingUnit' (10#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ForwardingUnit.vhd:55]
 INFO: [Synth 8-638] synthesizing module 'MUX3to1' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd:44]
-INFO: [Synth 8-256] done synthesizing module 'MUX3to1' (8#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd:44]
+INFO: [Synth 8-256] done synthesizing module 'MUX3to1' (11#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd:44]
 INFO: [Synth 8-638] synthesizing module 'ALU' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:40]
-INFO: [Synth 8-256] done synthesizing module 'ALU' (9#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:40]
+INFO: [Synth 8-256] done synthesizing module 'ALU' (12#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:40]
 INFO: [Synth 8-638] synthesizing module 'Branch' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:51]
 WARNING: [Synth 8-614] signal 'PC' is read in the process but is not in the sensitivity list [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:54]
 WARNING: [Synth 8-614] signal 'ra' is read in the process but is not in the sensitivity list [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:54]
-INFO: [Synth 8-256] done synthesizing module 'Branch' (10#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:51]
+INFO: [Synth 8-256] done synthesizing module 'Branch' (13#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:51]
 INFO: [Synth 8-638] synthesizing module 'EX_MEM' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd:54]
-INFO: [Synth 8-256] done synthesizing module 'EX_MEM' (11#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd:54]
+INFO: [Synth 8-256] done synthesizing module 'EX_MEM' (14#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd:54]
 INFO: [Synth 8-638] synthesizing module 'RAM' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/RAM.vhd:46]
 	Parameter MEMORY_SIZE bound to: 8192 - type: integer 
 	Parameter CLOCKING_MODE bound to: common_clock - type: string 
-	Parameter MEMORY_INIT_FILE bound to: bootloader.mem - type: string 
+	Parameter MEMORY_INIT_FILE bound to: none - type: string 
 	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
 	Parameter USE_MEM_INIT bound to: 1 - type: integer 
 	Parameter MESSAGE_CONTROL bound to: 0 - type: integer 
 	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
-	Parameter MEMORY_OPTIMIZATION bound to: false - type: string 
+	Parameter MEMORY_OPTIMIZATION bound to: true - type: string 
 	Parameter WRITE_DATA_WIDTH_A bound to: 16 - type: integer 
 	Parameter READ_DATA_WIDTH_A bound to: 16 - type: integer 
 	Parameter BYTE_WRITE_WIDTH_A bound to: 16 - type: integer 
@@ -70,12 +173,12 @@ INFO: [Synth 8-3491] module 'xpm_memory_dpdistram' declared at 'C:/Xilinx/Vivado
 INFO: [Synth 8-638] synthesizing module 'xpm_memory_dpdistram' [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6589]
 	Parameter MEMORY_SIZE bound to: 8192 - type: integer 
 	Parameter CLOCKING_MODE bound to: common_clock - type: string 
-	Parameter MEMORY_INIT_FILE bound to: bootloader.mem - type: string 
+	Parameter MEMORY_INIT_FILE bound to: none - type: string 
 	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
 	Parameter USE_MEM_INIT bound to: 1 - type: integer 
 	Parameter MESSAGE_CONTROL bound to: 0 - type: integer 
 	Parameter USE_EMBEDDED_CONSTRAINT bound to: 0 - type: integer 
-	Parameter MEMORY_OPTIMIZATION bound to: false - type: string 
+	Parameter MEMORY_OPTIMIZATION bound to: true - type: string 
 	Parameter WRITE_DATA_WIDTH_A bound to: 16 - type: integer 
 	Parameter READ_DATA_WIDTH_A bound to: 16 - type: integer 
 	Parameter BYTE_WRITE_WIDTH_A bound to: 16 - type: integer 
@@ -87,17 +190,17 @@ INFO: [Synth 8-638] synthesizing module 'xpm_memory_dpdistram' [C:/Xilinx/Vivado
 	Parameter READ_RESET_VALUE_B bound to: 0 - type: string 
 	Parameter READ_LATENCY_B bound to: 0 - type: integer 
 	Parameter P_CLOCKING_MODE bound to: 0 - type: integer 
-	Parameter P_MEMORY_OPTIMIZATION bound to: 0 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'xpm_memory_base' [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
+	Parameter P_MEMORY_OPTIMIZATION bound to: 1 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'xpm_memory_base__parameterized0' [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 	Parameter MEMORY_TYPE bound to: 2 - type: integer 
 	Parameter MEMORY_SIZE bound to: 8192 - type: integer 
 	Parameter MEMORY_PRIMITIVE bound to: 1 - type: integer 
 	Parameter CLOCKING_MODE bound to: 0 - type: integer 
 	Parameter ECC_MODE bound to: 0 - type: integer 
-	Parameter MEMORY_INIT_FILE bound to: bootloader.mem - type: string 
+	Parameter MEMORY_INIT_FILE bound to: none - type: string 
 	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
 	Parameter USE_MEM_INIT bound to: 1 - type: integer 
-	Parameter MEMORY_OPTIMIZATION bound to: false - type: string 
+	Parameter MEMORY_OPTIMIZATION bound to: true - type: string 
 	Parameter WAKEUP_TIME bound to: 0 - type: integer 
 	Parameter AUTO_SLEEP_TIME bound to: 0 - type: integer 
 	Parameter MESSAGE_CONTROL bound to: 0 - type: integer 
@@ -148,25 +251,24 @@ INFO: [Synth 8-638] synthesizing module 'xpm_memory_base' [C:/Xilinx/Vivado/2017
 	Parameter MAX_NUM_CHAR bound to: 0 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_SHFT bound to: 16 - type: integer 
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
+INFO: [Synth 8-6059] Synth Info: [XPM_MEMORY 20-2] MEMORY_INIT_FILE (none), MEMORY_INIT_PARAM together specify no memory initialization. Initial memory contents will be all 0's.   [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:458]
 WARNING: [Synth 8-6060] Synth Warning: [XPM_MEMORY 30-15] MEMORY_TYPE (2) and MEMORY_PRIMITIVE (1) together specify a true dual port distributed RAM, which will be mapped to a dual port RAM structure using port A and B read interfaces but a single port A write interface, leaving the port B write interface unused.   [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:495]
 WARNING: [Synth 8-6060] Synth Warning: [XPM_MEMORY 30-16] MEMORY_SIZE (8192), WRITE_DATA_WIDTH_A (16), and ADDR_WIDTH_A (16) together imply that the addressable range exceeds the memory size for this configuration which uses port A write operations.   [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:497]
 WARNING: [Synth 8-6060] Synth Warning: [XPM_MEMORY 30-17] MEMORY_SIZE (8192), READ_DATA_WIDTH_A (16), and ADDR_WIDTH_A (16) together imply that the addressable range exceeds the memory size for this configuration which uses port A read operations.   [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:499]
 WARNING: [Synth 8-6060] Synth Warning: [XPM_MEMORY 30-19] MEMORY_SIZE (8192), READ_DATA_WIDTH_B (16), and ADDR_WIDTH_B (16) together imply that the addressable range exceeds the memory size for this configuration which uses port B read operations.   [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:503]
-INFO: [Synth 8-3876] $readmem data file 'bootloader.mem' is read successfully [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:1068]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-5772] Detected attribute (* ram_ecc = "no_ecc" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base' (12#1) [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base__parameterized0' (14#1) [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-256] done synthesizing module 'xpm_memory_dpdistram' (13#1) [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6589]
-WARNING: [Synth 8-614] signal 'PC_in' is read in the process but is not in the sensitivity list [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/RAM.vhd:100]
+INFO: [Synth 8-256] done synthesizing module 'xpm_memory_dpdistram' (15#1) [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:6589]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-256] done synthesizing module 'RAM' (14#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/RAM.vhd:46]
+INFO: [Synth 8-256] done synthesizing module 'RAM' (16#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/RAM.vhd:46]
 INFO: [Synth 8-638] synthesizing module 'MEM_WB' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/MEM_WB.vhd:51]
-INFO: [Synth 8-256] done synthesizing module 'MEM_WB' (15#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/MEM_WB.vhd:51]
-INFO: [Synth 8-3491] module 'led_display' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:27' bound to instance 'led_display_memory' of component 'led_display' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:328]
+INFO: [Synth 8-256] done synthesizing module 'MEM_WB' (17#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/MEM_WB.vhd:51]
+INFO: [Synth 8-3491] module 'led_display' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:27' bound to instance 'led_display_memory' of component 'led_display' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:344]
 INFO: [Synth 8-638] synthesizing module 'led_display' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:41]
-INFO: [Synth 8-256] done synthesizing module 'led_display' (16#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:41]
-INFO: [Synth 8-3491] module 'console' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:18' bound to instance 'console_display' of component 'console' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:342]
+INFO: [Synth 8-256] done synthesizing module 'led_display' (18#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:41]
+INFO: [Synth 8-3491] module 'console' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:18' bound to instance 'console_display' of component 'console' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:358]
 INFO: [Synth 8-638] synthesizing module 'console' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:146]
 	Parameter HSYNC_POLARITY bound to: 1'b0 
 	Parameter VSYNC_POLARITY bound to: 1'b0 
@@ -196,12 +298,12 @@ INFO: [Synth 8-4471] merging register 'h_dot_reg[10:0]' into 'h_dot_int_reg[10:0
 INFO: [Synth 8-4471] merging register 'v_line_reg[9:0]' into 'v_line_int_reg[9:0]' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd:146]
 WARNING: [Synth 8-6014] Unused sequential element h_dot_reg was removed.  [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd:145]
 WARNING: [Synth 8-6014] Unused sequential element v_line_reg was removed.  [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd:146]
-INFO: [Synth 8-256] done synthesizing module 'video_timing' (17#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd:44]
+INFO: [Synth 8-256] done synthesizing module 'video_timing' (19#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd:44]
 	Parameter enabled bound to: 1'b1 
 INFO: [Synth 8-3491] module 'word_to_ascii' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ASCII.vhd:19' bound to instance 's1_pc_map' of component 'word_to_ascii' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1038]
 INFO: [Synth 8-638] synthesizing module 'word_to_ascii' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ASCII.vhd:30]
 	Parameter enabled bound to: 1'b1 
-INFO: [Synth 8-256] done synthesizing module 'word_to_ascii' (18#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ASCII.vhd:30]
+INFO: [Synth 8-256] done synthesizing module 'word_to_ascii' (20#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ASCII.vhd:30]
 	Parameter enabled bound to: 1'b1 
 INFO: [Synth 8-3491] module 'word_to_ascii' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ASCII.vhd:19' bound to instance 's1_inst_map' of component 'word_to_ascii' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1046]
 	Parameter enabled bound to: 1'b1 
@@ -212,7 +314,7 @@ INFO: [Synth 8-3491] module 'word_to_ascii' declared at 'C:/Users/echatham/ECE44
 INFO: [Synth 8-3491] module 'nibble_to_ascii' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/NIBBLE_To_ASCII.vhd:18' bound to instance 's2_reg_a_map' of component 'nibble_to_ascii' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1075]
 INFO: [Synth 8-638] synthesizing module 'nibble_to_ascii' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/NIBBLE_To_ASCII.vhd:26]
 	Parameter enabled bound to: 1'b1 
-INFO: [Synth 8-256] done synthesizing module 'nibble_to_ascii' (19#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/NIBBLE_To_ASCII.vhd:26]
+INFO: [Synth 8-256] done synthesizing module 'nibble_to_ascii' (21#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/NIBBLE_To_ASCII.vhd:26]
 	Parameter enabled bound to: 1'b1 
 INFO: [Synth 8-3491] module 'nibble_to_ascii' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/NIBBLE_To_ASCII.vhd:18' bound to instance 's2_reg_b_map' of component 'nibble_to_ascii' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1082]
 	Parameter enabled bound to: 1'b1 
@@ -247,7 +349,7 @@ INFO: [Synth 8-3491] module 'word_to_ascii' declared at 'C:/Users/echatham/ECE44
 INFO: [Synth 8-3491] module 'bit_to_ascii' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Bit_To_ASCII.vhd:18' bound to instance 's3_br_wb_map' of component 'bit_to_ascii' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1199]
 INFO: [Synth 8-638] synthesizing module 'bit_to_ascii' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Bit_To_ASCII.vhd:26]
 	Parameter enabled bound to: 1'b1 
-INFO: [Synth 8-256] done synthesizing module 'bit_to_ascii' (20#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Bit_To_ASCII.vhd:26]
+INFO: [Synth 8-256] done synthesizing module 'bit_to_ascii' (22#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Bit_To_ASCII.vhd:26]
 	Parameter enabled bound to: 1'b1 
 INFO: [Synth 8-3491] module 'word_to_ascii' declared at 'C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ASCII.vhd:19' bound to instance 's3_br_wr_address_map' of component 'word_to_ascii' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1204]
 	Parameter enabled bound to: 1'b1 
@@ -320,53 +422,70 @@ WARNING: [Synth 8-6014] Unused sequential element blue_reg was removed.  [C:/Use
 WARNING: [Synth 8-3936] Found unconnected internal register 'offset_reg' and it is trimmed from '10' to '6' bits. [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1440]
 WARNING: [Synth 8-3936] Found unconnected internal register 'Hdot_delayed_reg' and it is trimmed from '11' to '5' bits. [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1430]
 WARNING: [Synth 8-3936] Found unconnected internal register 'Vline_delayed_reg' and it is trimmed from '10' to '7' bits. [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1431]
-INFO: [Synth 8-256] done synthesizing module 'console' (21#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:146]
+INFO: [Synth 8-256] done synthesizing module 'console' (23#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:146]
+INFO: [Synth 8-226] default block is never used [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:482]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 WARNING: [Synth 8-3848] Net OUT_PORT in module/entity Processor does not have driver. [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:41]
-INFO: [Synth 8-256] done synthesizing module 'Processor' (22#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:58]
+INFO: [Synth 8-256] done synthesizing module 'Processor' (24#1) [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:58]
 WARNING: [Synth 8-3331] design console has unconnected port negative_flag
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port sleep
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port rsta
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port regcea
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[15]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[14]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[13]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[12]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[11]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[10]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[9]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port injectsbiterra
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port injectdbiterra
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port clkb
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port rstb
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port enb
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port regceb
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port web[0]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addrb[15]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addrb[14]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addrb[13]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addrb[12]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addrb[11]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addrb[10]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addrb[9]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[15]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[14]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[13]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[12]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[11]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[10]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[9]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[8]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[7]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[6]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[5]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[4]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[3]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[2]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[1]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port dinb[0]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port injectsbiterrb
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port injectdbiterrb
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port sleep
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port rsta
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port regcea
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addra[15]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addra[14]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addra[13]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addra[12]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addra[11]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addra[10]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addra[9]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port injectsbiterra
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port injectdbiterra
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port clkb
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port rstb
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port enb
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port regceb
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port web[0]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addrb[15]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addrb[14]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addrb[13]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addrb[12]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addrb[11]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addrb[10]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port addrb[9]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[15]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[14]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[13]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[12]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[11]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[10]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[9]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[8]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[7]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[6]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[5]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[4]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[3]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[2]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[1]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port dinb[0]
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port injectsbiterrb
+WARNING: [Synth 8-3331] design xpm_memory_base__parameterized0 has unconnected port injectdbiterrb
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[15]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[14]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[13]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[12]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[11]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[10]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[9]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[8]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[7]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[6]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[5]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[4]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[3]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[2]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[1]
+WARNING: [Synth 8-3331] design RAM has unconnected port PC_in[0]
 WARNING: [Synth 8-3331] design EX_MEM has unconnected port rst
 WARNING: [Synth 8-3331] design Branch has unconnected port inst_in[8]
 WARNING: [Synth 8-3331] design Branch has unconnected port inst_in[7]
@@ -408,11 +527,9 @@ WARNING: [Synth 8-3331] design HazardDetection has unconnected port MEM_WB_en
 WARNING: [Synth 8-3331] design HazardDetection has unconnected port MEM_WB_ra[2]
 WARNING: [Synth 8-3331] design HazardDetection has unconnected port MEM_WB_ra[1]
 WARNING: [Synth 8-3331] design HazardDetection has unconnected port MEM_WB_ra[0]
-WARNING: [Synth 8-3331] design Controller has unconnected port rst
-WARNING: [Synth 8-3331] design IF_ID has unconnected port stall_en
-WARNING: [Synth 8-3331] design Processor has unconnected port OUT_PORT[0]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 403.645 ; gain = 172.461
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 403.000 ; gain = 171.734
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -422,7 +539,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:09 . Memory (MB): peak = 403.645 ; gain = 172.461
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 403.000 ; gain = 171.734
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -443,23 +560,23 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 743.723 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 744.039 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 743.816 ; gain = 512.633
+Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 744.152 ; gain = 512.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 743.816 ; gain = 512.633
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 744.152 ; gain = 512.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for RAM/xpm_memory_dpdistram_inst. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 743.816 ; gain = 512.633
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 744.152 ; gain = 512.887
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5587] ROM size for "ra" is below threshold of ROM address width. It will be mapped to LUTs
 INFO: [Synth 8-5546] ROM "rb" won't be mapped to RAM because it is too sparse
@@ -497,7 +614,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'Z_reg' [C:/Users/echatham/E
 WARNING: [Synth 8-327] inferring latch for variable 'N_reg' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:48]
 WARNING: [Synth 8-327] inferring latch for variable 'old_PC_reg' [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:108]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 743.816 ; gain = 512.633
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 744.152 ; gain = 512.887
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'console_display/zero_flag_map' (bit_to_ascii) to 'console_display/negative_flag_map'
 
@@ -521,7 +638,7 @@ Detailed RTL Component Info :
 	   2 Input      6 Bit       Adders := 128   
 	   2 Input      2 Bit       Adders := 2     
 +---Registers : 
-	               16 Bit    Registers := 13    
+	               16 Bit    Registers := 29    
 	               11 Bit    Registers := 4     
 	               10 Bit    Registers := 1     
 	                9 Bit    Registers := 4     
@@ -534,7 +651,7 @@ Detailed RTL Component Info :
 +---RAMs : 
 	               4K Bit         RAMs := 1     
 +---Muxes : 
-	   2 Input     16 Bit        Muxes := 77    
+	   2 Input     16 Bit        Muxes := 78    
 	   4 Input     16 Bit        Muxes := 2     
 	   8 Input     16 Bit        Muxes := 3     
 	   6 Input     16 Bit        Muxes := 2     
@@ -558,12 +675,11 @@ Detailed RTL Component Info :
 	   2 Input      2 Bit        Muxes := 4     
 	   6 Input      2 Bit        Muxes := 2     
 	   4 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 34    
+	   2 Input      1 Bit        Muxes := 36    
 	  11 Input      1 Bit        Muxes := 3     
-	   8 Input      1 Bit        Muxes := 12    
+	   8 Input      1 Bit        Muxes := 19    
 	   7 Input      1 Bit        Muxes := 2     
 	   4 Input      1 Bit        Muxes := 2     
-	   9 Input      1 Bit        Muxes := 1     
 	   6 Input      1 Bit        Muxes := 5     
 	   5 Input      1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
@@ -573,6 +689,13 @@ Finished RTL Component Statistics
 Start RTL Hierarchical Component Statistics 
 ---------------------------------------------------------------------------------
 Hierarchical RTL Component report 
+Module Processor 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 8     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+	   8 Input      1 Bit        Muxes := 8     
 Module Program_Counter 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -599,6 +722,8 @@ Detailed RTL Component Info :
 	  11 Input      1 Bit        Muxes := 3     
 Module register_file 
 Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 8     
 +---Muxes : 
 	   8 Input      1 Bit        Muxes := 8     
 Module Controller 
@@ -609,7 +734,7 @@ Detailed RTL Component Info :
 Module HazardDetection 
 Detailed RTL Component Info : 
 +---Muxes : 
-	   2 Input      1 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 3     
 Module ID_EX 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -639,9 +764,8 @@ Detailed RTL Component Info :
 +---Muxes : 
 	   8 Input     16 Bit        Muxes := 2     
 	   2 Input     16 Bit        Muxes := 62    
-	   2 Input      1 Bit        Muxes := 16    
-	   9 Input      1 Bit        Muxes := 1     
-	   8 Input      1 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 17    
+	   8 Input      1 Bit        Muxes := 1     
 Module Branch 
 Detailed RTL Component Info : 
 +---Muxes : 
@@ -742,6 +866,7 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "Z" won't be mapped to RAM because it is too sparse
 DSP Report: Generating DSP Y0, operation Mode is: A*B.
 DSP Report: operator Y0 is absorbed into DSP Y0.
 WARNING: [Synth 8-6014] Unused sequential element h_dot_int_reg was removed.  [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd:115]
@@ -758,20 +883,6 @@ INFO: [Synth 8-5546] ROM "controller/mem_op" won't be mapped to RAM because it i
 INFO: [Synth 8-5546] ROM "controller/wb_op" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "MEM_WB/data_out" won't be mapped to RAM because it is too sparse
 WARNING: [Synth 8-6014] Unused sequential element led_display_memory/divider_reg was removed.  [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:67]
-WARNING: [Synth 8-3331] design console has unconnected port negative_flag
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port rsta
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port regcea
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[15]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[14]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[13]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[12]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[11]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[10]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port addra[9]
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port injectsbiterra
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port injectdbiterra
-WARNING: [Synth 8-3331] design xpm_memory_base has unconnected port clkb
-INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 warning: Removed RAM main_buffer_reg due to inactive write enable
 WARNING: [Synth 8-6014] Unused sequential element display_address_reg_rep was removed.  [C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1479]
 WARNING: [Synth 8-6014] Unused sequential element main_buffer_reg was removed. 
@@ -824,33 +935,35 @@ WARNING: [Synth 8-3332] Sequential element (MUXB/Y_reg[2]) is unused and will be
 WARNING: [Synth 8-3332] Sequential element (MUXB/Y_reg[1]) is unused and will be removed from module Processor.
 WARNING: [Synth 8-3332] Sequential element (MUXB/Y_reg[0]) is unused and will be removed from module Processor.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 747.359 ; gain = 516.176
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 744.152 ; gain = 512.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 
 ROM:
-+------------+--------------------+---------------+----------------+
-|Module Name | RTL Object         | Depth x Width | Implemented As | 
-+------------+--------------------+---------------+----------------+
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-|console     | instruction_set[0] | 256x6         | LUT            | 
-+------------+--------------------+---------------+----------------+
++----------------+--------------------+---------------+----------------+
+|Module Name     | RTL Object         | Depth x Width | Implemented As | 
++----------------+--------------------+---------------+----------------+
+|xpm_memory_base | p_0_out            | 256x16        | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|xpm_memory_base | p_0_out            | 256x16        | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
+|console         | instruction_set[0] | 256x6         | LUT            | 
++----------------+--------------------+---------------+----------------+
 
 
 Distributed RAM: Preliminary Mapping  Report (see note below)
@@ -883,13 +996,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:09 ; elapsed = 00:01:10 . Memory (MB): peak = 900.168 ; gain = 668.984
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:09 ; elapsed = 00:01:11 . Memory (MB): peak = 876.152 ; gain = 644.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:10 ; elapsed = 00:01:11 . Memory (MB): peak = 913.555 ; gain = 682.371
+Finished Timing Optimization : Time (s): cpu = 00:01:12 ; elapsed = 00:01:14 . Memory (MB): peak = 939.695 ; gain = 708.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -915,7 +1028,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:12 ; elapsed = 00:01:13 . Memory (MB): peak = 1010.910 ; gain = 779.727
+Finished Technology Mapping : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1004.316 ; gain = 773.051
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -939,7 +1052,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:13 ; elapsed = 00:01:14 . Memory (MB): peak = 1010.910 ; gain = 779.727
+Finished IO Insertion : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1004.316 ; gain = 773.051
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -952,7 +1065,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:13 ; elapsed = 00:01:14 . Memory (MB): peak = 1010.910 ; gain = 779.727
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 1004.316 ; gain = 773.051
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -964,25 +1077,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:13 ; elapsed = 00:01:14 . Memory (MB): peak = 1010.910 ; gain = 779.727
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:16 ; elapsed = 00:01:18 . Memory (MB): peak = 1004.316 ; gain = 773.051
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:13 ; elapsed = 00:01:14 . Memory (MB): peak = 1010.910 ; gain = 779.727
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:16 ; elapsed = 00:01:18 . Memory (MB): peak = 1004.316 ; gain = 773.051
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:13 ; elapsed = 00:01:15 . Memory (MB): peak = 1010.910 ; gain = 779.727
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:16 ; elapsed = 00:01:18 . Memory (MB): peak = 1004.316 ; gain = 773.051
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:14 ; elapsed = 00:01:15 . Memory (MB): peak = 1010.910 ; gain = 779.727
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:16 ; elapsed = 00:01:18 . Memory (MB): peak = 1004.316 ; gain = 773.051
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1001,16 +1114,16 @@ Report Cell Usage:
 |1     |BUFG      |     3|
 |2     |CARRY4    |   283|
 |3     |DSP48E1   |     1|
-|4     |LUT1      |   385|
-|5     |LUT2      |   727|
-|6     |LUT3      |   477|
-|7     |LUT4      |   398|
-|8     |LUT5      |   664|
-|9     |LUT6      |  1069|
-|10    |MUXF7     |   106|
-|11    |MUXF8     |     4|
+|4     |LUT1      |   396|
+|5     |LUT2      |   701|
+|6     |LUT3      |   535|
+|7     |LUT4      |   432|
+|8     |LUT5      |   762|
+|9     |LUT6      |  1218|
+|10    |MUXF7     |   161|
+|11    |MUXF8     |    21|
 |12    |RAM128X1D |    64|
-|13    |FDRE      |   477|
+|13    |FDRE      |   606|
 |14    |LD        |    16|
 |15    |LDC       |    18|
 |16    |IBUF      |    15|
@@ -1019,34 +1132,37 @@ Report Cell Usage:
 +------+----------+------+
 
 Report Instance Areas: 
-+------+------------------------------+---------------------+------+
-|      |Instance                      |Module               |Cells |
-+------+------------------------------+---------------------+------+
-|1     |top                           |                     |  4733|
-|2     |  ALU                         |ALU                  |   224|
-|3     |  EX_MEM                      |EX_MEM               |  2647|
-|4     |  ID_EX                       |ID_EX                |   349|
-|5     |  IF_ID                       |IF_ID                |   162|
-|6     |  MEM_WB                      |MEM_WB               |    63|
-|7     |  Prog_count                  |Program_Counter      |    47|
-|8     |  RAM                         |RAM                  |   177|
-|9     |    xpm_memory_dpdistram_inst |xpm_memory_dpdistram |   100|
-|10    |      xpm_memory_base_inst    |xpm_memory_base      |   100|
-|11    |  branch                      |Branch               |    24|
-|12    |  console_display             |console              |   610|
-|13    |    timing                    |video_timing         |   198|
-|14    |  controller                  |Controller           |     4|
-|15    |  led_display_memory          |led_display          |    66|
-|16    |  \reg                        |register_file        |   280|
-+------+------------------------------+---------------------+------+
++------+------------------------------+--------------------------------+------+
+|      |Instance                      |Module                          |Cells |
++------+------------------------------+--------------------------------+------+
+|1     |top                           |                                |  5258|
+|2     |  ALU                         |ALU                             |   227|
+|3     |  EX_MEM                      |EX_MEM                          |  2542|
+|4     |  ID_EX                       |ID_EX                           |   468|
+|5     |  IF_ID                       |IF_ID                           |   163|
+|6     |  MEM_WB                      |MEM_WB                          |    63|
+|7     |  Prog_count                  |Program_Counter                 |    50|
+|8     |  RAM                         |RAM                             |   188|
+|9     |    xpm_memory_dpdistram_inst |xpm_memory_dpdistram            |   100|
+|10    |      xpm_memory_base_inst    |xpm_memory_base__parameterized0 |   100|
+|11    |  ROM                         |ROM                             |    89|
+|12    |    xpm_memory_sprom_inst     |xpm_memory_sprom                |    89|
+|13    |      xpm_memory_base_inst    |xpm_memory_base                 |    86|
+|14    |  branch                      |Branch                          |    24|
+|15    |  console_display             |console                         |   884|
+|16    |    timing                    |video_timing                    |   200|
+|17    |  controller                  |Controller                      |     4|
+|18    |  led_display_memory          |led_display                     |    66|
+|19    |  \reg                        |register_file                   |   282|
++------+------------------------------+--------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:14 ; elapsed = 00:01:15 . Memory (MB): peak = 1010.910 ; gain = 779.727
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:17 ; elapsed = 00:01:18 . Memory (MB): peak = 1004.316 ; gain = 773.051
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 95 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:58 ; elapsed = 00:01:08 . Memory (MB): peak = 1010.910 ; gain = 439.555
-Synthesis Optimization Complete : Time (s): cpu = 00:01:14 ; elapsed = 00:01:15 . Memory (MB): peak = 1010.910 ; gain = 779.727
+Synthesis finished with 0 errors, 0 critical warnings and 158 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:00 ; elapsed = 00:01:11 . Memory (MB): peak = 1004.316 ; gain = 431.898
+Synthesis Optimization Complete : Time (s): cpu = 00:01:17 ; elapsed = 00:01:18 . Memory (MB): peak = 1004.316 ; gain = 773.051
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 507 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 579 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -1057,10 +1173,10 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM128X1D => RAM128X1D (RAMD64E, RAMD64E, MUXF7, MUXF7, RAMD64E, RAMD64E): 64 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-173 Infos, 172 Warnings, 0 Critical Warnings and 0 Errors encountered.
+184 Infos, 173 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:17 ; elapsed = 00:01:20 . Memory (MB): peak = 1010.910 ; gain = 785.457
+synth_design: Time (s): cpu = 00:01:20 ; elapsed = 00:01:23 . Memory (MB): peak = 1004.316 ; gain = 778.875
 INFO: [Common 17-1381] The checkpoint 'C:/Users/echatham/ECE449/449_Project.runs/synth_1/Processor.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Processor_utilization_synth.rpt -pb Processor_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.044 . Memory (MB): peak = 1010.910 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Fri Mar 28 12:04:50 2025...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.044 . Memory (MB): peak = 1004.316 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 28 16:59:36 2025...

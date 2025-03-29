@@ -282,16 +282,19 @@ signal reg_5: STD_LOGIC_VECTOR(15 downto 0);
 signal reg_6: STD_LOGIC_VECTOR(15 downto 0);
 signal reg_7: STD_LOGIC_VECTOR(15 downto 0);
 
+signal ROM_PC: STD_LOGIC_VECTOR(15 downto 0);
+signal ram_en: STD_LOGIC;
+signal inst: STD_LOGIC_VECTOR(15 downto 0);
 
 begin
 Prog_count: entity work.Program_Counter 
     port map(clk=>clk, rst_ld=>ResetLoad, rst_ex => ResetExecute, brch_addr=>brch_addr, brch_en=>brch_en, stall=>stall, PC=>PC);
     
 ROM: entity work.ROM
-    port map(clk=>clk, rst=>ResetExecute, enb=>ROM_en, addr=>PC, data_out=>ROM_out);
+    port map(clk=>clk, rst=>ResetExecute, enb=>ROM_en, addr=>ROM_PC, data_out=>ROM_out);
     
 IF_ID: entity work.IF_ID 
-    port map(clk=>clk, rst=>ResetExecute, inst=>ROM_out, PC_in=>PC, flush_en=>brch_en, stall_en=>stall, PC_out=>IF_ID_PC, out_op=>IF_ID_op, ra=>IF_ID_ra, 
+    port map(clk=>clk, rst=>ResetExecute, inst=>inst, PC_in=>PC, flush_en=>brch_en, stall_en=>stall, PC_out=>IF_ID_PC, out_op=>IF_ID_op, ra=>IF_ID_ra, 
              rb=>IF_ID_rb, rc=>IF_ID_rc, inst_out=>IF_ID_inst, misc=>IF_ID_misc, disp=>IF_ID_disp);
              
 reg: entity work.register_file 
@@ -331,8 +334,8 @@ EX_MEM: entity work.EX_MEM
              alu_result_out=>EX_MEM_alu_result_out);
              
 RAM: entity work.RAM 
-    port map(clk=>clk, PC_in=>PC, rst_a=>ResetExecute, rst_b=>ResetExecute, enb_a=>EX_MEM_mem_en, enb_b=>EX_MEM_mem_en, write_a=>EX_MEM_wr_en, addr_a=>EX_MEM_mem_addra, 
-             addr_b=>PC, din=>EX_MEM_DATA, dout_a=>RAM_data_outa, dout_b=>RAM_data_outb, PC_out=>RAM_PC);
+    port map(clk=>clk, PC_in=>RAM_PC, rst_a=>ResetExecute, rst_b=>ResetExecute, enb_a=>EX_MEM_mem_en, enb_b=>ram_en, write_a=>EX_MEM_wr_en, addr_a=>EX_MEM_mem_addra, 
+             addr_b=>RAM_PC, din=>EX_MEM_DATA, dout_a=>RAM_data_outa, dout_b=>RAM_data_outb);
              
 MEM_WB: entity work.MEM_WB 
     port map(clk=>clk, rst=>ResetExecute, in_port_data=>IN_PORT, mem_data=>RAM_DATA_outa, data_in=>EX_MEM_alu_result_out, old_PC_in=>old_PC, inst_in=>EX_MEM_inst_out, wb_in=>EX_MEM_wb_out,
@@ -358,8 +361,8 @@ console_display : console
     --
     -- Stage 1 Fetch
     --
-        s1_pc => RAM_PC,
-        s1_inst => RAM_data_outb,
+        s1_pc => PC,
+        s1_inst => inst,
     
     --
     -- Stage 2 Decode
@@ -473,27 +476,38 @@ console_display : console
 
 
 
-    process(clk) begin
+    process(clk) begin  
         if (rising_edge(clk)) then
-            case(MEM_WB_ra) is 
-                when "000" =>
-                    reg_0 <= MEM_WB_data_out;
-                when "001" =>
-                    reg_1 <= MEM_WB_data_out;
-                when "010" =>
-                    reg_2 <= MEM_WB_data_out;
-                when "011" =>
-                    reg_3 <= MEM_WB_data_out;
-                when "100" =>
-                    reg_4 <= MEM_WB_data_out;
-                when "101" =>
-                    reg_5 <= MEM_WB_data_out;
-                when "110" =>
-                    reg_6 <= MEM_WB_data_out;
-                when "111" =>
-                    reg_7 <= MEM_WB_data_out;
-                when others => NULL;
-            end case;
+            if MEM_WB_wr_en = '1' then
+                case(MEM_WB_ra) is 
+                    when "000" =>
+                        reg_0 <= MEM_WB_data_out;
+                    when "001" =>
+                        reg_1 <= MEM_WB_data_out;
+                    when "010" =>
+                        reg_2 <= MEM_WB_data_out;
+                    when "011" =>
+                        reg_3 <= MEM_WB_data_out;
+                    when "100" =>
+                        reg_4 <= MEM_WB_data_out;
+                    when "101" =>
+                        reg_5 <= MEM_WB_data_out;
+                    when "110" =>
+                        reg_6 <= MEM_WB_data_out;
+                    when "111" =>
+                        reg_7 <= MEM_WB_data_out;
+                    when others => NULL;
+                end case;
+            end if;
         end if;
     end process;
+    
+    ROM_PC <= "0" & PC(15 downto 1);
+    RAM_PC <= "0" & PC(15 downto 1);
+    
+    ram_en <= PC(10);
+    rom_en <= not PC(10);
+    
+    inst <= RAM_data_outb when PC(10) = '1' else ROM_out;
+    
 end Behavioral;

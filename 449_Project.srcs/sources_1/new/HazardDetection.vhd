@@ -67,7 +67,7 @@ begin
                    (ID_EX_instr(15 downto 9) = "0010010" and 
                     IF_ID_instr(15 downto 9) = "0010010") then     -- one of the source registers in the next instruction
                 stall <= '1';
-            elsif ((ID_EX_instr(15 downto 9) = "0010011") and         -- Stall when current instruction is load
+            elsif ((ID_EX_instr(15 downto 9) = "0010011") and         -- Stall when current instruction is in
                    ((ID_EX_rt = IF_ID_rs) or         -- and the destination register of the load is
                     (ID_EX_rt = IF_ID_rt))) then     -- one of the source registers in the next instruction
                                                                      -- Then Stall                                       
@@ -76,6 +76,11 @@ begin
 --                and (MEM_WB_ra /= IF_ID_rt)
 --                  and (MEM_WB_ra /= IF_ID_rs) then       
 --                stall <= '1';
+            elsif (ID_EX_instr(15 downto 9) = "0100001")  and 
+                    ((ID_EX_rt = IF_ID_rs) or         -- and the destination register of the load is
+                     (ID_EX_rt = IF_ID_rt)) then  
+            
+                stall <= '1';
             else
                 stall <= '0';
             end if;

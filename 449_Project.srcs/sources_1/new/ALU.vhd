@@ -49,20 +49,20 @@ begin
             else
                 case OP is
                     when "001" =>   Y <= A + B;
-                                    Z <= '0';
-                                    N <= '0';
+--                                    Z <= '0';
+--                                    N <= '0';
                                     
                     when "010" =>   Y <= A - B;
-                                    Z <= '0';
-                                    N <= '0';
+--                                    Z <= '0';
+--                                    N <= '0';
                     when "011" =>   p1 := std_logic_vector(unsigned(A) * unsigned(B));
                                     Y <= p1(15 downto 0);
-                                    Z <= '0';
-                                    N <= '0';
+--                                    Z <= '0';
+--                                    N <= '0';
                                     
                     when "100" =>   Y <= A NAND B;
-                                    Z <= '0';   
-                                    N <= '0';
+--                                    Z <= '0';   
+--                                    N <= '0';
                     
                     when "101" =>  for i in 0 to 15 loop
                                         if i <= 15 - to_integer(unsigned(B)) then
@@ -72,8 +72,8 @@ begin
                                             Y(i) <= '0';
                                         end if;
                                     end loop;
-                                    Z <= '0';
-                                    N <= '0';
+--                                    Z <= '0';
+--                                    N <= '0';
                                     
                     when "110" =>   for i in 0 to 15 loop
                                         if i >= to_integer(unsigned(B)) then
@@ -82,8 +82,8 @@ begin
                                             Y(i) <= '0';
                                         end if;
                                     end loop;
-                                    Z <= '0';
-                                    N <= '0';
+--                                    Z <= '0';
+--                                    N <= '0';
                                     
                     when "111" =>   if signed(A) < 0 then
                                         N <= '1';

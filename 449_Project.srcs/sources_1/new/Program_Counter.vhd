@@ -43,10 +43,10 @@ begin
     
         if (rising_edge(clk)) then
             if (rst_ld = '1') then 
-                prog_ctr := x"0000";
+                prog_ctr := x"0002";
             
             elsif (rst_ex = '1') then 
-                prog_ctr := x"0002";
+                prog_ctr := x"0000";
             
             elsif (stall = '1') then
                 prog_ctr := prog_ctr;

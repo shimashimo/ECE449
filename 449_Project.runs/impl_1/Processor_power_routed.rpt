@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-| Date             : Fri Mar 28 12:06:08 2025
+| Date             : Fri Mar 28 17:01:00 2025
 | Host             : ws11-30 running 64-bit major release  (build 9200)
 | Command          : report_power -file Processor_power_routed.rpt -pb Processor_power_summary_routed.pb -rpx Processor_power_routed.rpx
 | Design           : Processor
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.123        |
+| Total On-Chip Power (W)  | 0.122        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.051        |
+| Dynamic (W)              | 0.050        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.4         |
@@ -53,19 +53,19 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.004 |        3 |       --- |             --- |
-| Slice Logic              |     0.020 |     4924 |       --- |             --- |
-|   LUT as Logic           |     0.018 |     2939 |     20800 |           14.13 |
+| Slice Logic              |     0.016 |     5439 |       --- |             --- |
+|   LUT as Logic           |     0.015 |     3209 |     20800 |           15.43 |
 |   CARRY4                 |    <0.001 |      283 |      8150 |            3.47 |
 |   LUT as Distributed RAM |    <0.001 |      256 |      9600 |            2.67 |
-|   Register               |    <0.001 |      516 |     41600 |            1.24 |
-|   F7/F8 Muxes            |    <0.001 |      238 |     32600 |            0.73 |
+|   Register               |    <0.001 |      645 |     41600 |            1.55 |
+|   F7/F8 Muxes            |    <0.001 |      310 |     32600 |            0.95 |
 |   BUFG                   |    <0.001 |        2 |        32 |            6.25 |
-|   Others                 |     0.000 |       21 |       --- |             --- |
-| Signals                  |     0.023 |     3753 |       --- |             --- |
-| DSPs                     |    <0.001 |        1 |        90 |            1.11 |
-| I/O                      |     0.003 |       41 |       106 |           38.68 |
+|   Others                 |     0.000 |       22 |       --- |             --- |
+| Signals                  |     0.021 |     4125 |       --- |             --- |
+| DSPs                     |     0.001 |        1 |        90 |            1.11 |
+| I/O                      |     0.007 |       41 |       106 |           38.68 |
 | Static Power             |     0.072 |          |           |                 |
-| Total                    |     0.123 |          |           |                 |
+| Total                    |     0.122 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,9 +75,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.057 |       0.047 |      0.010 |
+| Vccint    |       1.000 |     0.052 |       0.043 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |
-| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
+| Vcco33    |       3.300 |     0.003 |       0.002 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -144,16 +144,16 @@ Table of Contents
 +--------------------------------------------------------+-----------+
 | Name                                                   | Power (W) |
 +--------------------------------------------------------+-----------+
-| Processor                                              |     0.051 |
+| Processor                                              |     0.050 |
 |   ALU                                                  |     0.002 |
-|   EX_MEM                                               |     0.030 |
-|   ID_EX                                                |     0.005 |
-|   IF_ID                                                |     0.001 |
-|   MEM_WB                                               |     0.002 |
-|   Prog_count                                           |    <0.001 |
+|   EX_MEM                                               |     0.021 |
+|   ID_EX                                                |     0.007 |
+|   IF_ID                                                |    <0.001 |
+|   MEM_WB                                               |     0.003 |
+|   Prog_count                                           |     0.001 |
 |   RAM                                                  |     0.003 |
-|     xpm_memory_dpdistram_inst                          |     0.003 |
-|       xpm_memory_base_inst                             |     0.003 |
+|     xpm_memory_dpdistram_inst                          |     0.002 |
+|       xpm_memory_base_inst                             |     0.002 |
 |         gen_wr_a.gen_word_narrow.mem_reg_0_127_0_0     |    <0.001 |
 |         gen_wr_a.gen_word_narrow.mem_reg_0_127_10_10   |    <0.001 |
 |         gen_wr_a.gen_word_narrow.mem_reg_0_127_11_11   |    <0.001 |
@@ -218,6 +218,9 @@ Table of Contents
 |         gen_wr_a.gen_word_narrow.mem_reg_384_511_7_7   |    <0.001 |
 |         gen_wr_a.gen_word_narrow.mem_reg_384_511_8_8   |    <0.001 |
 |         gen_wr_a.gen_word_narrow.mem_reg_384_511_9_9   |    <0.001 |
+|   ROM                                                  |    <0.001 |
+|     xpm_memory_sprom_inst                              |    <0.001 |
+|       xpm_memory_base_inst                             |    <0.001 |
 |   branch                                               |    <0.001 |
 |   console_display                                      |     0.001 |
 |     timing                                             |    <0.001 |

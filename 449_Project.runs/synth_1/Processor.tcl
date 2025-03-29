@@ -29,7 +29,10 @@ set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
 set_property ip_output_repo c:/Users/echatham/ECE449/449_Project.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_mem C:/Users/echatham/ECE449/assembler/bootloader.mem
+read_mem {
+  C:/Users/echatham/ECE449/assembler/bootloader.mem
+  C:/Users/echatham/ECE449/assembler/bootloader1.mem
+}
 read_vhdl -library xil_defaultlib {
   C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd
   C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ALU.vhd
@@ -47,6 +50,7 @@ read_vhdl -library xil_defaultlib {
   C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/MEM_WB.vhd
   C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/NIBBLE_To_ASCII.vhd
   C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Program_Counter.vhd
+  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ROM.vhd
   C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Register.vhd
   C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/RAM.vhd
   C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd

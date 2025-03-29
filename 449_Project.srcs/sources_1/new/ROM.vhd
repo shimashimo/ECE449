@@ -41,16 +41,16 @@ begin
     -- Xilinx Parameterized Macro, version 2018.3
     xpm_memory_sprom_inst : xpm_memory_sprom
     generic map (
-        ADDR_WIDTH_A => 6, -- DECIMAL
+        ADDR_WIDTH_A => 16, -- DECIMAL
         AUTO_SLEEP_TIME => 0, -- DECIMAL
         ECC_MODE => "no_ecc", -- String
-        MEMORY_INIT_FILE => "bootloader.hex", -- String
+        MEMORY_INIT_FILE => "bootloader1.mem", -- String
         MEMORY_INIT_PARAM => "", -- String
         MEMORY_OPTIMIZATION => "true", -- String
         MEMORY_PRIMITIVE => "auto", -- String
-        MEMORY_SIZE => 128, -- DECIMAL
+        MEMORY_SIZE => 8192, -- DECIMAL
         MESSAGE_CONTROL => 0, -- DECIMAL
-        READ_DATA_WIDTH_A => 32, -- DECIMAL
+        READ_DATA_WIDTH_A => 16, -- DECIMAL
         READ_LATENCY_A => 0, -- DECIMAL
         READ_RESET_VALUE_A => "0", -- String
         USE_MEM_INIT => 1, -- DECIMAL
@@ -61,7 +61,7 @@ begin
     douta => data_out,         -- READ_DATA_WIDTH_A-bit output: Data output for port A read operations.
     sbiterra => open,   -- 1-bit output: Leave open.
 
-    addra => addr,         -- ADDR_WIDTH_A-bit input: Address for port A read operations.
+    addra =>addr,         -- ADDR_WIDTH_A-bit input: Address for port A read operations.
     clka => clk,           -- 1-bit input: Clock signal for port A.
     ena => enb,             -- 1-bit input: Memory enable signal for port A. Must be high on clock
                             -- cycles when read operations are initiated. Pipelined internally.
