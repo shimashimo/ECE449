@@ -44,7 +44,7 @@ entity MEM_WB is
             wr_en: out STD_LOGIC;
             data_out: out STD_LOGIC_VECTOR(15 downto 0);
             ra: out STD_LOGIC_VECTOR(2 downto 0);
-            outport: out STD_LOGIC_VECTOR(0 downto 0)
+            outport: out STD_LOGIC
             );
 end MEM_WB;
 
@@ -54,7 +54,7 @@ begin
     process(clk) begin
         if rising_edge(clk) then
         
-            outport <= (others => '0');
+            outport <= '0';
             
             if rst = '1' then
                 wr_en <= '0';
@@ -80,7 +80,7 @@ begin
                         ra <= "111";
                         data_out <= old_PC_in;
                     when "0100000" => --out
-                        outport <= data_in(0 downto 0);
+                        outport <= data_in(0);
                     when "0100001" => --in
                         ra <= inst_in(8 downto 6);
                         data_out <= in_port_data(15 downto 6) & "000000";

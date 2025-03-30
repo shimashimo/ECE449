@@ -73,6 +73,9 @@ begin
             elsif ID_EX_instr(15 downto 9) = "0010011" then
                 ID_EX_rs := ID_EX_instr(5 downto 3);
                 ID_EX_rt := ID_EX_instr(5 downto 3);  
+            elsif ID_EX_instr(15 downto 9) = "0000111" or  ID_EX_instr(15 downto 9) = "0100000" then
+                ID_EX_rs := ID_EX_instr(8 downto 6);
+                ID_EX_rt := ID_EX_instr(8 downto 6); 
             else
                 ID_EX_rs := ID_EX_instr(5 downto 3);
                 ID_EX_rt := ID_EX_instr(2 downto 0);  
@@ -81,34 +84,33 @@ begin
             
             if (EX_MEM_wb = '1') and (EX_MEM_rd /= "000") and (EX_MEM_rd = ID_EX_rs) then
                 ForwardA <= "10";
-            
             elsif (MEM_WB_wb = '1') and (MEM_WB_rd /= "000")
             and not (EX_MEM_wb = '1' and EX_MEM_rd /= "000") 
             and EX_MEM_rd /= ID_EX_rs and MEM_WB_rd = ID_EX_rs then
+                ForwardA <= "01";
+            elsif (MEM_WB_wb = '1') and (MEM_WB_rd /= "000") and (MEM_WB_rd = ID_EX_rs) then
                 ForwardA <= "01";
             else
                 ForwardA <= "00";
             end if;
             
-            if (MEM_WB_wb = '1') and (MEM_WB_rd /= "000") and (MEM_WB_rd = ID_EX_rs) then
-                   ForwardA <= "01";
-            end if;
+            
             
             if EX_MEM_wb = '1' and EX_MEM_rd /= "000" and EX_MEM_rd = ID_EX_rt then
                 ForwardB <= "10";
-    
+           
             elsif (MEM_WB_wb = '1') and (MEM_WB_rd /= "000")
             and not (EX_MEM_wb = '1' and EX_MEM_rd /= "000") 
             and EX_MEM_rd /= ID_EX_rt and MEM_WB_rd = ID_EX_rt then  
                 ForwardB <= "01";
                 
+            elsif (MEM_WB_wb = '1') and (MEM_WB_rd /= "000") and (MEM_WB_rd = ID_EX_rt) then
+                   ForwardB <= "01";
             else
                 ForwardB <= "00";
             end if;
             
-            if (MEM_WB_wb = '1') and (MEM_WB_rd /= "000") and (MEM_WB_rd = ID_EX_rt) then
-                   ForwardB <= "01";
-            end if;
+            
 
     end process;
 -- Stall needed for when instruction tries to read register following a load instruction that write to same register.

@@ -52,7 +52,12 @@ begin
 --                                    Z <= '0';
 --                                    N <= '0';
                                     
-                    when "010" =>   Y <= A - B;
+                    when "010" =>   
+                                    if A = B then
+                                        Y <= x"0000";
+                                    else
+                                        Y <= A - B;
+                                    end if;
 --                                    Z <= '0';
 --                                    N <= '0';
                     when "011" =>   p1 := std_logic_vector(unsigned(A) * unsigned(B));

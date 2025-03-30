@@ -38,7 +38,7 @@ entity Processor is
             ResetLoad: in STD_LOGIC;
             ResetExecute: in STD_LOGIC;
             IN_PORT: in STD_LOGIC_VECTOR(15 downto 6);
-            OUT_PORT: out STD_LOGIC_VECTOR(0 downto 0);
+            OUT_PORT: out STD_LOGIC;
             
             led_segments : out STD_LOGIC_VECTOR( 6 downto 0 );
             led_digits : out STD_LOGIC_VECTOR( 3 downto 0 );
@@ -305,7 +305,7 @@ controller: entity work.Controller
     port map(rst=>ResetExecute, op_in=>IF_ID_op, alu_op=>CON_alu_op, mem_op=>CON_mem_op, wb_op=>CON_wb_op);
     
 hazard: entity work.HazardDetection 
-    port map(clk=>clk, IF_ID_instr=>IF_ID_inst, ID_EX_instr=>ID_EX_inst_out, ID_EX_mem_op=>CON_mem_op, MEM_WB_en=>MEM_WB_wr_en, MEM_WB_ra=>MEM_WB_ra, stall=>stall);
+    port map(clk=>clk, IF_ID_instr=>IF_ID_inst, ID_EX_instr=>ID_EX_inst_out, ID_EX_mem_op=>CON_mem_op, MEM_WB_en=>MEM_WB_wr_en, EX_MEM_ra=>EX_MEM_inst_out, stall=>stall);
     
 ID_EX: entity work.ID_EX 
     port map(clk=>clk, rst=>ResetExecute, inst_in=>IF_ID_inst, op_in=>IF_ID_op, rd_data1=>rd_data1, rd_data2=>rd_data2, alu_in=>CON_alu_op, mem_in=>CON_mem_op, 
@@ -339,7 +339,7 @@ RAM: entity work.RAM
              
 MEM_WB: entity work.MEM_WB 
     port map(clk=>clk, rst=>ResetExecute, in_port_data=>IN_PORT, mem_data=>RAM_DATA_outa, data_in=>EX_MEM_alu_result_out, old_PC_in=>old_PC, inst_in=>EX_MEM_inst_out, wb_in=>EX_MEM_wb_out,
-             wr_en=>MEM_WB_wr_en, data_out=>MEM_WB_data_out, ra=>MEM_WB_ra);
+             wr_en=>MEM_WB_wr_en, data_out=>MEM_WB_data_out, ra=>MEM_WB_ra, outport=>OUT_PORT);
 
 led_display_memory : led_display
 port map (
@@ -391,12 +391,12 @@ console_display : console
         s3_reg_b => ID_EX_inst_out(5 downto 3),
         s3_reg_c => ID_EX_inst_out(2 downto 0),
     
-        s3_reg_a_data => x"0000",
-        s3_reg_b_data => x"0000",
-        s3_reg_c_data => x"0000",
+        s3_reg_a_data => Y,
+        s3_reg_b_data => A,
+        s3_reg_c_data => B,
         s3_immediate => x"0000",
     
-        s3_r_wb => '0',
+        s3_r_wb => CON_wb_op,
         s3_r_wb_data => x"0000",
     
         s3_br_wb => '0',
@@ -415,9 +415,9 @@ console_display : console
     
         s4_pc => x"0000",
         s4_inst => EX_MEM_inst_out,
-        s4_reg_a => MEM_WB_ra,
-        s4_r_wb => MEM_WB_wr_en,
-        s4_r_wb_data => MEM_WB_data_out,
+        s4_reg_a => EX_MEM_inst_out(8 downto 6),
+        s4_r_wb => EX_MEM_wb_out,
+        s4_r_wb_data => EX_MEM_alu_result_out,
     
     --
     -- CPU registers
@@ -446,7 +446,7 @@ console_display : console
     --
         zero_flag => Z,
         negative_flag => N,
-        overflow_flag => '0',
+        overflow_flag => stall,
     
     --
     -- Debug screen enable

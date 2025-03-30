@@ -48,7 +48,7 @@ signal reg_file : reg_array; begin
 --write operation 
 process(clk)
 begin
-   if (rising_edge(clk)) then 
+   if (falling_edge(clk)) then 
         if(rst='1') then
           for i in 0 to 7 loop
              reg_file(i)<= (others => '0'); 

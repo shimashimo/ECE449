@@ -186,26 +186,26 @@ set_property PACKAGE_PIN K17 [get_ports {clk}]
 	create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports clk]
 	set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {clk}]
 #Sch name = JC2
-set_property PACKAGE_PIN M18 [get_ports {OUT_PORT[0]}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {OUT_PORT[0]}]
+set_property PACKAGE_PIN M18 [get_ports {OUT_PORT}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {OUT_PORT}]
 ##Sch name = JC3
 #set_property PACKAGE_PIN N17 [get_ports {JC[2]}]					
 #	set_property IOSTANDARD LVCMOS33 [get_ports {JC[2]}]
 ##Sch name = JC4
 #set_property PACKAGE_PIN P18 [get_ports {JC[3]}]					
 #	set_property IOSTANDARD LVCMOS33 [get_ports {JC[3]}]
-#Sch name = JC7
-set_property PACKAGE_PIN L17 [get_ports {IN_PORT[6]}]					
+##Sch name = JC7
+#set_property PACKAGE_PIN L17 [get_ports {IN_PORT[6]}]					
+#	set_property IOSTANDARD LVCMOS33 [get_ports {IN_PORT[6]}]
+##Sch name = JC8
+#set_property PACKAGE_PIN M19 [get_ports {IN_PORT[7]}]					
+#	set_property IOSTANDARD LVCMOS33 [get_ports {IN_PORT[7]}]
+##Sch name = JC9
+set_property PACKAGE_PIN P17 [get_ports {IN_PORT[6]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {IN_PORT[6]}]
-#Sch name = JC8
-set_property PACKAGE_PIN M19 [get_ports {IN_PORT[7]}]					
+#Sch name = JC10
+set_property PACKAGE_PIN R18 [get_ports {IN_PORT[7]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {IN_PORT[7]}]
-#Sch name = JC9
-#set_property PACKAGE_PIN P17 [get_ports {JC[6]}]					
-#	set_property IOSTANDARD LVCMOS33 [get_ports {JC[6]}]
-##Sch name = JC10
-#set_property PACKAGE_PIN R18 [get_ports {JC[7]}]					
-#	set_property IOSTANDARD LVCMOS33 [get_ports {JC[7]}]
 
 
 #Pmod Header JXADC
