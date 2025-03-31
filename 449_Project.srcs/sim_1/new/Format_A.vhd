@@ -49,7 +49,7 @@ architecture Behavioral of format_a_sim is
     signal rst: STD_LOGIC := '0';
     signal clk: STD_LOGIC;
     signal output: STD_LOGIC_VECTOR(15 downto 0);
-    signal pc: STD_LOGIC_VECTOR(3 downto 0) := "0000";
+    signal pc: STD_LOGIC_VECTOR(4 downto 0) := "00000";
     
 begin
 UUT: entity work.ALU
@@ -65,7 +65,7 @@ end process;
 testbench: process(clk)
     begin
     
-    if pc = "0000" then -- Reset all values to 0, set initial values of registers, r1 and r2
+    if pc = "00000" then -- Reset all values to 0, set initial values of registers, r1 and r2
               rst <= '1';
               r1 <= x"0003";
               r2 <= x"0005";
@@ -75,42 +75,82 @@ testbench: process(clk)
     end if;
             
     if rising_edge(clk) then  
-        if pc = "0001" then
+        if pc = "00001" then
             rst <= '0';
         end if;
         
-        if pc = "0010" then
+        if pc = "00010" then
             OP <= "001";
             A <= r2;
             B <= r1;
         end if;
         
-        if pc = "0011" then
+        if pc = "00011" then
             r3 <= Y;
         end if; 
     
-        if pc = "0100" then
-            OP <= "101";
-            A <= r3;
-            B <= x"0002";
+        if pc = "00100" then
+            OP <= "010";
+--            A <= r2;
+--            B <= x"0002";
         end if;
         
-        if PC = "0101" then 
+        if PC = "00101" then 
             r3 <= Y;
         end if;
     
-        if pc = "0110" then
+        if pc = "00110" then
             OP <= "011";
-            A <= r1;
-            B <= r3;
+--            A <= r1;
+--            B <= r2;
         end if;
     
-        if pc = "0111" then
-            r2 <= Y;
+        if pc = "00111" then
+            r3 <= Y;
         end if;
         
-        if pc = "1000" then
-            output <= r2;
+        if pc = "01000" then
+            OP <= "100";
+--            A <= r1;
+--            B <= r2;
+        end if;
+        
+        if pc = "01001" then
+            r3 <= Y;
+        end if;
+        
+        if pc = "01010" then
+            OP <= "101";
+--            A <= r1;
+--            B <= r2;
+        end if;
+        
+        if pc = "01011" then
+            r3 <= Y;
+        end if;
+        
+        if pc = "01100" then
+            OP <= "110";
+--            A <= r1;
+--            B <= r2;
+        end if;
+                
+        if pc = "01101" then
+            r3 <= Y;
+        end if;
+        
+        if pc = "01110" then
+             OP <= "111";
+             A <= x"0000";
+        end if;
+        
+        if pc = "01111" then
+            r3 <= Y;
+        end if;
+        
+        if pc = "10000" then
+             OP <= "111";
+             A <= x"F000";
         end if;
         
         pc <= STD_LOGIC_VECTOR(unsigned(pc) + 1);

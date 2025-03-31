@@ -3,18 +3,18 @@ DipSwitches:	equ		0xFFF0
 DipSwitchMask:	equ		7			; Binary multiple as a mask
 
 
-		org		0x210
+		org		0x410
 ;		.CODE
-main:		loadimm.upper	DipSwitches.hi
-		loadimm.lower	DipSwitches.lo
-		load		r6, r7
+main:		loadimm.upper	0x00
+		loadimm.lower	0x05
+		mov		r6, r7
 
 
-		loadimm.upper	DipSwitchMask.hi
-		loadimm.lower	DipSwitchMask.lo
+;		loadimm.upper	DipSwitchMask.hi
+;		loadimm.lower	DipSwitchMask.lo
 
-		nand		r6, r6, r7		; Nand the switch settings
-		nand		r6, r6, r6		; one's compliment result to and it
+;		nand		r6, r6, r7		; Nand the switch settings
+;		nand		r6, r6, r6		; one's compliment result to and it
 
 
 		loadimm.upper	0x00				
