@@ -79,7 +79,7 @@ begin
             elsif ID_EX_instr(15 downto 9) = "0010011" then
                 ID_EX_rs := ID_EX_instr(5 downto 3);
                 ID_EX_rt := ID_EX_instr(5 downto 3);  
-            elsif ID_EX_instr(15 downto 9) = "0000111" or  ID_EX_instr(15 downto 9) = "0100000" then
+            elsif ID_EX_instr(15 downto 9) = "0000111" or  ID_EX_instr(15 downto 9) = "0100000" or ID_EX_instr(15 downto 9) = "0000101" or ID_EX_instr(15 downto 9) = "0000110" then
                 ID_EX_rs := ID_EX_instr(8 downto 6);
                 ID_EX_rt := ID_EX_instr(8 downto 6); 
             else

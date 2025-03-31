@@ -54,7 +54,7 @@ begin
     variable ID_EX_rt : std_logic_vector(2 downto 0);
     variable EX_MEM_rd: std_logic_vector(2 downto 0);
         begin
-            if IF_ID_instr(15 downto 9) = "0000111" or  IF_ID_instr(15 downto 9) = "0100000" then
+            if IF_ID_instr(15 downto 9) = "0000111" or  IF_ID_instr(15 downto 9) = "0100000" or IF_ID_instr(15 downto 9) = "0000101" or IF_ID_instr(15 downto 9) = "0000110" then
                 IF_ID_rs := IF_ID_instr(8 downto 6);
                 IF_ID_rt := IF_ID_instr(8 downto 6);
             elsif IF_ID_instr(15 downto 9) = "0010001" then
