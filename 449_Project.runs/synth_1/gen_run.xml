@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743381018">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743452446">
   <File Type="PA-TCL" Name="Processor.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="Processor_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="Processor_reports.tcl"/>
@@ -157,6 +157,12 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/assembler/bootloader2.mem">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/assembler/bootloader3.mem">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>

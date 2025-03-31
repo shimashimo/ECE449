@@ -267,6 +267,8 @@ GetProgram:	loadimm.upper	LedDisplay.hi		; Display Number of packets left to dow
 		store		r7, r4
 
 		test		r4			; Transfer complete ?
+		nop
+		nop
 		brr.z		WaitForever		; Done the transfer so halt the app
 
 WaitForHighByte:

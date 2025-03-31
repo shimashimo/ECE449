@@ -330,7 +330,7 @@ ALU: entity work.ALU
     port map(rst=>ResetExecute, A=>A, B=>B, misc=>ID_EX_misc_out, OP=>ID_EX_alu_out, Y=>Y, Z=>Z, N=>N);
     
 branch: entity work.Branch 
-    port map(PC=>ID_EX_PC, inst_in=>ID_EX_inst_out, disp=>ID_EX_disp, Z=>Z, N=>N, ra=>ID_EX_RD1, old_PC=>old_PC, brch_addr=>brch_addr, brch_en=>brch_en);
+    port map(PC=>ID_EX_PC, inst_in=>ID_EX_inst_out, disp=>ID_EX_disp, Z=>Z, N=>N, ra=>A, old_PC=>old_PC, brch_addr=>brch_addr, brch_en=>brch_en);
     
 EX_MEM: entity work.EX_MEM 
     port map(clk=>clk, rst=>ResetExecute, alu_result=>Y, mem_op=>ID_EX_mem_out, wb_op=>ID_EX_wb_out, inst_in=>ID_EX_inst_out, memA=>A, memB=>B, 
@@ -417,11 +417,11 @@ console_display : console
     -- Stage 4 Memory
     --
     
-        s4_pc => x"0000",
+        s4_pc => EX_MEM_mem_addra,
         s4_inst => EX_MEM_inst_out,
         s4_reg_a => EX_MEM_inst_out(8 downto 6),
         s4_r_wb => EX_MEM_mem_en,
-        s4_r_wb_data => EX_MEM_alu_result_out,
+        s4_r_wb_data => EX_MEM_DATA,
     
     --
     -- CPU registers
@@ -507,10 +507,10 @@ console_display : console
     end process;
     
     ROM_PC <= "0" & PC(15 downto 1);
-    RAM_PC <= "0" & PC(15 downto 1);
+    RAM_PC <= "000000" & PC(9 downto 0);
     
-    ram_en <= '1' when PC >= x"0400" else '0';
-    rom_en <= '0' when PC >= x"0400" else '1';
+    ram_en <= '1' when PC(10) = '1' else '0';
+    rom_en <= '0' when PC(10) = '1' else '1';
     
     inst <= RAM_data_outb when PC(10) = '1' else ROM_out;
     

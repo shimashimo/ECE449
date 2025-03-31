@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-| Date         : Sun Mar 30 17:32:12 2025
+| Date         : Mon Mar 31 13:22:48 2025
 | Host         : ws11-09 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Processor_control_sets_placed.rpt
 | Design       : Processor
@@ -22,8 +22,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    45 |
-| Unused register locations in slices containing registers |    77 |
+| Number of unique control sets                            |    47 |
+| Unused register locations in slices containing registers |    78 |
 +----------------------------------------------------------+-------+
 
 
@@ -33,67 +33,69 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             102 |           50 |
+| No           | No                    | No                     |              90 |           48 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |             102 |           46 |
-| Yes          | No                    | No                     |             197 |           75 |
+| No           | Yes                   | No                     |             121 |           53 |
+| Yes          | No                    | No                     |             221 |           76 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             274 |          120 |
+| Yes          | Yes                   | No                     |             274 |          126 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 3. Detailed Control Set Information
 -----------------------------------
 
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-----------------------------------+------------------+----------------+
-|              Clock Signal             |                                              Enable Signal                                              |          Set/Reset Signal         | Slice Load Count | Bel Load Count |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-----------------------------------+------------------+----------------+
-|  clk_IBUF_BUFG                        | EX_MEM/outport                                                                                          | ResetExecute_IBUF                 |                1 |              1 |
-|  ID_EX/prog_ctr_reg[0]_0              |                                                                                                         | ResetExecute_IBUF                 |                1 |              2 |
-|  board_clock_IBUF_BUFG                |                                                                                                         |                                   |                2 |              4 |
-| ~console_display/timing/opcode_reg[0] | console_display/timing/E[0]                                                                             |                                   |                2 |              7 |
-|  clk_IBUF_BUFG                        |                                                                                                         | ID_EX/inst_out_reg[15]_0[15]      |                6 |              9 |
-|  clk_IBUF_BUFG                        | IF_ID/disp_out_reg[8][0]                                                                                | ResetExecute_IBUF                 |                3 |              9 |
-|  video_clock                          | console_display/timing/h_dot0                                                                           | console_display/timing/v_line_int |                3 |             10 |
-|  video_clock                          |                                                                                                         | console_display/timing/h_dot0     |                4 |             11 |
-|  video_clock                          | console_display/timing/display_address_reg[0]_rep__0                                                    |                                   |                5 |             14 |
-|  clk_IBUF_BUFG                        | RAM/misc_reg[0][0]                                                                                      | ResetExecute_IBUF                 |                5 |             15 |
-|  ID_EX/E[0]                           |                                                                                                         |                                   |                7 |             16 |
-|  clk_IBUF_BUFG                        | IF_ID/PC_out[15]_i_1__0_n_0                                                                             | ResetExecute_IBUF                 |                9 |             16 |
-|  clk_IBUF_BUFG                        | IF_ID/E[0]                                                                                              |                                   |                7 |             16 |
-|  clk_IBUF_BUFG                        | MEM_WB/led_reg[15][0]                                                                                   |                                   |                4 |             16 |
-|  clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[1][0][0]                                                                            |                                   |                7 |             16 |
-|  clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[2][0][0]                                                                            |                                   |                5 |             16 |
-|  clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[3][0][0]                                                                            |                                   |                7 |             16 |
-|  clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[0][0][0]                                                                            |                                   |                4 |             16 |
-|  clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[4][0][0]                                                                            |                                   |                6 |             16 |
-|  clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[6][0][0]                                                                            |                                   |                6 |             16 |
-|  clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[7][0][0]                                                                            |                                   |               10 |             16 |
-|  clk_IBUF_BUFG                        | MEM_WB/E[0]                                                                                             |                                   |                6 |             16 |
-|  ID_EX/alu_result_out_reg[15]_4[0]    |                                                                                                         | ResetExecute_IBUF                 |                7 |             16 |
-|  clk_IBUF_BUFG                        | led_display_memory/led_data[15]_i_1_n_0                                                                 |                                   |                6 |             16 |
-| ~clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[1][0][0]                                                                            | ResetExecute_IBUF                 |                8 |             16 |
-| ~clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[2][0][0]                                                                            | ResetExecute_IBUF                 |                8 |             16 |
-| ~clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[3][0][0]                                                                            | ResetExecute_IBUF                 |                9 |             16 |
-| ~clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[4][0][0]                                                                            | ResetExecute_IBUF                 |                5 |             16 |
-| ~clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[6][0][0]                                                                            | ResetExecute_IBUF                 |               10 |             16 |
-| ~clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[7][0][0]                                                                            | ResetExecute_IBUF                 |               10 |             16 |
-| ~clk_IBUF_BUFG                        | MEM_WB/E[0]                                                                                             | ResetExecute_IBUF                 |                8 |             16 |
-|  clk_IBUF_BUFG                        | ID_EX/mem_data_reg[15]                                                                                  | ID_EX/mem_data_reg[0]             |                4 |             16 |
-| ~clk_IBUF_BUFG                        | MEM_WB/reg_file_reg[0][0][0]                                                                            | ResetExecute_IBUF                 |                4 |             16 |
-|  board_clock_IBUF_BUFG                |                                                                                                         | led_display_memory/clear          |                5 |             17 |
-|  clk_IBUF_BUFG                        | EX_MEM/E[0]                                                                                             | ResetExecute_IBUF                 |                8 |             19 |
-|  clk_IBUF_BUFG                        |                                                                                                         | IF_ID/SR[0]                       |                7 |             21 |
-|  clk_IBUF_BUFG                        | IF_ID/PC_out[15]_i_1__0_n_0                                                                             | ID_EX/out_op_reg[0][0]            |               12 |             22 |
-|  clk_IBUF_BUFG                        |                                                                                                         | ResetExecute_IBUF                 |               16 |             26 |
-|  clk_IBUF_BUFG                        |                                                                                                         |                                   |               16 |             35 |
-|  clk_IBUF_BUFG                        | ID_EX/misc_out[5]_i_1_n_0                                                                               | ResetExecute_IBUF                 |               13 |             38 |
-|  video_clock                          |                                                                                                         |                                   |               25 |             47 |
-|  clk_IBUF_BUFG                        | RAM/xpm_memory_dpdistram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_128_255_0_0_i_1_n_0 |                                   |               16 |             64 |
-|  clk_IBUF_BUFG                        | RAM/xpm_memory_dpdistram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_256_383_0_0_i_1_n_0 |                                   |               16 |             64 |
-|  clk_IBUF_BUFG                        | RAM/xpm_memory_dpdistram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_384_511_0_0_i_1_n_0 |                                   |               16 |             64 |
-|  clk_IBUF_BUFG                        | RAM/xpm_memory_dpdistram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_127_0_0_i_1_n_0   |                                   |               16 |             64 |
-+---------------------------------------+---------------------------------------------------------------------------------------------------------+-----------------------------------+------------------+----------------+
++-----------------------------------------+---------------------------------------------------------------------------------------------------------+-----------------------------------+------------------+----------------+
+|               Clock Signal              |                                              Enable Signal                                              |          Set/Reset Signal         | Slice Load Count | Bel Load Count |
++-----------------------------------------+---------------------------------------------------------------------------------------------------------+-----------------------------------+------------------+----------------+
+|  clk_IBUF_BUFG                          | EX_MEM/outport_reg_0                                                                                    | ResetExecute_IBUF                 |                1 |              1 |
+|  ID_EX/out_op_reg[0]_1                  |                                                                                                         | ResetExecute_IBUF                 |                1 |              2 |
+|  board_clock_IBUF_BUFG                  |                                                                                                         |                                   |                2 |              4 |
+| ~console_display/timing/opcode_reg[0]_0 | console_display/timing/opcode_reg[0][0]                                                                 |                                   |                2 |              7 |
+|  clk_IBUF_BUFG                          | IF_ID/disp_out_reg[8][0]                                                                                | ResetExecute_IBUF                 |                4 |              9 |
+|  video_clock                            | console_display/timing/h_dot0                                                                           | console_display/timing/v_line_int |                4 |             10 |
+|  video_clock                            |                                                                                                         | console_display/timing/h_dot0     |                5 |             11 |
+|  video_clock                            |                                                                                                         | console_display/timing/SS[0]      |                5 |             12 |
+|  clk_IBUF_BUFG                          | RAM/misc_reg[0][0]                                                                                      | ResetExecute_IBUF                 |                5 |             15 |
+|  ID_EX/E[0]                             |                                                                                                         |                                   |                8 |             16 |
+|  ID_EX/alu_result_out_reg[15]_2[0]      |                                                                                                         | ResetExecute_IBUF                 |                9 |             16 |
+| ~clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[1][15][0]                                                                           | ResetExecute_IBUF                 |                7 |             16 |
+|  clk_IBUF_BUFG                          |                                                                                                         | ID_EX/inst_out_reg[15]_0[15]      |                7 |             16 |
+|  clk_IBUF_BUFG                          | ID_EX/mem_data_reg[15]                                                                                  | ID_EX/mem_data_reg[0]             |                3 |             16 |
+|  clk_IBUF_BUFG                          | EX_MEM/display[15]_i_1_n_0                                                                              |                                   |                4 |             16 |
+|  clk_IBUF_BUFG                          | EX_MEM/led[15]_i_1_n_0                                                                                  |                                   |                4 |             16 |
+|  clk_IBUF_BUFG                          | IF_ID/PC_out[15]_i_1_n_0                                                                                | ResetExecute_IBUF                 |                8 |             16 |
+|  clk_IBUF_BUFG                          | IF_ID/E[0]                                                                                              |                                   |                7 |             16 |
+|  clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[3][15][0]                                                                           |                                   |                7 |             16 |
+|  clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[6][15][0]                                                                           |                                   |                6 |             16 |
+|  clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[0][15][0]                                                                           |                                   |                6 |             16 |
+|  clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[7][15][0]                                                                           |                                   |                6 |             16 |
+|  clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[4][15][0]                                                                           |                                   |                7 |             16 |
+|  clk_IBUF_BUFG                          | MEM_WB/E[0]                                                                                             |                                   |                5 |             16 |
+|  clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[2][15][0]                                                                           |                                   |                5 |             16 |
+|  clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[1][15][0]                                                                           |                                   |                7 |             16 |
+|  clk_IBUF_BUFG                          | led_display_memory/led_data[15]_i_1_n_0                                                                 |                                   |                4 |             16 |
+| ~clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[3][15][0]                                                                           | ResetExecute_IBUF                 |                8 |             16 |
+| ~clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[6][15][0]                                                                           | ResetExecute_IBUF                 |               12 |             16 |
+| ~clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[0][15][0]                                                                           | ResetExecute_IBUF                 |                6 |             16 |
+| ~clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[7][15][0]                                                                           | ResetExecute_IBUF                 |                9 |             16 |
+| ~clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[4][15][0]                                                                           | ResetExecute_IBUF                 |                6 |             16 |
+| ~clk_IBUF_BUFG                          | MEM_WB/E[0]                                                                                             | ResetExecute_IBUF                 |                7 |             16 |
+| ~clk_IBUF_BUFG                          | MEM_WB/reg_file_reg[2][15][0]                                                                           | ResetExecute_IBUF                 |                9 |             16 |
+|  board_clock_IBUF_BUFG                  |                                                                                                         | led_display_memory/clear          |                5 |             17 |
+|  clk_IBUF_BUFG                          | EX_MEM/E[0]                                                                                             | ResetExecute_IBUF                 |               12 |             19 |
+|  clk_IBUF_BUFG                          |                                                                                                         | IF_ID/SR[0]                       |                8 |             21 |
+|  clk_IBUF_BUFG                          | IF_ID/PC_out[15]_i_1_n_0                                                                                | ID_EX/out_op_reg[0][0]            |               11 |             22 |
+|  video_clock                            | console_display/timing/E[0]                                                                             |                                   |                6 |             22 |
+|  clk_IBUF_BUFG                          |                                                                                                         | ResetExecute_IBUF                 |               13 |             26 |
+|  clk_IBUF_BUFG                          |                                                                                                         |                                   |               17 |             35 |
+|  video_clock                            |                                                                                                         |                                   |               21 |             35 |
+|  clk_IBUF_BUFG                          | ID_EX/misc_out[5]_i_1_n_0                                                                               | ResetExecute_IBUF                 |               14 |             38 |
+|  clk_IBUF_BUFG                          | RAM/xpm_memory_dpdistram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_127_0_0_i_1_n_0   |                                   |               16 |             64 |
+|  clk_IBUF_BUFG                          | RAM/xpm_memory_dpdistram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_128_255_0_0_i_1_n_0 |                                   |               16 |             64 |
+|  clk_IBUF_BUFG                          | RAM/xpm_memory_dpdistram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_384_511_0_0_i_1_n_0 |                                   |               16 |             64 |
+|  clk_IBUF_BUFG                          | RAM/xpm_memory_dpdistram_inst/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_256_383_0_0_i_1_n_0 |                                   |               16 |             64 |
++-----------------------------------------+---------------------------------------------------------------------------------------------------------+-----------------------------------+------------------+----------------+
 
 
 +--------+-----------------------+
@@ -103,12 +105,12 @@ Table of Contents
 | 2      |                     1 |
 | 4      |                     1 |
 | 7      |                     1 |
-| 9      |                     2 |
+| 9      |                     1 |
 | 10     |                     1 |
 | 11     |                     1 |
-| 14     |                     1 |
+| 12     |                     1 |
 | 15     |                     1 |
-| 16+    |                    35 |
+| 16+    |                    38 |
 +--------+-----------------------+
 
 

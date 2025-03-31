@@ -60,6 +60,9 @@ begin
             elsif IF_ID_instr(15 downto 9) = "0010001" then
                 IF_ID_rt := IF_ID_instr(8 downto 6);
                 IF_ID_rs := IF_ID_instr(5 downto 3);
+            elsif IF_ID_instr(15 downto 9) = "0010010" then
+                IF_ID_rt := "111";
+                IF_ID_rs := "111";
             elsif IF_ID_instr(15 downto 9) = "0010011" or IF_ID_instr(15 downto 9) = "0010000" then
                 IF_ID_rs := IF_ID_instr(8 downto 6);
                 IF_ID_rt := IF_ID_instr(5 downto 3);
