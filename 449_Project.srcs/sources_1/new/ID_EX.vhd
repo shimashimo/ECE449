@@ -46,7 +46,9 @@ entity ID_EX is
         flush_en: in STD_LOGIC;
         stall_en: in STD_LOGIC;
         disp_in: in STD_LOGIC_VECTOR(8 downto 0);
+        misc_in:in STD_LOGIC_VECTOR(8 downto 0);
         disp_out: out STD_LOGIC_VECTOR(8 downto 0);
+        misc_out: out STD_LOGIC_VECTOR(8 downto 0);
         PC_out: out STD_LOGIC_VECTOR(15 downto 0);
         alu_out: out STD_LOGIC_VECTOR(2 downto 0);      -- Control Signals
         mem_out: out STD_LOGIC;                         -- Control Signals
@@ -64,6 +66,7 @@ process (clk) begin
     if(rising_edge(clk)) then  -- Latching?
         if(rst = '1') then
             disp_out <= (others => '0');
+            misc_out <= (others => '0');
             PC_out <= (others => '0');
             alu_out <= "000";
             mem_out <= '0';
@@ -83,6 +86,7 @@ process (clk) begin
                 alu_out <= "000";
                 mem_out <= '0';
                 wb_out <= '0';
+                misc_out <= misc_in;
                 RD1 <= rd_data1;
                 RD2 <= rd_data2;
                 PC_out <= (others => '0');
@@ -108,6 +112,7 @@ process (clk) begin
                 RD2 <= rd_data2;
                 mem_out <= mem_in;
                 wb_out <= wb_in; 
+                misc_out <= misc_in;
                 disp_out <= disp_in;
             end if;
         end if;

@@ -31,6 +31,7 @@ entity ALU is
         rst : in STD_LOGIC;
         A : in STD_LOGIC_VECTOR(15 downto 0);
         B : in STD_LOGIC_VECTOR(15 downto 0);
+        misc: in STD_LOGIC_VECTOR(8 downto 0);
         OP : in STD_LOGIC_VECTOR(2 downto 0);       -- Opcode is 7 bits
         Y : out STD_LOGIC_VECTOR(15 downto 0);
         Z : out STD_LOGIC;
@@ -68,25 +69,25 @@ begin
                     when "100" =>   Y <= A NAND B;
 --                                    Z <= '0';   
 --                                    N <= '0';
-                    
-                    when "101" =>  for i in 0 to 15 loop
-                                        if i <= 15 - to_integer(unsigned(B)) then
-                                            Y(i + to_integer(unsigned(B))) <= A(i);
-                                        end if;
-                                        if i < to_integer(unsigned(B)) then
-                                            Y(i) <= '0';
-                                        end if;
-                                    end loop;
---                                    Z <= '0';
---                                    N <= '0';
-                                    
-                    when "110" =>   for i in 0 to 15 loop
-                                        if i >= to_integer(unsigned(B)) then
-                                            Y(i - to_integer(unsigned(B))) <= A(i);
-                                        else
-                                            Y(i) <= '0';
-                                        end if;
-                                    end loop;
+                    when "101" => Y <= std_logic_vector(shift_left(unsigned(A), to_integer(signed(misc))));
+--                    when "101" =>  for i in 0 to 15 loop
+--                                        if i <= 15 - to_integer(unsigned(misc)) then
+--                                            Y(i + to_integer(unsigned(misc))) <= A(i);
+--                                        end if;
+--                                        if i < to_integer(unsigned(misc)) then
+--                                            Y(i) <= '0';
+--                                        end if;
+--                                    end loop;
+----                                    Z <= '0';
+----                                    N <= '0';
+                    when "110" => Y <= std_logic_vector(shift_right(unsigned(A), to_integer(signed(misc))));
+--                    when "110" =>   for i in 0 to 15 loop
+--                                        if i >= to_integer(unsigned(misc)) then
+--                                            Y(i - to_integer(unsigned(misc))) <= A(i);
+--                                        else
+--                                            Y(i) <= '0';
+--                                        end if;
+--                                    end loop;
 --                                    Z <= '0';
 --                                    N <= '0';
                                     

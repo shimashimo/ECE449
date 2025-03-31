@@ -285,6 +285,10 @@ signal reg_7: STD_LOGIC_VECTOR(15 downto 0);
 signal ROM_PC: STD_LOGIC_VECTOR(15 downto 0);
 signal ram_en: STD_LOGIC;
 signal inst: STD_LOGIC_VECTOR(15 downto 0);
+signal LED_data: STD_LOGIC_VECTOR(15 downto 0);
+signal display_data: STD_LOGIC_VECTOR(15 downto 0);
+
+signal ID_EX_misc_out: STD_LOGIC_VECTOR(8 downto 0);
 
 begin
 Prog_count: entity work.Program_Counter 
@@ -309,8 +313,8 @@ hazard: entity work.HazardDetection
     
 ID_EX: entity work.ID_EX 
     port map(clk=>clk, rst=>ResetExecute, inst_in=>IF_ID_inst, op_in=>IF_ID_op, rd_data1=>rd_data1, rd_data2=>rd_data2, alu_in=>CON_alu_op, mem_in=>CON_mem_op, 
-             wb_in=>CON_wb_op, PC_in=>IF_ID_PC, flush_en=>brch_en, stall_en=>stall, disp_in=>IF_ID_disp, disp_out=>ID_EX_disp, PC_out=>ID_EX_PC, alu_out=>ID_EX_alu_out, 
-             mem_out=>ID_EX_mem_out, wb_out=>ID_EX_wb_out, RD1=>ID_EX_RD1, RD2=>ID_EX_RD2, inst_out=>ID_EX_inst_out);
+             wb_in=>CON_wb_op, PC_in=>IF_ID_PC, flush_en=>brch_en, stall_en=>stall, disp_in=>IF_ID_disp, misc_in=>IF_ID_misc,disp_out=>ID_EX_disp, misc_out=>ID_EX_misc_out, 
+             PC_out=>ID_EX_PC, alu_out=>ID_EX_alu_out, mem_out=>ID_EX_mem_out, wb_out=>ID_EX_wb_out, RD1=>ID_EX_RD1, RD2=>ID_EX_RD2, inst_out=>ID_EX_inst_out);
              
 ForwardingUnit: entity work.ForwardingUnit 
     port map(ID_EX_instr=>ID_EX_inst_out, EX_MEM_instr=>EX_MEM_inst_out, MEM_WB_rd=>MEM_WB_ra, EX_MEM_wb=>EX_MEM_wb_out, MEM_WB_wb=>MEM_WB_wr_en, ForwardA=>ForwardA, 
@@ -323,7 +327,7 @@ MUXB: entity work.MUX3to1
     port map(A=>ID_EX_RD2, B=>MEM_WB_data_out, C=>EX_MEM_alu_result_out, Sel=>ForwardB, Y=>B);
     
 ALU: entity work.ALU 
-    port map(rst=>ResetExecute, A=>A, B=>B, OP=>ID_EX_alu_out, Y=>Y, Z=>Z, N=>N);
+    port map(rst=>ResetExecute, A=>A, B=>B, misc=>ID_EX_misc_out, OP=>ID_EX_alu_out, Y=>Y, Z=>Z, N=>N);
     
 branch: entity work.Branch 
     port map(PC=>ID_EX_PC, inst_in=>ID_EX_inst_out, disp=>ID_EX_disp, Z=>Z, N=>N, ra=>ID_EX_RD1, old_PC=>old_PC, brch_addr=>brch_addr, brch_en=>brch_en);
@@ -331,7 +335,7 @@ branch: entity work.Branch
 EX_MEM: entity work.EX_MEM 
     port map(clk=>clk, rst=>ResetExecute, alu_result=>Y, mem_op=>ID_EX_mem_out, wb_op=>ID_EX_wb_out, inst_in=>ID_EX_inst_out, memA=>A, memB=>B, 
              mem_addra=>EX_MEM_mem_addra, mem_data=>EX_MEM_DATA, mem_en=>EX_MEM_mem_en, wr_en=>EX_MEM_wr_en, wb_out=>EX_MEM_wb_out, inst_out=>EX_MEM_inst_out, 
-             alu_result_out=>EX_MEM_alu_result_out);
+             alu_result_out=>EX_MEM_alu_result_out, led=>LED_data, display=>display_data);
              
 RAM: entity work.RAM 
     port map(clk=>clk, PC_in=>RAM_PC, rst_a=>ResetExecute, rst_b=>ResetExecute, enb_a=>EX_MEM_mem_en, enb_b=>ram_en, write_a=>EX_MEM_wr_en, addr_a=>EX_MEM_mem_addra, 
@@ -344,9 +348,9 @@ MEM_WB: entity work.MEM_WB
 led_display_memory : led_display
 port map (
 
-        addr_write => x"FFF2",
+        addr_write => EX_MEM_mem_addra,
         clk => clk,
-        data_in => PC,
+        data_in => LED_data,
         en_write => '1',
 
         board_clock => board_clock,
@@ -416,7 +420,7 @@ console_display : console
         s4_pc => x"0000",
         s4_inst => EX_MEM_inst_out,
         s4_reg_a => EX_MEM_inst_out(8 downto 6),
-        s4_r_wb => EX_MEM_wb_out,
+        s4_r_wb => EX_MEM_mem_en,
         s4_r_wb_data => EX_MEM_alu_result_out,
     
     --
@@ -457,10 +461,10 @@ console_display : console
     -- Text console display memory access signals ( clk is the processor clock )
     --
     
-        clk => '0',
-        addr_write => x"0000",
-        data_in => x"0000",
-        en_write => '0',
+        clk => clk,
+        addr_write => EX_MEM_mem_addra,
+        data_in => display_data,
+        en_write => '1',
     
     --
     -- Video related signals
@@ -505,8 +509,8 @@ console_display : console
     ROM_PC <= "0" & PC(15 downto 1);
     RAM_PC <= "0" & PC(15 downto 1);
     
-    ram_en <= PC(10);
-    rom_en <= not PC(10);
+    ram_en <= '1' when PC >= x"0400" else '0';
+    rom_en <= '0' when PC >= x"0400" else '1';
     
     inst <= RAM_data_outb when PC(10) = '1' else ROM_out;
     

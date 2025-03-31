@@ -53,10 +53,9 @@ architecture Behavioral of MEM_WB is
 begin
     process(clk) begin
         if rising_edge(clk) then
-        
-            outport <= '0';
             
             if rst = '1' then
+                outport <= '0';
                 wr_en <= '0';
                 data_out <= (others => '0');
                 ra <= (others => '0');

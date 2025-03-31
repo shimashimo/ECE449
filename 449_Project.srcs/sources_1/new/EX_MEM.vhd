@@ -47,7 +47,9 @@ entity EX_MEM is
             wr_en: out STD_LOGIC_VECTOR(0 downto 0);
             wb_out: out STD_LOGIC;
             inst_out: out STD_LOGIC_VECTOR(15 downto 0);     -- Propagate whole instruction
-            alu_result_out: out STD_LOGIC_VECTOR(15 downto 0)
+            alu_result_out: out STD_LOGIC_VECTOR(15 downto 0);
+            led: out STD_LOGIC_VECTOR(15 downto 0);
+            display: out STD_LOGIC_VECTOR(15 downto 0)
             );
 end EX_MEM;
 
@@ -65,7 +67,7 @@ begin
             
             case inst_in(15 downto 9) is
                 when "0010000" => -- LOAD
-                    mem_addra <= memB;   
+                    mem_addra <= "00000000" & memB(7 downto 0);
                     wr_en <= "0";                  
                 when "0010011" => -- MOV
                     alu_result_out <= memB;
@@ -74,9 +76,20 @@ begin
                     alu_result_out <= memA; 
                     wr_en <= "0";
                 when "0010001" => -- STORE
-                    mem_addra <= memB;
-                    mem_data <= memA;
-                    wr_en <= "1";
+                    if memB = x"FFF2" then
+                        mem_addra <= memB;
+                        led <= memA;
+                        wr_en <= "0";
+                    elsif memB > x"FC00" and memB < x"FDFF" then
+                        mem_addra <= memB;
+                        display <= memA;
+                        wr_en <= "0";
+                    else
+                        mem_addra <= "00000000" & memB(7 downto 0);
+                        mem_data <= memA;
+                        wr_en <= "1";
+                        mem_en <= '1';
+                    end if;
                 when "0100000" => -- out
                     alu_result_out <= memA;
                     wr_en <= "0";

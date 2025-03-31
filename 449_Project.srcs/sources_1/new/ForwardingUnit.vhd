@@ -70,6 +70,12 @@ begin
             if ID_EX_instr(15 downto 9) = "0010010" then
                 ID_EX_rs := "111";
                 ID_EX_rt := "111";  
+            elsif ID_EX_instr(15 downto 9) = "0010001" then
+                ID_EX_rt := ID_EX_instr(8 downto 6);
+                ID_EX_rs := ID_EX_instr(5 downto 3);
+            elsif ID_EX_instr(15 downto 9) = "0010011" or ID_EX_instr(15 downto 9) = "0010000" then
+                ID_EX_rs := ID_EX_instr(8 downto 6);
+                ID_EX_rt := ID_EX_instr(5 downto 3);
             elsif ID_EX_instr(15 downto 9) = "0010011" then
                 ID_EX_rs := ID_EX_instr(5 downto 3);
                 ID_EX_rt := ID_EX_instr(5 downto 3);  

@@ -32,6 +32,7 @@ set_property ip_cache_permissions {read write} [current_project]
 read_mem {
   C:/Users/ericyu02/ECE449/ECE449/assembler/bootloader.mem
   C:/Users/ericyu02/ECE449/ECE449/assembler/bootloader1.mem
+  C:/Users/ericyu02/ECE449/ECE449/assembler/bootloader2.mem
 }
 read_vhdl -library xil_defaultlib {
   C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd

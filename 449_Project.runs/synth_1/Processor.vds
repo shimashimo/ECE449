@@ -2,8 +2,8 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Sat Mar 29 20:16:30 2025
-# Process ID: 15540
+# Start of session at: Sun Mar 30 17:30:20 2025
+# Process ID: 11764
 # Current directory: C:/Users/ericyu02/ECE449/ECE449/449_Project.runs/synth_1
 # Command line: vivado.exe -log Processor.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Processor.tcl
 # Log file: C:/Users/ericyu02/ECE449/ECE449/449_Project.runs/synth_1/Processor.vds
@@ -15,9 +15,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 10852 
+INFO: Helper process launched with PID 18396 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 336.379 ; gain = 104.914
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 337.492 ; gain = 106.871
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-2551] possible infinite loop; process does not have a wait statement [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/RAM.vhd:100]
 INFO: [Synth 8-638] synthesizing module 'Processor' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:58]
@@ -29,7 +29,7 @@ INFO: [Synth 8-638] synthesizing module 'ROM' [C:/Users/ericyu02/ECE449/ECE449/4
 	Parameter MEMORY_SIZE bound to: 8192 - type: integer 
 	Parameter MEMORY_PRIMITIVE bound to: auto - type: string 
 	Parameter ECC_MODE bound to: no_ecc - type: string 
-	Parameter MEMORY_INIT_FILE bound to: bootloader1.mem - type: string 
+	Parameter MEMORY_INIT_FILE bound to: bootloader.mem - type: string 
 	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
 	Parameter USE_MEM_INIT bound to: 1 - type: integer 
 	Parameter WAKEUP_TIME bound to: disable_sleep - type: string 
@@ -45,7 +45,7 @@ INFO: [Synth 8-638] synthesizing module 'xpm_memory_sprom' [C:/Xilinx/Vivado/201
 	Parameter MEMORY_SIZE bound to: 8192 - type: integer 
 	Parameter MEMORY_PRIMITIVE bound to: auto - type: string 
 	Parameter ECC_MODE bound to: no_ecc - type: string 
-	Parameter MEMORY_INIT_FILE bound to: bootloader1.mem - type: string 
+	Parameter MEMORY_INIT_FILE bound to: bootloader.mem - type: string 
 	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
 	Parameter USE_MEM_INIT bound to: 1 - type: integer 
 	Parameter WAKEUP_TIME bound to: disable_sleep - type: string 
@@ -67,7 +67,7 @@ INFO: [Synth 8-638] synthesizing module 'xpm_memory_base' [C:/Xilinx/Vivado/2017
 	Parameter MEMORY_PRIMITIVE bound to: 0 - type: integer 
 	Parameter CLOCKING_MODE bound to: 0 - type: integer 
 	Parameter ECC_MODE bound to: 0 - type: integer 
-	Parameter MEMORY_INIT_FILE bound to: bootloader1.mem - type: string 
+	Parameter MEMORY_INIT_FILE bound to: bootloader.mem - type: string 
 	Parameter MEMORY_INIT_PARAM bound to: (null) - type: string 
 	Parameter USE_MEM_INIT bound to: 1 - type: integer 
 	Parameter MEMORY_OPTIMIZATION bound to: true - type: string 
@@ -123,7 +123,7 @@ INFO: [Synth 8-638] synthesizing module 'xpm_memory_base' [C:/Xilinx/Vivado/2017
 	Parameter P_MIN_WIDTH_DATA_LDW bound to: 4 - type: integer 
 INFO: [Synth 8-6059] Synth Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value.   [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:456]
 WARNING: [Synth 8-6060] Synth Warning: [XPM_MEMORY 30-17] MEMORY_SIZE (8192), READ_DATA_WIDTH_A (16), and ADDR_WIDTH_A (16) together imply that the addressable range exceeds the memory size for this configuration which uses port A read operations.   [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:499]
-INFO: [Synth 8-3876] $readmem data file 'bootloader1.mem' is read successfully [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:1068]
+INFO: [Synth 8-3876] $readmem data file 'bootloader.mem' is read successfully [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:1068]
 INFO: [Synth 8-256] done synthesizing module 'xpm_memory_base' (2#1) [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:57]
 INFO: [Synth 8-256] done synthesizing module 'xpm_memory_sprom' (3#1) [C:/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv:7178]
 INFO: [Synth 8-256] done synthesizing module 'ROM' (4#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ROM.vhd:37]
@@ -137,20 +137,21 @@ INFO: [Synth 8-256] done synthesizing module 'Controller' (7#1) [C:/Users/ericyu
 INFO: [Synth 8-638] synthesizing module 'HazardDetection' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/HazardDetection.vhd:48]
 WARNING: [Synth 8-614] signal 'EX_MEM_ra' is read in the process but is not in the sensitivity list [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/HazardDetection.vhd:51]
 INFO: [Synth 8-256] done synthesizing module 'HazardDetection' (8#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/HazardDetection.vhd:48]
-INFO: [Synth 8-638] synthesizing module 'ID_EX' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd:60]
-INFO: [Synth 8-256] done synthesizing module 'ID_EX' (9#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd:60]
+INFO: [Synth 8-638] synthesizing module 'ID_EX' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd:62]
+INFO: [Synth 8-256] done synthesizing module 'ID_EX' (9#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd:62]
 INFO: [Synth 8-638] synthesizing module 'ForwardingUnit' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ForwardingUnit.vhd:55]
 INFO: [Synth 8-256] done synthesizing module 'ForwardingUnit' (10#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ForwardingUnit.vhd:55]
 INFO: [Synth 8-638] synthesizing module 'MUX3to1' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd:44]
 INFO: [Synth 8-256] done synthesizing module 'MUX3to1' (11#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd:44]
-INFO: [Synth 8-638] synthesizing module 'ALU' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:40]
-INFO: [Synth 8-256] done synthesizing module 'ALU' (12#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:40]
+INFO: [Synth 8-638] synthesizing module 'ALU' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:41]
+WARNING: [Synth 8-614] signal 'misc' is read in the process but is not in the sensitivity list [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:43]
+INFO: [Synth 8-256] done synthesizing module 'ALU' (12#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:41]
 INFO: [Synth 8-638] synthesizing module 'Branch' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:51]
 WARNING: [Synth 8-614] signal 'PC' is read in the process but is not in the sensitivity list [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:54]
 WARNING: [Synth 8-614] signal 'ra' is read in the process but is not in the sensitivity list [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:54]
 INFO: [Synth 8-256] done synthesizing module 'Branch' (13#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:51]
-INFO: [Synth 8-638] synthesizing module 'EX_MEM' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd:54]
-INFO: [Synth 8-256] done synthesizing module 'EX_MEM' (14#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd:54]
+INFO: [Synth 8-638] synthesizing module 'EX_MEM' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd:55]
+INFO: [Synth 8-256] done synthesizing module 'EX_MEM' (14#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd:55]
 INFO: [Synth 8-638] synthesizing module 'RAM' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/RAM.vhd:46]
 	Parameter MEMORY_SIZE bound to: 8192 - type: integer 
 	Parameter CLOCKING_MODE bound to: common_clock - type: string 
@@ -266,10 +267,10 @@ INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM g
 INFO: [Synth 8-256] done synthesizing module 'RAM' (16#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/RAM.vhd:46]
 INFO: [Synth 8-638] synthesizing module 'MEM_WB' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/MEM_WB.vhd:51]
 INFO: [Synth 8-256] done synthesizing module 'MEM_WB' (17#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/MEM_WB.vhd:51]
-INFO: [Synth 8-3491] module 'led_display' declared at 'C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:27' bound to instance 'led_display_memory' of component 'led_display' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:344]
+INFO: [Synth 8-3491] module 'led_display' declared at 'C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:27' bound to instance 'led_display_memory' of component 'led_display' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:347]
 INFO: [Synth 8-638] synthesizing module 'led_display' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:41]
 INFO: [Synth 8-256] done synthesizing module 'led_display' (18#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:41]
-INFO: [Synth 8-3491] module 'console' declared at 'C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:18' bound to instance 'console_display' of component 'console' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:358]
+INFO: [Synth 8-3491] module 'console' declared at 'C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:18' bound to instance 'console_display' of component 'console' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:361]
 INFO: [Synth 8-638] synthesizing module 'console' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:146]
 	Parameter HSYNC_POLARITY bound to: 1'b0 
 	Parameter VSYNC_POLARITY bound to: 1'b0 
@@ -424,7 +425,7 @@ WARNING: [Synth 8-3936] Found unconnected internal register 'offset_reg' and it 
 WARNING: [Synth 8-3936] Found unconnected internal register 'Hdot_delayed_reg' and it is trimmed from '11' to '5' bits. [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1430]
 WARNING: [Synth 8-3936] Found unconnected internal register 'Vline_delayed_reg' and it is trimmed from '10' to '7' bits. [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1431]
 INFO: [Synth 8-256] done synthesizing module 'console' (23#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:146]
-INFO: [Synth 8-226] default block is never used [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:482]
+INFO: [Synth 8-226] default block is never used [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:485]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "yes" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-256] done synthesizing module 'Processor' (24#1) [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Processor.vhd:58]
 WARNING: [Synth 8-3331] design console has unconnected port negative_flag
@@ -529,7 +530,7 @@ WARNING: [Synth 8-3331] design HazardDetection has unconnected port EX_MEM_ra[5]
 WARNING: [Synth 8-3331] design HazardDetection has unconnected port EX_MEM_ra[4]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 404.254 ; gain = 172.789
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 401.715 ; gain = 171.094
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -539,7 +540,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 404.254 ; gain = 172.789
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 401.715 ; gain = 171.094
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -560,23 +561,23 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 745.285 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 741.336 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 745.285 ; gain = 513.820
+Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 741.445 ; gain = 510.824
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 745.285 ; gain = 513.820
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 741.445 ; gain = 510.824
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for RAM/xpm_memory_dpdistram_inst. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 745.285 ; gain = 513.820
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 741.445 ; gain = 510.824
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5587] ROM size for "ra" is below threshold of ROM address width. It will be mapped to LUTs
 INFO: [Synth 8-5546] ROM "rb" won't be mapped to RAM because it is too sparse
@@ -595,7 +596,8 @@ INFO: [Synth 8-5546] ROM "wb_op" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "Z" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "old_PC" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "wr_en" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "mem_data" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "led" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "outport" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "data_out" won't be mapped to RAM because it is too sparse
 WARNING: [Synth 8-6014] Unused sequential element divider_reg was removed.  [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:67]
 WARNING: [Synth 8-6014] Unused sequential element h_dot_int_reg was removed.  [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd:115]
@@ -608,12 +610,12 @@ INFO: [Synth 8-41] '+' operator could not be merged with '+' operator due to los
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1461]
 WARNING: [Synth 8-6014] Unused sequential element display_address_reg_rep was removed.  [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1479]
 WARNING: [Synth 8-327] inferring latch for variable 'Y_reg' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd:50]
-WARNING: [Synth 8-327] inferring latch for variable 'Y_reg' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:46]
-WARNING: [Synth 8-327] inferring latch for variable 'Z_reg' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:47]
-WARNING: [Synth 8-327] inferring latch for variable 'N_reg' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:48]
+WARNING: [Synth 8-327] inferring latch for variable 'Y_reg' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:47]
+WARNING: [Synth 8-327] inferring latch for variable 'Z_reg' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:48]
+WARNING: [Synth 8-327] inferring latch for variable 'N_reg' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd:49]
 WARNING: [Synth 8-327] inferring latch for variable 'old_PC_reg' [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Branch.vhd:108]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 745.285 ; gain = 513.820
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 741.445 ; gain = 510.824
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'console_display/zero_flag_map' (bit_to_ascii) to 'console_display/negative_flag_map'
 
@@ -627,20 +629,19 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 30    
-	   2 Input     17 Bit       Adders := 2     
+	   2 Input     17 Bit       Adders := 1     
 	   2 Input     16 Bit       Adders := 2     
 	   3 Input     16 Bit       Adders := 1     
 	   2 Input     11 Bit       Adders := 6     
-	   2 Input     10 Bit       Adders := 2     
+	   2 Input     10 Bit       Adders := 3     
 	   2 Input      8 Bit       Adders := 1     
 	   2 Input      6 Bit       Adders := 128   
 	   2 Input      2 Bit       Adders := 2     
 +---Registers : 
-	               16 Bit    Registers := 21    
+	               16 Bit    Registers := 22    
 	               11 Bit    Registers := 4     
 	               10 Bit    Registers := 1     
-	                9 Bit    Registers := 4     
+	                9 Bit    Registers := 5     
 	                7 Bit    Registers := 2     
 	                5 Bit    Registers := 1     
 	                4 Bit    Registers := 3     
@@ -650,12 +651,13 @@ Detailed RTL Component Info :
 +---RAMs : 
 	               4K Bit         RAMs := 1     
 +---Muxes : 
-	   2 Input     16 Bit        Muxes := 79    
+	   2 Input     16 Bit        Muxes := 20    
 	   4 Input     16 Bit        Muxes := 2     
-	   8 Input     16 Bit        Muxes := 2     
+	   8 Input     16 Bit        Muxes := 1     
 	   6 Input     16 Bit        Muxes := 2     
 	   3 Input     16 Bit        Muxes := 1     
 	   2 Input     11 Bit        Muxes := 13    
+	   2 Input     10 Bit        Muxes := 1     
 	   3 Input      9 Bit        Muxes := 1     
 	   4 Input      9 Bit        Muxes := 1     
 	  27 Input      8 Bit        Muxes := 1     
@@ -667,20 +669,20 @@ Detailed RTL Component Info :
 	   4 Input      4 Bit        Muxes := 2     
 	  11 Input      3 Bit        Muxes := 2     
 	   7 Input      3 Bit        Muxes := 1     
-	   2 Input      3 Bit        Muxes := 9     
+	   2 Input      3 Bit        Muxes := 5     
 	   6 Input      3 Bit        Muxes := 1     
 	   3 Input      3 Bit        Muxes := 1     
 	  11 Input      2 Bit        Muxes := 2     
 	   2 Input      2 Bit        Muxes := 2     
 	   6 Input      2 Bit        Muxes := 2     
 	   4 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 36    
+	   2 Input      1 Bit        Muxes := 23    
 	  11 Input      1 Bit        Muxes := 3     
-	   8 Input      1 Bit        Muxes := 19    
+	   8 Input      1 Bit        Muxes := 20    
 	   7 Input      1 Bit        Muxes := 2     
 	   5 Input      1 Bit        Muxes := 2     
 	   4 Input      1 Bit        Muxes := 2     
-	   6 Input      1 Bit        Muxes := 5     
+	   6 Input      1 Bit        Muxes := 6     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -731,13 +733,13 @@ Detailed RTL Component Info :
 Module HazardDetection 
 Detailed RTL Component Info : 
 +---Muxes : 
-	   2 Input      3 Bit        Muxes := 2     
+	   2 Input      3 Bit        Muxes := 4     
 	   5 Input      1 Bit        Muxes := 1     
 Module ID_EX 
 Detailed RTL Component Info : 
 +---Registers : 
 	               16 Bit    Registers := 4     
-	                9 Bit    Registers := 1     
+	                9 Bit    Registers := 2     
 	                3 Bit    Registers := 1     
 	                1 Bit    Registers := 2     
 +---Muxes : 
@@ -746,7 +748,7 @@ Detailed RTL Component Info :
 Module ForwardingUnit 
 Detailed RTL Component Info : 
 +---Muxes : 
-	   2 Input      3 Bit        Muxes := 7     
+	   2 Input      3 Bit        Muxes := 1     
 	   2 Input      2 Bit        Muxes := 2     
 	   2 Input      1 Bit        Muxes := 2     
 Module MUX3to1 
@@ -757,15 +759,14 @@ Detailed RTL Component Info :
 Module ALU 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 30    
-	   2 Input     17 Bit       Adders := 1     
 	   2 Input     16 Bit       Adders := 1     
 	   3 Input     16 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 1     
 +---Muxes : 
-	   2 Input     16 Bit        Muxes := 63    
-	   8 Input     16 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 17    
-	   8 Input      1 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 3     
+	   2 Input     10 Bit        Muxes := 1     
+	   8 Input      1 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 1     
 Module Branch 
 Detailed RTL Component Info : 
 +---Muxes : 
@@ -776,15 +777,15 @@ Detailed RTL Component Info :
 Module EX_MEM 
 Detailed RTL Component Info : 
 +---Registers : 
-	               16 Bit    Registers := 4     
+	               16 Bit    Registers := 5     
 	                1 Bit    Registers := 3     
 +---Muxes : 
-	   2 Input     16 Bit        Muxes := 3     
+	   2 Input     16 Bit        Muxes := 4     
 	   6 Input     16 Bit        Muxes := 1     
 	   3 Input     16 Bit        Muxes := 1     
 	   6 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 3     
-	   6 Input      1 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 6     
+	   6 Input      1 Bit        Muxes := 4     
 Module MEM_WB 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -866,25 +867,32 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-5587] ROM size for "ra" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "rb" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5587] ROM size for "rc" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5587] ROM size for "misc" is below threshold of ROM address width. It will be mapped to LUTs
 INFO: [Synth 8-5546] ROM "Z" won't be mapped to RAM because it is too sparse
 DSP Report: Generating DSP Y0, operation Mode is: A*B.
 DSP Report: operator Y0 is absorbed into DSP Y0.
+INFO: [Synth 8-5546] ROM "wr_en" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "led" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element divider_reg was removed.  [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:67]
 WARNING: [Synth 8-6014] Unused sequential element h_dot_int_reg was removed.  [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd:115]
 WARNING: [Synth 8-6014] Unused sequential element v_line_int_reg was removed.  [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd:127]
 INFO: [Synth 8-5587] ROM size for "p_0_out" is below threshold of ROM address width. It will be mapped to LUTs
 INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-6014] Unused sequential element IF_ID/misc_reg was removed.  [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Decoder.vhd:64]
-INFO: [Synth 8-5587] ROM size for "IF_ID/ra" is below threshold of ROM address width. It will be mapped to LUTs
-INFO: [Synth 8-5546] ROM "IF_ID/rb" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5587] ROM size for "IF_ID/rc" is below threshold of ROM address width. It will be mapped to LUTs
-INFO: [Synth 8-5587] ROM size for "IF_ID/misc" is below threshold of ROM address width. It will be mapped to LUTs
 INFO: [Synth 8-5546] ROM "controller/mem_op" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "controller/wb_op" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "MEM_WB/data_out" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-6014] Unused sequential element led_display_memory/divider_reg was removed.  [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd:67]
+INFO: [Synth 8-5546] ROM "MEM_WB/outport" won't be mapped to RAM because it is too sparse
 warning: Removed RAM main_buffer_reg due to inactive write enable
 WARNING: [Synth 8-6014] Unused sequential element display_address_reg_rep was removed.  [C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd:1479]
 WARNING: [Synth 8-6014] Unused sequential element main_buffer_reg was removed. 
+INFO: [Synth 8-3886] merging instance 'IF_ID/misc_reg[6]' (FDRE) to 'IF_ID/misc_reg[8]'
+INFO: [Synth 8-3886] merging instance 'IF_ID/misc_reg[7]' (FDRE) to 'IF_ID/misc_reg[8]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\IF_ID/misc_reg[8] )
+INFO: [Synth 8-3886] merging instance 'ID_EX/misc_out_reg[6]' (FDRE) to 'ID_EX/misc_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'ID_EX/misc_out_reg[7]' (FDRE) to 'ID_EX/misc_out_reg[8]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\IF_ID/out_op_reg[3] )
 INFO: [Synth 8-3886] merging instance 'console_display/vga_blue_reg[0]' (FDS) to 'console_display/vga_blue_reg[1]'
 INFO: [Synth 8-3886] merging instance 'console_display/vga_blue_reg[1]' (FDS) to 'console_display/vga_blue_reg[2]'
@@ -897,10 +905,19 @@ INFO: [Synth 8-3886] merging instance 'console_display/vga_green_reg[3]' (FDS) t
 INFO: [Synth 8-3886] merging instance 'console_display/vga_red_reg[0]' (FDS) to 'console_display/vga_red_reg[1]'
 INFO: [Synth 8-3886] merging instance 'console_display/vga_red_reg[1]' (FDS) to 'console_display/vga_red_reg[2]'
 INFO: [Synth 8-3886] merging instance 'console_display/vga_red_reg[2]' (FDS) to 'console_display/vga_red_reg[3]'
+WARNING: [Synth 8-3332] Sequential element (IF_ID/out_op_reg[3]) is unused and will be removed from module Processor.
+WARNING: [Synth 8-3332] Sequential element (IF_ID/misc_reg[8]) is unused and will be removed from module Processor.
+WARNING: [Synth 8-3332] Sequential element (ID_EX/misc_out_reg[8]) is unused and will be removed from module Processor.
 WARNING: [Synth 8-3332] Sequential element (count_reg[1]) is unused and will be removed from module video_timing.
 WARNING: [Synth 8-3332] Sequential element (Vline_delayed_reg[6]) is unused and will be removed from module console.
 WARNING: [Synth 8-3332] Sequential element (Vline_delayed_reg[5]) is unused and will be removed from module console.
-WARNING: [Synth 8-3332] Sequential element (IF_ID/out_op_reg[3]) is unused and will be removed from module Processor.
+INFO: [Synth 8-3886] merging instance 'EX_MEM/mem_addra_reg[10]' (FD) to 'EX_MEM/mem_addra_reg[11]'
+INFO: [Synth 8-3886] merging instance 'EX_MEM/mem_addra_reg[11]' (FD) to 'EX_MEM/mem_addra_reg[12]'
+INFO: [Synth 8-3886] merging instance 'EX_MEM/mem_addra_reg[12]' (FD) to 'EX_MEM/mem_addra_reg[13]'
+INFO: [Synth 8-3886] merging instance 'EX_MEM/mem_addra_reg[13]' (FD) to 'EX_MEM/mem_addra_reg[14]'
+INFO: [Synth 8-3886] merging instance 'EX_MEM/mem_addra_reg[14]' (FD) to 'EX_MEM/mem_addra_reg[15]'
+INFO: [Synth 8-3886] merging instance 'EX_MEM/mem_addra_reg[15]' (FD) to 'EX_MEM/mem_addra_reg[8]'
+INFO: [Synth 8-3886] merging instance 'EX_MEM/mem_addra_reg[8]' (FD) to 'EX_MEM/mem_addra_reg[9]'
 WARNING: [Synth 8-3332] Sequential element (MUXA/Y_reg[15]) is unused and will be removed from module Processor.
 WARNING: [Synth 8-3332] Sequential element (MUXA/Y_reg[14]) is unused and will be removed from module Processor.
 WARNING: [Synth 8-3332] Sequential element (MUXA/Y_reg[13]) is unused and will be removed from module Processor.
@@ -934,7 +951,7 @@ WARNING: [Synth 8-3332] Sequential element (MUXB/Y_reg[2]) is unused and will be
 WARNING: [Synth 8-3332] Sequential element (MUXB/Y_reg[1]) is unused and will be removed from module Processor.
 WARNING: [Synth 8-3332] Sequential element (MUXB/Y_reg[0]) is unused and will be removed from module Processor.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:01:01 . Memory (MB): peak = 745.285 ; gain = 513.820
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 741.445 ; gain = 510.824
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -953,7 +970,6 @@ ROM:
 |console         | instruction_set[0] | 256x6         | LUT            | 
 |console         | instruction_set[0] | 256x6         | LUT            | 
 |console         | instruction_set[0] | 256x6         | LUT            | 
-|xpm_memory_base | p_0_out            | 256x16        | LUT            | 
 |console         | instruction_set[0] | 256x6         | LUT            | 
 |console         | instruction_set[0] | 256x6         | LUT            | 
 |console         | instruction_set[0] | 256x6         | LUT            | 
@@ -995,13 +1011,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:13 ; elapsed = 00:01:14 . Memory (MB): peak = 895.730 ; gain = 664.266
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:55 ; elapsed = 00:00:57 . Memory (MB): peak = 813.336 ; gain = 582.715
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:14 ; elapsed = 00:01:15 . Memory (MB): peak = 910.195 ; gain = 678.730
+Finished Timing Optimization : Time (s): cpu = 00:00:56 ; elapsed = 00:00:58 . Memory (MB): peak = 826.809 ; gain = 596.188
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1027,7 +1043,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:16 ; elapsed = 00:01:18 . Memory (MB): peak = 1033.531 ; gain = 802.066
+Finished Technology Mapping : Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 885.289 ; gain = 654.668
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1051,7 +1067,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:18 ; elapsed = 00:01:19 . Memory (MB): peak = 1033.531 ; gain = 802.066
+Finished IO Insertion : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 885.289 ; gain = 654.668
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1064,7 +1080,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:18 ; elapsed = 00:01:19 . Memory (MB): peak = 1033.531 ; gain = 802.066
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 885.289 ; gain = 654.668
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1076,25 +1092,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:18 ; elapsed = 00:01:20 . Memory (MB): peak = 1033.531 ; gain = 802.066
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 885.289 ; gain = 654.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:18 ; elapsed = 00:01:20 . Memory (MB): peak = 1033.531 ; gain = 802.066
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 885.289 ; gain = 654.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:18 ; elapsed = 00:01:20 . Memory (MB): peak = 1033.531 ; gain = 802.066
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 885.289 ; gain = 654.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:18 ; elapsed = 00:01:20 . Memory (MB): peak = 1033.531 ; gain = 802.066
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 885.289 ; gain = 654.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1111,18 +1127,18 @@ Report Cell Usage:
 |      |Cell      |Count |
 +------+----------+------+
 |1     |BUFG      |     3|
-|2     |CARRY4    |   289|
+|2     |CARRY4    |    40|
 |3     |DSP48E1   |     1|
-|4     |LUT1      |   379|
-|5     |LUT2      |   755|
-|6     |LUT3      |   281|
-|7     |LUT4      |   366|
-|8     |LUT5      |   882|
-|9     |LUT6      |  1309|
-|10    |MUXF7     |   186|
-|11    |MUXF8     |    22|
+|4     |LUT1      |    15|
+|5     |LUT2      |   183|
+|6     |LUT3      |   233|
+|7     |LUT4      |   273|
+|8     |LUT5      |   429|
+|9     |LUT6      |   723|
+|10    |MUXF7     |   190|
+|11    |MUXF8     |    29|
 |12    |RAM128X1D |    64|
-|13    |FDRE      |   608|
+|13    |FDRE      |   629|
 |14    |LD        |    16|
 |15    |LDC       |    18|
 |16    |IBUF      |    15|
@@ -1133,34 +1149,34 @@ Report Instance Areas:
 +------+------------------------------+--------------------------------+------+
 |      |Instance                      |Module                          |Cells |
 +------+------------------------------+--------------------------------+------+
-|1     |top                           |                                |  5220|
-|2     |  ALU                         |ALU                             |   238|
-|3     |  EX_MEM                      |EX_MEM                          |   365|
-|4     |  ID_EX                       |ID_EX                           |   403|
+|1     |top                           |                                |  2887|
+|2     |  ALU                         |ALU                             |    67|
+|3     |  EX_MEM                      |EX_MEM                          |   334|
+|4     |  ID_EX                       |ID_EX                           |   438|
 |5     |  IF_ID                       |IF_ID                           |   177|
-|6     |  MEM_WB                      |MEM_WB                          |  2220|
+|6     |  MEM_WB                      |MEM_WB                          |    62|
 |7     |  Prog_count                  |Program_Counter                 |    50|
-|8     |  RAM                         |RAM                             |   191|
+|8     |  RAM                         |RAM                             |   208|
 |9     |    xpm_memory_dpdistram_inst |xpm_memory_dpdistram            |   100|
 |10    |      xpm_memory_base_inst    |xpm_memory_base__parameterized0 |   100|
-|11    |  ROM                         |ROM                             |    91|
-|12    |    xpm_memory_sprom_inst     |xpm_memory_sprom                |    91|
-|13    |      xpm_memory_base_inst    |xpm_memory_base                 |    86|
+|11    |  ROM                         |ROM                             |   107|
+|12    |    xpm_memory_sprom_inst     |xpm_memory_sprom                |   107|
+|13    |      xpm_memory_base_inst    |xpm_memory_base                 |   105|
 |14    |  branch                      |Branch                          |    24|
-|15    |  console_display             |console                         |   893|
+|15    |  console_display             |console                         |   898|
 |16    |    timing                    |video_timing                    |   200|
 |17    |  controller                  |Controller                      |     6|
-|18    |  led_display_memory          |led_display                     |    66|
+|18    |  led_display_memory          |led_display                     |    68|
 |19    |  \reg                        |register_file                   |   276|
 +------+------------------------------+--------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:18 ; elapsed = 00:01:20 . Memory (MB): peak = 1033.531 ; gain = 802.066
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 885.289 ; gain = 654.668
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 156 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:02 ; elapsed = 00:01:13 . Memory (MB): peak = 1033.531 ; gain = 461.035
-Synthesis Optimization Complete : Time (s): cpu = 00:01:19 ; elapsed = 00:01:20 . Memory (MB): peak = 1033.531 ; gain = 802.066
+Synthesis finished with 0 errors, 0 critical warnings and 202 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:44 ; elapsed = 00:00:54 . Memory (MB): peak = 885.289 ; gain = 314.938
+Synthesis Optimization Complete : Time (s): cpu = 00:01:00 ; elapsed = 00:01:01 . Memory (MB): peak = 885.289 ; gain = 654.668
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 611 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 373 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -1171,10 +1187,10 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM128X1D => RAM128X1D (RAMD64E, RAMD64E, MUXF7, MUXF7, RAMD64E, RAMD64E): 64 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-183 Infos, 172 Warnings, 0 Critical Warnings and 0 Errors encountered.
+199 Infos, 174 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:22 ; elapsed = 00:01:25 . Memory (MB): peak = 1033.531 ; gain = 807.723
+synth_design: Time (s): cpu = 00:01:02 ; elapsed = 00:01:06 . Memory (MB): peak = 885.289 ; gain = 660.176
 INFO: [Common 17-1381] The checkpoint 'C:/Users/ericyu02/ECE449/ECE449/449_Project.runs/synth_1/Processor.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Processor_utilization_synth.rpt -pb Processor_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.049 . Memory (MB): peak = 1033.531 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Sat Mar 29 20:17:59 2025...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 885.289 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Sun Mar 30 17:31:30 2025...

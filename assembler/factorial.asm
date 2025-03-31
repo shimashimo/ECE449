@@ -3,7 +3,7 @@ DipSwitches:	equ		0xFFF0
 DipSwitchMask:	equ		7			; Binary multiple as a mask
 
 
-		org		0x210
+		org		0x04C0
 ;		.CODE
 main:		loadimm.upper	DipSwitches.hi
 		loadimm.lower	DipSwitches.lo
