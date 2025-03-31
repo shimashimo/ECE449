@@ -69,7 +69,7 @@ begin
                     when "100" =>   Y <= A NAND B;
 --                                    Z <= '0';   
 --                                    N <= '0';
-                    when "101" => Y <= std_logic_vector(shift_left(unsigned(A), to_integer(signed(misc))));
+                    when "101" => Y <= std_logic_vector(shift_left(unsigned(A), to_integer(unsigned(misc))));
 --                    when "101" =>  for i in 0 to 15 loop
 --                                        if i <= 15 - to_integer(unsigned(misc)) then
 --                                            Y(i + to_integer(unsigned(misc))) <= A(i);
@@ -80,7 +80,7 @@ begin
 --                                    end loop;
 ----                                    Z <= '0';
 ----                                    N <= '0';
-                    when "110" => Y <= std_logic_vector(shift_right(unsigned(A), to_integer(signed(misc))));
+                    when "110" => Y <= std_logic_vector(shift_right(unsigned(A), to_integer(unsigned(misc))));
 --                    when "110" =>   for i in 0 to 15 loop
 --                                        if i >= to_integer(unsigned(misc)) then
 --                                            Y(i - to_integer(unsigned(misc))) <= A(i);
