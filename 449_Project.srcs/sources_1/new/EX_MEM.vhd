@@ -35,21 +35,21 @@ entity EX_MEM is
     Port ( 
             clk: in STD_LOGIC;
             rst: in STD_LOGIC;
-            alu_result: in STD_LOGIC_VECTOR(15 downto 0);
+            alu_result: in STD_LOGIC_VECTOR(15 downto 0);       -- Result from ALU instructions 
             mem_op: in STD_LOGIC;
             wb_op: in STD_LOGIC;
-            inst_in: in STD_LOGIC_VECTOR(15 downto 0);      -- Propagate whole instruction
-            memA: in STD_LOGIC_VECTOR(15 downto 0);
-            memB: in STD_LOGIC_VECTOR(15 downto 0);
+            inst_in: in STD_LOGIC_VECTOR(15 downto 0);          -- Propagate whole instruction
+            memA: in STD_LOGIC_VECTOR(15 downto 0);             -- Data from forwarding A mux
+            memB: in STD_LOGIC_VECTOR(15 downto 0);             -- Data from forwarding B mux
             mem_addra: out STD_LOGIC_VECTOR(15 downto 0);
             mem_data: out STD_LOGIC_VECTOR(15 downto 0);
             mem_en: out STD_LOGIC;
             wr_en: out STD_LOGIC_VECTOR(0 downto 0);
             wb_out: out STD_LOGIC;
-            inst_out: out STD_LOGIC_VECTOR(15 downto 0);     -- Propagate whole instruction
-            alu_result_out: out STD_LOGIC_VECTOR(15 downto 0);
-            led: out STD_LOGIC_VECTOR(15 downto 0);
-            display: out STD_LOGIC_VECTOR(15 downto 0)
+            inst_out: out STD_LOGIC_VECTOR(15 downto 0);        -- Propagate whole instruction
+            alu_result_out: out STD_LOGIC_VECTOR(15 downto 0);  
+            led: out STD_LOGIC_VECTOR(15 downto 0);             -- write to LED display
+            display: out STD_LOGIC_VECTOR(15 downto 0)          -- write to monitor console
             );
 end EX_MEM;
 
@@ -76,16 +76,16 @@ begin
                     alu_result_out <= memA; 
                     wr_en <= "0";
                 when "0010001" => -- STORE
-                    if memB = x"FFF2" then
+                    if memB = x"FFF2" then  -- LED display
                         mem_addra <= memB;
                         led <= memA;
                         wr_en <= "0";
-                    elsif memB > x"FC00" and memB < x"FDFF" then
+                    elsif memB > x"FC00" and memB < x"FDFF" then    -- monitor console
                         mem_addra <= memB;
                         display <= memA;
                         wr_en <= "0";
                     else
-                        mem_addra <= "00000000" & memB(7 downto 0);
+                        mem_addra <= "00000000" & memB(7 downto 0); -- RAM
                         mem_data <= memA;
                         wr_en <= "1";
                         mem_en <= '1';

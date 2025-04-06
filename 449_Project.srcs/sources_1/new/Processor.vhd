@@ -34,24 +34,24 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity Processor is
 
     Port ( 
-            clk: in STD_LOGIC;
-            ResetLoad: in STD_LOGIC;
-            ResetExecute: in STD_LOGIC;
-            IN_PORT: in STD_LOGIC_VECTOR(15 downto 6);
-            OUT_PORT: out STD_LOGIC;
+            clk: in STD_LOGIC;                                      -- CPU clk from stm32
+            ResetLoad: in STD_LOGIC;                                -- BTN T18
+            ResetExecute: in STD_LOGIC;                             -- BTN U18
+            IN_PORT: in STD_LOGIC_VECTOR(15 downto 6);              -- Data input from stm32
+            OUT_PORT: out STD_LOGIC;                                -- ACK singal to stm32
+
+            led_segments : out STD_LOGIC_VECTOR( 6 downto 0 );      -- LED Display segments
+            led_digits : out STD_LOGIC_VECTOR( 3 downto 0 );        -- LED Display digits
             
-            led_segments : out STD_LOGIC_VECTOR( 6 downto 0 );
-            led_digits : out STD_LOGIC_VECTOR( 3 downto 0 );
-            
-            debug_console : in STD_LOGIC;
-            board_clock: in std_logic;
+            debug_console : in STD_LOGIC;                           -- Monitor Console enable
+            board_clock: in std_logic;                              -- clk for monitor console
     
-            vga_red : out std_logic_vector( 3 downto 0 );
-            vga_green : out std_logic_vector( 3 downto 0 );
-            vga_blue : out std_logic_vector( 3 downto 0 );
+            vga_red : out std_logic_vector( 3 downto 0 );           -- Monitor Console signals
+            vga_green : out std_logic_vector( 3 downto 0 );         -- Monitor Console signals
+            vga_blue : out std_logic_vector( 3 downto 0 );          -- Monitor Console signals
     
-            h_sync_signal : out std_logic;
-            v_sync_signal : out std_logic
+            h_sync_signal : out std_logic;                          -- Monitor Console signals
+            v_sync_signal : out std_logic                           -- Monitor Console signals
             );
 end Processor;
 
@@ -199,14 +199,18 @@ component console is
     );
 end component;
 
--- Branch
+-- Program Counter
 signal PC: STD_LOGIC_VECTOR(15 downto 0);
-signal instruction, brch_addr: STD_LOGIC_VECTOR(15 downto 0);
+signal inst: STD_LOGIC_VECTOR(15 downto 0);
 signal fetch_PC: STD_LOGIC_VECTOR(15 downto 0);
+
+-- Branch
 signal brch_en, stall: STD_LOGIC;
+signal instruction, brch_addr: STD_LOGIC_VECTOR(15 downto 0);
 signal old_PC: STD_LOGIC_VECTOR(15 downto 0);
 
 -- ROM
+signal ROM_PC: STD_LOGIC_VECTOR(15 downto 0);
 signal ROM_out: STD_LOGIC_VECTOR(15 downto 0);
 signal ROM_en: STD_LOGIC;
 
@@ -229,6 +233,7 @@ signal ID_EX_RD1: STD_LOGIC_VECTOR(15 downto 0);
 signal ID_EX_RD2: STD_LOGIC_VECTOR(15 downto 0);
 signal ID_EX_inst_out: STD_LOGIC_VECTOR(15 downto 0); -- Propagete Instruction
 signal ID_EX_PC: STD_LOGIC_VECTOR(15 downto 0);
+signal ID_EX_misc_out: STD_LOGIC_VECTOR(8 downto 0);
 signal ID_EX_disp: STD_LOGIC_VECTOR(8 downto 0);
 
 -- Controller
@@ -271,8 +276,9 @@ signal MEM_WB_ra: STD_LOGIC_VECTOR(2 downto 0);
 signal RAM_data_outa: STD_LOGIC_VECTOR(15 downto 0);
 signal RAM_data_outb: STD_LOGIC_VECTOR(15 downto 0);
 signal RAM_PC: STD_LOGIC_VECTOR(15 downto 0);
+signal ram_en: STD_LOGIC;
 
--- registers
+-- Registers
 signal reg_0: STD_LOGIC_VECTOR(15 downto 0);
 signal reg_1: STD_LOGIC_VECTOR(15 downto 0);
 signal reg_2: STD_LOGIC_VECTOR(15 downto 0);
@@ -282,15 +288,13 @@ signal reg_5: STD_LOGIC_VECTOR(15 downto 0);
 signal reg_6: STD_LOGIC_VECTOR(15 downto 0);
 signal reg_7: STD_LOGIC_VECTOR(15 downto 0);
 
-signal ROM_PC: STD_LOGIC_VECTOR(15 downto 0);
-signal ram_en: STD_LOGIC;
-signal inst: STD_LOGIC_VECTOR(15 downto 0);
+-- External Outputs
 signal LED_data: STD_LOGIC_VECTOR(15 downto 0);
 signal display_data: STD_LOGIC_VECTOR(15 downto 0);
 
-signal ID_EX_misc_out: STD_LOGIC_VECTOR(8 downto 0);
 
 begin
+-- Port mapping all components
 Prog_count: entity work.Program_Counter 
     port map(clk=>clk, rst_ld=>ResetLoad, rst_ex => ResetExecute, brch_addr=>brch_addr, brch_en=>brch_en, stall=>stall, PC=>PC);
     
@@ -482,6 +486,7 @@ console_display : console
 
     process(clk) begin  
         if (rising_edge(clk)) then
+            -- Update registers on monitor console when writing to registers
             if MEM_WB_wr_en = '1' then
                 case(MEM_WB_ra) is 
                     when "000" =>
@@ -506,12 +511,15 @@ console_display : console
         end if;
     end process;
     
+    -- Assign PC to RAM and ROM
     ROM_PC <= "0" & PC(15 downto 1);
     RAM_PC <= "000000" & PC(9 downto 0);
     
+    -- Enable RAM when PC >= 0x400 and enable ROM when PC < 0x400
     ram_en <= '1' when PC(10) = '1' else '0';
     rom_en <= '0' when PC(10) = '1' else '1';
     
+    -- Obtain instruction from RAM or ROM depending on PC
     inst <= RAM_data_outb when PC(10) = '1' else ROM_out;
     
 end Behavioral;

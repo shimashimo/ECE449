@@ -35,18 +35,18 @@ entity IF_ID is
     Port ( 
           clk: in STD_LOGIC;
           rst: in STD_LOGIC;
-          inst: in STD_LOGIC_VECTOR(15 downto 0);       -- Propagete Instruction
+          inst: in STD_LOGIC_VECTOR(15 downto 0);       -- Propagate Instruction
           PC_in: in STD_LOGIC_VECTOR(15 downto 0);
-          flush_en: in STD_LOGIC;   -- Flush PC and Instruc
-          stall_en: in STD_LOGIC;
+          flush_en: in STD_LOGIC;                       -- Flush PC and Instruction
+          stall_en: in STD_LOGIC;                       -- Stall Enable
           PC_out: out STD_LOGIC_VECTOR(15 downto 0);
           out_op: out STD_LOGIC_VECTOR(6 downto 0);
           ra: out STD_LOGIC_VECTOR(2 downto 0);
           rb: out STD_LOGIC_VECTOR(2 downto 0);
           rc: out STD_LOGIC_VECTOR(2 downto 0);
           inst_out: out STD_LOGIC_VECTOR(15 downto 0);  -- Propagete Instruction
-          misc: out STD_LOGIC_VECTOR(8 downto 0);
-          disp: out STD_LOGIC_VECTOR(8 downto 0)
+          misc: out STD_LOGIC_VECTOR(8 downto 0);       -- MISC values for A2 instructions
+          disp: out STD_LOGIC_VECTOR(8 downto 0)        -- Branch displacement values
           );
 end IF_ID;
 
@@ -77,7 +77,7 @@ begin
                     PC_out <= PC_in;
                     inst_out <= inst;
                     case inst(15 downto 9) is
-                        when "0000001" | "0000010" | "0000011" | "0000100" =>
+                        when "0000001" | "0000010" | "0000011" | "0000100" => --A1 
                             out_op <= inst(15 downto 9);    --A1 
                             ra <= inst(8 downto 6);
                             rb <= inst(5 downto 3);
