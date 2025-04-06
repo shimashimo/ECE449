@@ -1,8 +1,8 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-| Date             : Fri Mar 28 17:01:00 2025
-| Host             : ws11-30 running 64-bit major release  (build 9200)
+| Date             : Mon Mar 31 13:23:22 2025
+| Host             : ws11-09 running 64-bit major release  (build 9200)
 | Command          : report_power -file Processor_power_routed.rpt -pb Processor_power_summary_routed.pb -rpx Processor_power_routed.rpx
 | Design           : Processor
 | Device           : xc7a35tcpg236-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.122        |
+| Total On-Chip Power (W)  | 0.099        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.050        |
+| Dynamic (W)              | 0.027        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 84.4         |
-| Junction Temperature (C) | 25.6         |
+| Max Ambient (C)          | 84.5         |
+| Junction Temperature (C) | 25.5         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -53,19 +53,20 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.004 |        3 |       --- |             --- |
-| Slice Logic              |     0.016 |     5439 |       --- |             --- |
-|   LUT as Logic           |     0.015 |     3209 |     20800 |           15.43 |
-|   CARRY4                 |    <0.001 |      283 |      8150 |            3.47 |
+| Slice Logic              |     0.008 |     3456 |       --- |             --- |
+|   LUT as Logic           |     0.007 |     1732 |     20800 |            8.33 |
 |   LUT as Distributed RAM |    <0.001 |      256 |      9600 |            2.67 |
-|   Register               |    <0.001 |      645 |     41600 |            1.55 |
-|   F7/F8 Muxes            |    <0.001 |      310 |     32600 |            0.95 |
+|   CARRY4                 |    <0.001 |       40 |      8150 |            0.49 |
+|   Register               |    <0.001 |      706 |     41600 |            1.70 |
+|   F7/F8 Muxes            |    <0.001 |      319 |     32600 |            0.98 |
 |   BUFG                   |    <0.001 |        2 |        32 |            6.25 |
-|   Others                 |     0.000 |       22 |       --- |             --- |
-| Signals                  |     0.021 |     4125 |       --- |             --- |
-| DSPs                     |     0.001 |        1 |        90 |            1.11 |
-| I/O                      |     0.007 |       41 |       106 |           38.68 |
+|   Others                 |     0.000 |       20 |       --- |             --- |
+| Signals                  |     0.010 |     2650 |       --- |             --- |
+| Block RAM                |    <0.001 |      0.5 |        50 |            1.00 |
+| DSPs                     |    <0.001 |        1 |        90 |            1.11 |
+| I/O                      |     0.003 |       41 |       106 |           38.68 |
 | Static Power             |     0.072 |          |           |                 |
-| Total                    |     0.122 |          |           |                 |
+| Total                    |     0.099 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,9 +76,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.052 |       0.043 |      0.010 |
+| Vccint    |       1.000 |     0.034 |       0.024 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |
-| Vcco33    |       3.300 |     0.003 |       0.002 |      0.001 |
+| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -144,13 +145,13 @@ Table of Contents
 +--------------------------------------------------------+-----------+
 | Name                                                   | Power (W) |
 +--------------------------------------------------------+-----------+
-| Processor                                              |     0.050 |
+| Processor                                              |     0.027 |
 |   ALU                                                  |     0.002 |
-|   EX_MEM                                               |     0.021 |
-|   ID_EX                                                |     0.007 |
-|   IF_ID                                                |    <0.001 |
-|   MEM_WB                                               |     0.003 |
-|   Prog_count                                           |     0.001 |
+|   EX_MEM                                               |     0.005 |
+|   ID_EX                                                |     0.003 |
+|   IF_ID                                                |     0.001 |
+|   MEM_WB                                               |     0.001 |
+|   Prog_count                                           |    <0.001 |
 |   RAM                                                  |     0.003 |
 |     xpm_memory_dpdistram_inst                          |     0.002 |
 |       xpm_memory_base_inst                             |     0.002 |
@@ -222,7 +223,7 @@ Table of Contents
 |     xpm_memory_sprom_inst                              |    <0.001 |
 |       xpm_memory_base_inst                             |    <0.001 |
 |   branch                                               |    <0.001 |
-|   console_display                                      |     0.001 |
+|   console_display                                      |     0.004 |
 |     timing                                             |    <0.001 |
 |   controller                                           |    <0.001 |
 |   led_display_memory                                   |    <0.001 |

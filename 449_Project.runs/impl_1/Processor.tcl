@@ -69,13 +69,13 @@ set rc [catch {
   create_project -in_memory -part xc7a35tcpg236-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir C:/Users/echatham/ECE449/449_Project.cache/wt [current_project]
-  set_property parent.project_path C:/Users/echatham/ECE449/449_Project.xpr [current_project]
-  set_property ip_output_repo C:/Users/echatham/ECE449/449_Project.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Users/ericyu02/ECE449/ECE449/449_Project.cache/wt [current_project]
+  set_property parent.project_path C:/Users/ericyu02/ECE449/ECE449/449_Project.xpr [current_project]
+  set_property ip_output_repo C:/Users/ericyu02/ECE449/ECE449/449_Project.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES XPM_MEMORY [current_project]
-  add_files -quiet C:/Users/echatham/ECE449/449_Project.runs/synth_1/Processor.dcp
-  read_xdc C:/Users/echatham/ECE449/449_Project.srcs/constrs_1/new/constraints.xdc
+  add_files -quiet C:/Users/ericyu02/ECE449/ECE449/449_Project.runs/synth_1/Processor.dcp
+  read_xdc C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/constrs_1/new/constraints.xdc
   link_design -top Processor -part xc7a35tcpg236-1
   close_msg_db -file init_design.pb
 } RESULT]

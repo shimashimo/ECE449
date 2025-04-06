@@ -34,7 +34,7 @@ entity RAM is
 		rst_b: in STD_LOGIC;
 		enb_a: in STD_LOGIC;
 		enb_b: in STD_LOGIC;
-		write_a: in STD_LOGIC_VECTOR(0 downto 0);     -- wea[WRITE_DATA_WIDTH_A / BYTE_WRITE_WIDTH_A - 1) : 0]
+		write_a: in STD_LOGIC_VECTOR(0 downto 0);     -- wea[WRITE_DATA_WIDTH_A / (BYTE_WRITE_WIDTH_A - 1) : 0]
 		addr_a: in STD_LOGIC_VECTOR(15 downto 0);     -- addra[(ADDR_WIDTH_A - 1) : 0]
 		addr_b: in STD_LOGIC_VECTOR(15 downto 0);     -- addrb[(ADDR_WIDTH_B - 1) : 0]
 		din: in STD_LOGIC_VECTOR(15 downto 0);        -- [(WRITE_DATA_WIDTH_A - 1) : 0]
@@ -54,7 +54,6 @@ begin
 		ADDR_WIDTH_B => 16, -- DECIMAL
 		BYTE_WRITE_WIDTH_A => 16, -- DECIMAL
 		CLOCKING_MODE => "common_clock", -- String
---		MEMORY_INIT_FILE => "bootloader.mem", -- String
         MEMORY_INIT_FILE => "none",
 		MEMORY_INIT_PARAM => "", -- String
 		MEMORY_OPTIMIZATION => "true", -- String

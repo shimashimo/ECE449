@@ -27,10 +27,10 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity ALU is
     Port (
-        -- clk : in STD_LOGIC;
         rst : in STD_LOGIC;
-        A : in STD_LOGIC_VECTOR(15 downto 0);
+        A : in STD_LOGIC_VECTOR(15 downto 0);       
         B : in STD_LOGIC_VECTOR(15 downto 0);
+        misc: in STD_LOGIC_VECTOR(8 downto 0);      -- MISC values for A2 instructions
         OP : in STD_LOGIC_VECTOR(2 downto 0);       -- Opcode is 7 bits
         Y : out STD_LOGIC_VECTOR(15 downto 0);
         Z : out STD_LOGIC;
@@ -49,41 +49,22 @@ begin
             else
                 case OP is
                     when "001" =>   Y <= A + B;
---                                    Z <= '0';
---                                    N <= '0';
                                     
-                    when "010" =>   Y <= A - B;
---                                    Z <= '0';
---                                    N <= '0';
+                    when "010" =>   
+                                    if A = B then
+                                        Y <= x"0000";
+                                    else
+                                        Y <= A - B;
+                                    end if;
+
                     when "011" =>   p1 := std_logic_vector(unsigned(A) * unsigned(B));
                                     Y <= p1(15 downto 0);
---                                    Z <= '0';
---                                    N <= '0';
                                     
                     when "100" =>   Y <= A NAND B;
---                                    Z <= '0';   
---                                    N <= '0';
-                    
-                    when "101" =>  for i in 0 to 15 loop
-                                        if i <= 15 - to_integer(unsigned(B)) then
-                                            Y(i + to_integer(unsigned(B))) <= A(i);
-                                        end if;
-                                        if i < to_integer(unsigned(B)) then
-                                            Y(i) <= '0';
-                                        end if;
-                                    end loop;
---                                    Z <= '0';
---                                    N <= '0';
-                                    
-                    when "110" =>   for i in 0 to 15 loop
-                                        if i >= to_integer(unsigned(B)) then
-                                            Y(i - to_integer(unsigned(B))) <= A(i);
-                                        else
-                                            Y(i) <= '0';
-                                        end if;
-                                    end loop;
---                                    Z <= '0';
---                                    N <= '0';
+
+                    when "101" => Y <= std_logic_vector(shift_left(unsigned(A), to_integer(unsigned(misc))));
+
+                    when "110" => Y <= std_logic_vector(shift_right(unsigned(A), to_integer(unsigned(misc))));
                                     
                     when "111" =>   if signed(A) < 0 then
                                         N <= '1';
@@ -98,9 +79,7 @@ begin
                                     Y <= (others => '0');
                     
                     when others =>  NULL;    -- Output NULL on NOP?
---                                    Y <= '0';
---                                    Z <= '0';
---                                    N <= '0';
+
                 end case;
             end if;
     end process;

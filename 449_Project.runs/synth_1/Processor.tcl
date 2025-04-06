@@ -22,39 +22,41 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/echatham/ECE449/449_Project.cache/wt [current_project]
-set_property parent.project_path C:/Users/echatham/ECE449/449_Project.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/ericyu02/ECE449/ECE449/449_Project.cache/wt [current_project]
+set_property parent.project_path C:/Users/ericyu02/ECE449/ECE449/449_Project.xpr [current_project]
 set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo c:/Users/echatham/ECE449/449_Project.cache/ip [current_project]
+set_property ip_output_repo c:/Users/ericyu02/ECE449/ECE449/449_Project.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_mem {
-  C:/Users/echatham/ECE449/assembler/bootloader.mem
-  C:/Users/echatham/ECE449/assembler/bootloader1.mem
+  C:/Users/ericyu02/ECE449/ECE449/assembler/bootloader.mem
+  C:/Users/ericyu02/ECE449/ECE449/assembler/bootloader1.mem
+  C:/Users/ericyu02/ECE449/ECE449/assembler/bootloader2.mem
+  C:/Users/ericyu02/ECE449/ECE449/assembler/bootloader3.mem
 }
 read_vhdl -library xil_defaultlib {
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ALU.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ASCII.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Bit_To_ASCII.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Branch.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Controller.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Decoder.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ForwardingUnit.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/HazardDetection.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/MEM_WB.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/NIBBLE_To_ASCII.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Program_Counter.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/ROM.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Register.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/RAM.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd
-  C:/Users/echatham/ECE449/449_Project.srcs/sources_1/new/Processor.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/3to1_MUX.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ALU.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ASCII.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Bit_To_ASCII.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Branch.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Controller.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Decoder.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/EX_MEM.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ForwardingUnit.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Graphics.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/HazardDetection.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ID_EX.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/LED_Display.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/MEM_WB.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/NIBBLE_To_ASCII.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Program_Counter.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/ROM.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Register.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/RAM.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/VGA_Display.vhd
+  C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/sources_1/new/Processor.vhd
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -64,8 +66,8 @@ read_vhdl -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/echatham/ECE449/449_Project.srcs/constrs_1/new/constraints.xdc
-set_property used_in_implementation false [get_files C:/Users/echatham/ECE449/449_Project.srcs/constrs_1/new/constraints.xdc]
+read_xdc C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/constrs_1/new/constraints.xdc
+set_property used_in_implementation false [get_files C:/Users/ericyu02/ECE449/ECE449/449_Project.srcs/constrs_1/new/constraints.xdc]
 
 
 synth_design -top Processor -part xc7a35tcpg236-1

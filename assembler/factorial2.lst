@@ -1,0 +1,56 @@
+
+;
+; Created on Sun Mar 30 17:06:53 2025 with ECE 449 assembler v1.12 beta 1 (16 bit).
+;
+;Header Section
+RADIX 10
+DEPTH 2048
+WIDTH 16
+DEFAULT 0
+;
+; Data Section
+; Specifies data to be stored in different addresses
+; e.g., DATA 0:A, 1:0
+;
+RADIX 16
+DATA 
+1216 => "0010010111111111", -- 04C0 - 25FF main:          loadimm.upper DipSwitches.hi
+1218 => "0010010011110000", -- 04C2 - 24F0                loadimm.lower DipSwitches.lo
+1220 => "0010000110111000", -- 04C4 - 21B8                load          r6,r7
+1222 => "0010010100000000", -- 04C6 - 2500                loadimm.upper DipSwitchMask.hi
+1224 => "0010010000000111", -- 04C8 - 2407                loadimm.lower DipSwitchMask.lo
+1226 => "0000100110110111", -- 04CA - 09B7                nand          r6,r6,r7
+1228 => "0000100110110110", -- 04CC - 09B6                nand          r6,r6,r6
+1230 => "0010010100000000", -- 04CE - 2500                loadimm.upper 0x00
+1232 => "0010010000000001", -- 04D0 - 2401                loadimm.lower 0x01
+1234 => "0010011100111000", -- 04D2 - 2738                mov           r4,r7
+1236 => "0010011011111000", -- 04D4 - 26F8                mov           r3,r7
+1238 => "0000111110000000", -- 04D6 - 0F80                test          r6
+1240 => "1000010000001101", -- 04D8 - 840D                brr.z         Done
+1242 => "0000010110110011", -- 04DA - 05B3                sub           r6,r6,r3
+1244 => "0000111110000000", -- 04DC - 0F80                test          r6
+1246 => "1000010000001010", -- 04DE - 840A                brr.z         Done
+1248 => "0010010100000000", -- 04E0 - 2500                loadimm.upper 0x00
+1250 => "0010010000000010", -- 04E2 - 2402                loadimm.lower 0x02
+1252 => "0010011101111000", -- 04E4 - 2778                mov           r5,r7
+1254 => "0000011100100101", -- 04E6 - 0725 loop:          mul           r4,r4,r5
+1256 => "0000001101101011", -- 04E8 - 036B                add           r5,r5,r3
+1258 => "0000010110110011", -- 04EA - 05B3                sub           r6,r6,r3
+1260 => "0000111110000000", -- 04EC - 0F80                test          r6
+1262 => "1000010000000010", -- 04EE - 8402                brr.z         Done
+1264 => "1000000111111011", -- 04F0 - 81FB                brr           loop
+1266 => "0010010111111111", -- 04F2 - 25FF Done:          loadimm.upper LedDisplay.hi
+1268 => "0010010011110010", -- 04F4 - 24F2                loadimm.lower LedDisplay.lo
+1270 => "0010001111100000", -- 04F6 - 23E0                store         r7,r4
+1272 => "1000000111111101", -- 04F8 - 81FD                brr           Done
+
+
+-------------------------------------------------------
+Symbol Table:
+DipSwitchMask       7 (0007)
+DipSwitches     65520 (FFF0)
+Done             1266 (04F2)
+LedDisplay      65522 (FFF2)
+loop             1254 (04E6)
+main             1216 (04C0)
+
